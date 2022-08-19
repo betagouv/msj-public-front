@@ -1,8 +1,9 @@
 import { Routes, Route } from "react-router-dom"
 
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 
 import "./App.css";
+import "@gouvfr/dsfr/dist/dsfr/dsfr.min.css";
 import Login from "./pages/Login";
 
 function App() {
