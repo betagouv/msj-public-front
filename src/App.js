@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Banner from "./components/Banner/Banner";
 
 import "@gouvfr/dsfr/dist/dsfr/dsfr.min.css";
-import "@gouvfr/dsfr/dist/dsfr/dsfr.module.min.js";
 import "./App.scss";
 
 // import 'font-awesome/css/font-awesome.min.css'
