@@ -1,6 +1,10 @@
 @use 'styles/breakpoints';
 @use 'styles/colors';
 
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
 // add custom styles here, don't change the dsfr.css file
 
 .static-wrapper {
