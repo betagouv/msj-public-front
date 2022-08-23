@@ -1,13 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link,  useParams } from "react-router-dom";
 
 const Appointment = () => {
+  const appointmentId =  useParams().appointmentId
+
+  // TODO : faire une requête vers  l'appliction agent pour avoir le détail du rdv 
+
   return (
     <div className="fr-container fr-py-6w px-12 lg:px-32">
       <div className="bg-white shadow relative mb-8">
         <div className="flex justify-center">
           <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold bg-green-600 text-white absolute -top-3.5">
-            Dans 66 jours
+            ID : { appointmentId } Dans 66 jours
           </span>
         </div>
         <div className="p-8 lg:p-12">
@@ -60,7 +64,7 @@ const Appointment = () => {
         </div>
       </div>
       <div className="flex justify-center">
-        <Link to="appointments" className="fr-nav__link">
+        <Link to="appointments">
           Retour à la liste
         </Link>
       </div>

@@ -11,11 +11,15 @@ const AcceptInvitation = () => {
         accept-charset="UTF-8"
         method="post"
       >
+        {/* 
+        
+        Rails specific  code that will be removed
+        
         <input type="hidden" name="_method" value="put" autocomplete="off" />
         <input
           type="hidden"
           name="authenticity_token"
-          value="fo4KVsj-xigHjHoS1r05kxRsKrrfzfTbG3kXOT9_T7gzmRi6h-289VcQObxC7-Whf-gTU9s9xRS6Jzcwm_y7cg"
+          value=""
           autocomplete="off"
         />
 
@@ -23,10 +27,10 @@ const AcceptInvitation = () => {
           readonly="readonly"
           autocomplete="off"
           type="hidden"
-          value="5tunpx3PBp6s7UisWBgP"
+          value=""
           name="convict[invitation_token]"
           id="convict_invitation_token"
-        />
+        /> */}
 
         <label className="fr-label -mb-1" for="convict_password">
           Mot de passe
