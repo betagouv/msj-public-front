@@ -2,7 +2,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Banner from "./components/Banner/Banner";
 
-import "@gouvfr/dsfr/dist/dsfr/dsfr.min.css";
+import '@gouvfr/dsfr/dist/dsfr/dsfr.css';
+import '@gouvfr/dsfr/dist/utility/icons/icons-system/icons-system.css';
+import '@gouvfr/dsfr/dist/utility/icons/icons-user/icons-user.css';
+import '@gouvfr/dsfr/dist/utility/icons/icons-business/icons-business.css';
+
+import 'font-awesome/css/font-awesome.min.css'
 import "./App.scss";
 
 // import 'font-awesome/css/font-awesome.min.css'
