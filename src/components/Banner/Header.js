@@ -35,17 +35,17 @@ const Header = () => {
             </div>
           </div>
 
-          <div class="fr-header__tools">
-            <div class="fr-header__tools-links">
-              <ul class="fr-links-group" data-fr-js-header-links="true">
+          <div className="fr-header__tools">
+            <div className="fr-header__tools-links">
+              <ul className="fr-links-group" data-fr-js-header-links="true">
                 <li>
-                  <a class="fr-link fr-fi-information-line" href="/landing">
+                  <a className="fr-link fr-fi-information-line" href="/landing">
                     Revenir au site public
                   </a>
                 </li>
                 <li>
                   <a
-                    class="fr-link fr-fi-lock-line"
+                    className="fr-link fr-fi-lock-line"
                     data-method="get"
                     href="https://agents.mon-suivi-justice.incubateur.net/"
                   >
