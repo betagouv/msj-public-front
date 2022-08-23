@@ -1,11 +1,48 @@
 import React from "react";
+import AppointmentsList from "../components/Appointments/AppointmentsList";
 
-const  Appointments = () => {
+const APPOINTMENTS_LIST = [
+  {
+    id: 1,
+    date: "Vendredi 15 Septembre 10h00",
+    place: "SPIP 92",
+  },
+  {
+    id: 2,
+    date: "Vendredi 15 Septembre 10h00",
+    place: "SPIP 92",
+  },
+  {
+    id: 3,
+    date: "Vendredi 15 Septembre 10h00",
+    place: "SPIP 92",
+  },
+];
+
+const Appointments = () => {
+  if (APPOINTMENTS_LIST.length === 0) {
     return (
-        <>
-            <h1>Ma liste de rendez-vous</h1>
-        </>
-    )
-}
+      <div className="my-10">
+        <h1 className="text-xl">Vous n'avez pas encore de rendez-vous</h1>
+      </div>
+    );
+  }
 
-export default Appointments
+  return (
+    <>
+      <div className="fr-container fr-py-6w px-12 lg:px-32">
+        <h1 className="text-3xl">Vos rendez-vous</h1>
+        <AppointmentsList
+          items={APPOINTMENTS_LIST}
+          title="Rendez-vous suivants"
+        />
+        <AppointmentsList
+          items={APPOINTMENTS_LIST}
+          title="Rendez-vous passés"
+        />
+      </div>
+    </>
+  );
+};
+
+export default Appointments;

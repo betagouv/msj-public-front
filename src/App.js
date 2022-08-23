@@ -16,6 +16,7 @@ import AcceptInvitation from "./pages/AcceptInvitation";
 import Appointments from "./pages/Appointments";
 import Agents from "./pages/Agents";
 import Account from "./pages/Account";
+import Appointment from "./pages/Appointment";
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
             <Route path="/appointments" element={<Appointments />} exact />
             <Route path="/agent" element={<Agents />} exact />
             <Route path="/convict" element={<Account />} exact />
-
+            <Route pathh="/appointment" element={ <Appointment/>} exact />
             <Route
               path="*"
               element={
