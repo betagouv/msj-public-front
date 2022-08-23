@@ -2,10 +2,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Banner from "./components/Banner/Banner";
 
-import "./App.scss";
-// import "@gouvfr/dsfr/dist/dsfr/dsfr.min.css";
-import "@gouvfr/dsfr/dist/dsfr/dsfr.css";
+import "@gouvfr/dsfr/dist/dsfr/dsfr.min.css";
 import "@gouvfr/dsfr/dist/dsfr/dsfr.module.min.js";
+import "./App.scss";
+
 // import 'font-awesome/css/font-awesome.min.css'
 import Login from "./pages/Login";
 import AcceptInvitation from "./pages/AcceptInvitation";
