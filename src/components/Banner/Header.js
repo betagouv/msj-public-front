@@ -1,10 +1,10 @@
 import React from "react";
+
 import MSJLogo from "./logo_msj.svg"
 
 const Header = () => {
-  return (
-    <header role="banner" className="fr-header">
-      <div className="fr-header__body">
+    return (
+        <div className="fr-header__body">
         <div className="fr-container">
           <div className="fr-header__body-row">
             <div className="fr-header__brand fr-enlarge-link">
@@ -47,8 +47,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-    </header>
-  );
-};
+    )
+}
 
-export default Header;
+export default Header
