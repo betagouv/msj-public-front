@@ -1,24 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import Banner from "./components/Banner/Banner";
+
+import "@gouvfr/dsfr/dist/dsfr/dsfr.min.css";
+import "./App.scss";
+
+// import 'font-awesome/css/font-awesome.min.css'
+import Login from "./pages/Login";
+import AcceptInvitation from "./pages/AcceptInvitation";
+import Appointments from "./pages/Appointments";
+import Agents from "./pages/Agents";
+import Account from "./pages/Account";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Banner />
+        <div className="static-wrapper">
+          <Routes>
+            <Route path="/sign_in" element={<Login />} exact />
+            <Route
+              path="/accept_invitation"
+              element={<AcceptInvitation />}
+              exact
+            />
+            <Route path="/appointments" element={<Appointments />} exact />
+            <Route path="/agent" element={<Agents />} exact />
+            <Route path="/convict" element={<Account />} exact />
+
+            <Route
+              path="*"
+              element={
+                <main style={{ padding: "1rem" }}>
+                  <p>404 page non trouvée</p>
+                </main>
+              }
+            />
+          </Routes>
+        </div>
+      </Router>
+    </>
   );
 }
 
