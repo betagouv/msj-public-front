@@ -34,7 +34,7 @@ function App() {
             <Route path="/appointments" element={<Appointments />} exact />
             <Route path="/agent" element={<Agents />} exact />
             <Route path="/convict" element={<Account />} exact />
-            <Route pathh="/appointment" element={ <Appointment/>} exact />
+            <Route path="/appointment" element={<Appointment />} exact />
             <Route
               path="*"
               element={
