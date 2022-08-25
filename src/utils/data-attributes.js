@@ -1,3 +1,5 @@
+// Copyright (c) 2021 #dataESR
+
 const getAll = (props) => {
   const newProps = {};
 
