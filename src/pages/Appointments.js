@@ -3,17 +3,17 @@ import AppointmentsList from "../components/Appointments/AppointmentsList";
 
 const APPOINTMENTS_LIST = [
   {
-    id: 1,
+    id: '1',
     date: "Vendredi 15 Septembre 10h00",
     place: "SPIP 92",
   },
   {
-    id: 2,
+    id: '2',
     date: "Vendredi 15 Septembre 10h00",
     place: "SPIP 92",
   },
   {
-    id: 3,
+    id: '3',
     date: "Vendredi 15 Septembre 10h00",
     place: "SPIP 92",
   },
