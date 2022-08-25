@@ -53,7 +53,7 @@ const Header = () => {
                   </a>
                 </li>
                 <li>
-                  <Link to="accept_invitation" className="fr-link fr-fi-account-line">
+                  <Link to="sign_in" className="fr-link fr-fi-account-line">
                     Mon Espace Personnel
                   </Link>
                 </li>
