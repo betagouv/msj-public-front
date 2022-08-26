@@ -1,6 +1,13 @@
-import React from "react";
-import Checkbox from "../components/Forms/Checkbox";
-import TextInput from "../components/Forms/TextInput";
+import React from 'react'
+import Checkbox from 'components/Forms/Checkbox'
+import TextInput from 'components/Forms/TextInput'
+import {
+  VALIDATOR_MINLENGTH,
+  VALIDATOR_ONE_UPPERCASE,
+  VALIDATOR_REQUIRE,
+  VALIDATOR_ONE_DIGIT,
+  VALIDATOR_ONE_SPECIAL_CHAR,
+} from 'utils/validators'
 
 const Login = () => {
   return (
@@ -19,6 +26,8 @@ const Login = () => {
           id="convict_phone"
           required={true}
           autoComplete="tel"
+          errorMessage="Veuillez saisir un numéro de téléphone valide"
+          validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(8)]}
         ></TextInput>
 
         <TextInput
@@ -27,6 +36,14 @@ const Login = () => {
           required={true}
           hint="10 caractères, avec une majuscule, un chiffre et un caractère spécial"
           autoComplete="current-password"
+          errorMessage="Le mot de passe doit contenir 10 caractères, avec une majuscule, un chiffre et un caractère spécial"
+          validators={[
+            VALIDATOR_REQUIRE(),
+            VALIDATOR_MINLENGTH(10),
+            VALIDATOR_ONE_UPPERCASE(),
+            VALIDATOR_ONE_DIGIT(),
+            VALIDATOR_ONE_SPECIAL_CHAR(),
+          ]}
         ></TextInput>
 
         <Checkbox
@@ -98,14 +115,14 @@ const Login = () => {
           La présente interface est à l’initiative du Ministère de la Justice.
           Le respect de vos droits et de votre vie privée est une priorité. Pour
           plus d’informations sur l’utilisation de vos données personnelles,
-          vous pouvez vous rendre sur{" "}
+          vous pouvez vous rendre sur{' '}
           <a target="_blank" href="/donnees_personnelles">
             la page dédiée
           </a>
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

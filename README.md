@@ -6,10 +6,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm run run:app`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This will launch the React app as well as a json-server which mocks the back-end (api mock data is in `./db.json`).
+Open [http://localhost:5001](http://localhost:5001) to access the api.
+
+Open [http://localhost:5000](http://localhost:5000) to view the app in the browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
