@@ -1,10 +1,15 @@
 import React from 'react'
 import Checkbox from 'components/Forms/Checkbox'
 import TextInput from 'components/Forms/TextInput'
-import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from 'utils/validators'
+import {
+  VALIDATOR_MINLENGTH,
+  VALIDATOR_ONE_UPPERCASE,
+  VALIDATOR_REQUIRE,
+  VALIDATOR_ONE_DIGIT,
+  VALIDATOR_ONE_SPECIAL_CHAR,
+} from 'utils/validators'
 
 const Login = () => {
-
   return (
     <div className="fr-container fr-py-6w px-12 lg:px-72">
       <h2 className="mb-4">Je me connecte</h2>
@@ -32,7 +37,13 @@ const Login = () => {
           hint="10 caractères, avec une majuscule, un chiffre et un caractère spécial"
           autoComplete="current-password"
           errorMessage="Le mot de passe doit contenir 10 caractères, avec une majuscule, un chiffre et un caractère spécial"
-          validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(10)]}
+          validators={[
+            VALIDATOR_REQUIRE(),
+            VALIDATOR_MINLENGTH(10),
+            VALIDATOR_ONE_UPPERCASE(),
+            VALIDATOR_ONE_DIGIT(),
+            VALIDATOR_ONE_SPECIAL_CHAR(),
+          ]}
         ></TextInput>
 
         <Checkbox
