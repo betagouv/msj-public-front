@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
-import Header from "./Header";
-import Nav from "./Nav";
+import Header from './Header'
+import Nav from './Nav'
 
 const Banner = () => {
   return (
@@ -10,7 +10,7 @@ const Banner = () => {
       {/* TODO: Nav is only displayed to logged_in users */}
       <Nav />
     </header>
-  );
-};
+  )
+}
 
-export default Banner;
+export default Banner

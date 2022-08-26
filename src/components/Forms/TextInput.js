@@ -1,54 +1,72 @@
 // Copyright (c) 2021 #dataESR
 
-import { forwardRef, useRef, useState } from 'react';
+import { forwardRef, useRef, useReducer } from 'react'
+import * as React from 'react'
+import * as PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { v4 as uuidv4 } from 'uuid'
 
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { v4 as uuidv4 } from 'uuid';
-import dataAttributes from '../../utils/data-attributes';
+import dataAttributes from 'utils/data-attributes'
+import { validate } from 'utils/validators'
+
+
+const textInputReducer = (state, action) => {
+  switch (action.type) {
+    case 'CHANGE':
+      return {
+        ...state,
+        value: action.val,
+        isValid: validate(action.val, action.validators),
+      }
+    default:
+      return state
+  }
+}
 
 /**
  *
  * @visibleName TextInput
  */
 const TextInput = forwardRef((props, ref) => {
+  const [textInputState, dispatch] = useReducer(textInputReducer, { value: '', isValid: null })
+
   const {
     textarea,
     type,
     label,
     hint,
-    message,
-    messageType,
+    errorMessage,
     className,
     required,
     onBlur,
-    withAutoValidation,
+    validators,
     ...remainingProps
-  } = props;
+  } = props
 
-  const [validation, setValidation] = useState({
-    status: '',
-    message: undefined,
-  });
+  const onBlurHandler = (e) => {
+    dispatch({
+      type: 'CHANGE',
+      val: e.target.value,
+      isValid: false,
+      validators
+    })
+  }
 
-  const internalMessageType = withAutoValidation
-    ? validation.status
-    : messageType;
-  const internalMessage = withAutoValidation ? validation.message : message;
+  const computedStyle = textInputState.isValid ? 'valid' : 'error'
+
   const _classNameWrapper = classNames(
     'fr-input-group',
     {
-      [`fr-input-group--${internalMessageType}`]: internalMessageType,
+      [`fr-input-group--${computedStyle}`]: textInputState.isValid !== null,
     },
-    className,
-  );
+    className
+  )
   const _className = classNames('fr-input', {
-    [`fr-input--${internalMessageType}`]: internalMessageType,
-  });
+    [`fr-input--${computedStyle}`]: textInputState.isValid !== null,
+  })
 
-  const inputId = useRef(uuidv4());
-  const hintId = useRef(uuidv4());
+  const inputId = useRef(uuidv4())
+  const hintId = useRef(uuidv4())
   return (
     <div
       className={_classNameWrapper}
@@ -71,16 +89,8 @@ const TextInput = forwardRef((props, ref) => {
           ref={ref}
           className={_className}
           id={inputId.current}
-          required={required}
-          onBlur={(e) => {
-            if (withAutoValidation) {
-              setValidation({
-                status: e.target.validity.valid ? 'valid' : 'error',
-                message: e.target.validationMessage,
-              });
-            }
-            onBlur(e);
-          }}
+          defaultValue={textInputState.value}
+          onBlur={onBlurHandler}
         />
       ) : (
         <input
@@ -90,40 +100,31 @@ const TextInput = forwardRef((props, ref) => {
           type={type}
           className={_className}
           id={inputId.current}
-          required={required}
-          onBlur={(e) => {
-            if (withAutoValidation) {
-              setValidation({
-                status: e.target.validity.valid ? 'valid' : 'error',
-                message: e.target.validationMessage,
-              });
-            }
-            onBlur(e);
-          }}
+          defaultValue={textInputState.value}
+          onBlur={onBlurHandler}
         />
       )}
-      {internalMessage && internalMessageType && (
-        <p className={`fr-${internalMessageType}-text`}>{internalMessage}</p>
+
+      {textInputState.isValid === false &&  (
+        <p className={`fr-error-text`}>{ errorMessage }</p>
       )}
     </div>
-  );
-});
+  )
+})
 
 TextInput.defaultProps = {
   textarea: false,
   hint: '',
-  messageType: '',
-  message: '',
   label: null,
+  errorMessage: '',
   className: '',
   type: 'text',
   required: false,
-  withAutoValidation: false,
-  onBlur: () => {},
-};
+  validators: []
+}
 
 TextInput.propTypes = {
-  type: PropTypes.oneOf(['date', 'text', 'number', 'password', 'email']),
+  type: PropTypes.oneOf(['date', 'text', 'number', 'password', 'email', 'tel']),
   textarea: PropTypes.bool,
   label: PropTypes.string,
   hint: PropTypes.oneOfType([
@@ -131,16 +132,15 @@ TextInput.propTypes = {
     PropTypes.object,
     PropTypes.array,
   ]),
-  messageType: PropTypes.oneOf(['error', 'valid', '']),
-  message: PropTypes.string,
+  errorMessage: PropTypes.string,
   required: PropTypes.bool,
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,
     PropTypes.array,
   ]),
-  withAutoValidation: PropTypes.bool,
-  onBlur: PropTypes.func,
-};
+  validators: PropTypes.arrayOf(PropTypes.object),
 
-export default TextInput;
+}
+
+export default TextInput

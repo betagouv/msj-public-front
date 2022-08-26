@@ -4,7 +4,7 @@ import React, { forwardRef, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
-import dataAttributes from '../../utils/data-attributes';
+import dataAttributes from 'utils/data-attributes';
 
 import '@gouvfr/dsfr/dist/component/checkbox/checkbox.css';
 

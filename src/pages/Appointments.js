@@ -1,5 +1,5 @@
 import React from 'react'
-import AppointmentsList from '../components/Appointments/AppointmentsList'
+import AppointmentsList from 'components/Appointments/AppointmentsList'
 
 const APPOINTMENTS_LIST = [
   {
