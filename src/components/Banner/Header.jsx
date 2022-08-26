@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import MSJLogo from "./logo_msj.svg";
+import MSJLogo from './logo_msj.svg';
 
-const Header = () => {
+function Header() {
   return (
     <div className="fr-header__body">
       <div className="fr-container">
@@ -20,6 +20,7 @@ const Header = () => {
               <div className="fr-header__navbar items-center">
                 <button
                   className="fr-btn--menu fr-btn"
+                  type="button"
                   data-fr-opened="false"
                   aria-controls="modal-851"
                   aria-haspopup="menu"
@@ -64,6 +65,6 @@ const Header = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Header;

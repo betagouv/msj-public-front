@@ -1,14 +1,12 @@
 // Copyright (c) 2021 #dataESR
 
-import { forwardRef, useRef, useReducer } from 'react'
-import * as React from 'react'
-import * as PropTypes from 'prop-types'
-import classNames from 'classnames'
-import { v4 as uuidv4 } from 'uuid'
+import { forwardRef, useRef, useReducer } from 'react';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { v4 as uuidv4 } from 'uuid';
 
-import dataAttributes from 'utils/data-attributes'
-import { validate } from 'utils/validators'
-
+import { validate } from 'utils/validators';
 
 const textInputReducer = (state, action) => {
   switch (action.type) {
@@ -17,18 +15,18 @@ const textInputReducer = (state, action) => {
         ...state,
         value: action.val,
         isValid: validate(action.val, action.validators),
-      }
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
 /**
  *
  * @visibleName TextInput
  */
 const TextInput = forwardRef((props, ref) => {
-  const [textInputState, dispatch] = useReducer(textInputReducer, { value: '', isValid: null })
+  const [textInputState, dispatch] = useReducer(textInputReducer, { value: '', isValid: null });
 
   const {
     textarea,
@@ -36,41 +34,36 @@ const TextInput = forwardRef((props, ref) => {
     label,
     hint,
     errorMessage,
-    className,
     required,
-    onBlur,
     validators,
-    ...remainingProps
-  } = props
+  } = props;
 
   const onBlurHandler = (e) => {
     dispatch({
       type: 'CHANGE',
       val: e.target.value,
       isValid: false,
-      validators
-    })
-  }
+      validators,
+    });
+  };
 
-  const computedStyle = textInputState.isValid ? 'valid' : 'error'
+  const computedStyle = textInputState.isValid ? 'valid' : 'error';
 
-  const _classNameWrapper = classNames(
+  const classNameWrapper = classNames(
     'fr-input-group',
     {
       [`fr-input-group--${computedStyle}`]: textInputState.isValid !== null,
     },
-    className
-  )
-  const _className = classNames('fr-input', {
+  );
+  const className = classNames('fr-input', {
     [`fr-input--${computedStyle}`]: textInputState.isValid !== null,
-  })
+  });
 
-  const inputId = useRef(uuidv4())
-  const hintId = useRef(uuidv4())
+  const inputId = useRef(uuidv4());
+  const hintId = useRef(uuidv4());
   return (
     <div
-      className={_classNameWrapper}
-      {...dataAttributes.getAll(remainingProps)}
+      className={classNameWrapper}
     >
       {label && (
         <label className="fr-label" htmlFor={inputId.current}>
@@ -85,43 +78,40 @@ const TextInput = forwardRef((props, ref) => {
       )}
       {textarea ? (
         <textarea
-          {...dataAttributes.filterAll(remainingProps)}
           ref={ref}
-          className={_className}
+          className={className}
           id={inputId.current}
           defaultValue={textInputState.value}
           onBlur={onBlurHandler}
         />
       ) : (
         <input
-          {...dataAttributes.filterAll(remainingProps)}
           aria-describedby={hint && hintId.current}
           ref={ref}
           type={type}
-          className={_className}
+          className={className}
           id={inputId.current}
           defaultValue={textInputState.value}
           onBlur={onBlurHandler}
         />
       )}
 
-      {textInputState.isValid === false &&  (
-        <p className={`fr-error-text`}>{ errorMessage }</p>
+      {textInputState.isValid === false && (
+        <p className="fr-error-text">{ errorMessage }</p>
       )}
     </div>
-  )
-})
+  );
+});
 
 TextInput.defaultProps = {
   textarea: false,
   hint: '',
   label: null,
   errorMessage: '',
-  className: '',
   type: 'text',
   required: false,
-  validators: []
-}
+  validators: [],
+};
 
 TextInput.propTypes = {
   type: PropTypes.oneOf(['date', 'text', 'number', 'password', 'email', 'tel']),
@@ -134,13 +124,8 @@ TextInput.propTypes = {
   ]),
   errorMessage: PropTypes.string,
   required: PropTypes.bool,
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-    PropTypes.array,
-  ]),
-  validators: PropTypes.arrayOf(PropTypes.object),
+  validators: PropTypes.arrayOf(PropTypes.shape),
 
-}
+};
 
-export default TextInput
+export default TextInput;

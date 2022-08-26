@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Nav = () => {
+function Nav() {
   return (
     <div
       className="fr-header__menu fr-modal"
@@ -9,7 +9,7 @@ const Nav = () => {
       aria-labelledby="button-852"
     >
       <div className="fr-container">
-        <button className="fr-link--close fr-link" aria-controls="modal-851">
+        <button type="button" className="fr-link--close fr-link" aria-controls="modal-851">
           Fermer
         </button>
         <nav
@@ -36,10 +36,10 @@ const Nav = () => {
             </li>
           </ul>
         </nav>
-        <div className="fr-header__menu-links"></div>
+        <div className="fr-header__menu-links" />
       </div>
     </div>
   );
-};
+}
 
 export default Nav;
