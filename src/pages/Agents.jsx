@@ -8,7 +8,7 @@ function Agents() {
         <div className="sm:col-span-2">
           <p className="text-md font-bold mb-0">
             Vous êtes bien suivi par votre SPIP mais aucun CPIP référent ne
-            vous a été affecté pour l'instant
+            vous a été affecté pour l&apos;instant
           </p>
         </div>
       </div>

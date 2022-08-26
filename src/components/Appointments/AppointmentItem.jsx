@@ -1,4 +1,6 @@
 import React from 'react';
+import * as PropTypes from 'prop-types';
+
 import { Link } from 'react-router-dom';
 
 function AppointementItem({ item }) {
@@ -15,5 +17,13 @@ function AppointementItem({ item }) {
     </li>
   );
 }
+
+AppointementItem.defaultProps = {
+  item: {},
+};
+
+AppointementItem.propTypes = {
+  item: PropTypes.shape,
+};
 
 export default AppointementItem;

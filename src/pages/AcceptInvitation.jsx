@@ -32,9 +32,6 @@ function AcceptInvitation() {
           id="convict_invitation_token"
         /> */}
 
-        <label className="fr-label -mb-1" htmlFor="convict_password">
-          Mot de passe
-        </label>
         <div className="leading-none">
           <span className="text-xs text-gray-500">
             10 caractères, avec une majuscule, une chiffre et un caractère
@@ -49,9 +46,6 @@ function AcceptInvitation() {
           id="convict_password"
         />
 
-        <label className="fr-label" htmlFor="convict_password_confirmation">
-          Confirmation du mot de passe
-        </label>
         <input
           className="fr-input mb-4"
           type="password"
@@ -91,10 +85,7 @@ function AcceptInvitation() {
               </h5>
             </div>
             <div className="fr-tile__img">
-              <span
-                className="fr-fi-mail-line icon-xl"
-                aria-hidden="true"
-              />
+              <span className="fr-fi-mail-line icon-xl" aria-hidden="true" />
             </div>
           </div>
         </div>
@@ -103,6 +94,7 @@ function AcceptInvitation() {
       <section className="fr-accordion mt-8">
         <h3 className="fr-accordion__title">
           <button
+            type="button"
             className="fr-accordion__btn"
             aria-expanded="false"
             aria-controls="accordion-106"
