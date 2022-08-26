@@ -1,15 +1,15 @@
-import React from 'react'
-import Checkbox from 'components/Forms/Checkbox'
-import TextInput from 'components/Forms/TextInput'
+import React from 'react';
+import Checkbox from 'components/Forms/Checkbox';
+import TextInput from 'components/Forms/TextInput';
 import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_ONE_UPPERCASE,
   VALIDATOR_REQUIRE,
   VALIDATOR_ONE_DIGIT,
   VALIDATOR_ONE_SPECIAL_CHAR,
-} from 'utils/validators'
+} from 'utils/validators';
 
-const Login = () => {
+function Login() {
   return (
     <div className="fr-container fr-py-6w px-12 lg:px-72">
       <h2 className="mb-4">Je me connecte</h2>
@@ -24,16 +24,16 @@ const Login = () => {
           label="Numéro de téléphone"
           type="tel"
           id="convict_phone"
-          required={true}
+          required
           autoComplete="tel"
           errorMessage="Veuillez saisir un numéro de téléphone valide"
           validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(8)]}
-        ></TextInput>
+        />
 
         <TextInput
           label="Mot de passe"
           id="convict_password"
-          required={true}
+          required
           hint="10 caractères, avec une majuscule, un chiffre et un caractère spécial"
           autoComplete="current-password"
           errorMessage="Le mot de passe doit contenir 10 caractères, avec une majuscule, un chiffre et un caractère spécial"
@@ -44,12 +44,12 @@ const Login = () => {
             VALIDATOR_ONE_DIGIT(),
             VALIDATOR_ONE_SPECIAL_CHAR(),
           ]}
-        ></TextInput>
+        />
 
         <Checkbox
           label="Se souvenir de moi ?"
           id="convict_remember_me"
-        ></Checkbox>
+        />
 
         <input
           type="submit"
@@ -60,7 +60,7 @@ const Login = () => {
         />
       </form>
 
-      <a href="/convicts/password/new">J'ai oublié mon mot de passe ?</a>
+      <a href="/convicts/password/new">J&apos;ai oublié mon mot de passe ?</a>
       <br />
 
       <h2 className="text-xl mb-4 mt-10">Ce que mon compte me permet</h2>
@@ -75,7 +75,7 @@ const Login = () => {
               <span
                 className="fr-fi-calendar-line icon-xl"
                 aria-hidden="true"
-              ></span>
+              />
             </div>
           </div>
         </div>
@@ -90,7 +90,7 @@ const Login = () => {
               <span
                 className="fr-fi-mail-line icon-xl"
                 aria-hidden="true"
-              ></span>
+              />
             </div>
           </div>
         </div>
@@ -98,14 +98,14 @@ const Login = () => {
 
       <section className="fr-accordion mt-8">
         <h3 className="fr-accordion__title">
-          <button
+          <span
             className="fr-accordion__btn"
             aria-expanded="false"
             aria-controls="accordion-106"
-            data-fr-js-collapse-button="true"
+            data-fr-js-collapse-span="true"
           >
             Mes données personnelles sont protégées
-          </button>
+          </span>
         </h3>
         <div
           className="fr-collapse"
@@ -115,14 +115,15 @@ const Login = () => {
           La présente interface est à l’initiative du Ministère de la Justice.
           Le respect de vos droits et de votre vie privée est une priorité. Pour
           plus d’informations sur l’utilisation de vos données personnelles,
-          vous pouvez vous rendre sur{' '}
+          vous pouvez vous rendre sur
+          {' '}
           <a target="_blank" href="/donnees_personnelles">
             la page dédiée
           </a>
         </div>
       </section>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;

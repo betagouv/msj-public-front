@@ -1,8 +1,8 @@
-import React from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React from 'react';
+import { Link, useParams } from 'react-router-dom';
 
-const Appointment = () => {
-  const appointmentId = useParams().appointmentId
+function Appointment() {
+  const { appointmentId } = useParams();
 
   // TODO : faire une requête vers  l'appliction agent pour avoir le détail du rdv
 
@@ -11,7 +11,11 @@ const Appointment = () => {
       <div className="bg-white shadow relative mb-8">
         <div className="flex justify-center">
           <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold bg-green-600 text-white absolute -top-3.5">
-            ID : {appointmentId} Dans 66 jours
+            ID :
+            {' '}
+            {appointmentId}
+            {' '}
+            Dans 66 jours
           </span>
         </div>
         <div className="p-8 lg:p-12">
@@ -58,7 +62,7 @@ const Appointment = () => {
             </div>
           </div>
           <p className="mt-8 mb-2 font-bold text-center">
-            N'oubliez pas de vous munir des justificatifs mentionnés dans votre
+            N&apos;oubliez pas de vous munir des justificatifs mentionnés dans votre
             convocation.
           </p>
         </div>
@@ -67,7 +71,7 @@ const Appointment = () => {
         <Link to="appointments">Retour à la liste</Link>
       </div>
     </div>
-  )
+  );
 }
 
-export default Appointment
+export default Appointment;
