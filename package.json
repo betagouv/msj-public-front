@@ -28,8 +28,8 @@
     "dev": "react-scripts start",
     "run:app": "start-server-and-test api http://localhost:5001 dev",
     "build": "react-scripts build",
-    "lint": "eslint src --ignore-path .gitignore .",
-    "lint:fix": "eslint src --ignore-path .gitignore . --fix",
+    "lint": "eslint . --ignore-path .gitignore",
+    "lint:fix": "eslint . --ignore-path .gitignore --fix",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
