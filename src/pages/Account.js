@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const Account = () => {
   return (
@@ -21,7 +21,7 @@ const Account = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
 export default Account

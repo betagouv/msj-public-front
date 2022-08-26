@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const Agents = () => {
   return (
@@ -15,7 +15,7 @@ const Agents = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
 export default Agents

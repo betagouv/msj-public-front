@@ -1,23 +1,23 @@
-import React from "react";
-import AppointmentsList from "../components/Appointments/AppointmentsList";
+import React from 'react'
+import AppointmentsList from '../components/Appointments/AppointmentsList'
 
 const APPOINTMENTS_LIST = [
   {
     id: '1',
-    date: "Vendredi 15 Septembre 10h00",
-    place: "SPIP 92",
+    date: 'Vendredi 15 Septembre 10h00',
+    place: 'SPIP 92',
   },
   {
     id: '2',
-    date: "Vendredi 15 Septembre 10h00",
-    place: "SPIP 92",
+    date: 'Vendredi 15 Septembre 10h00',
+    place: 'SPIP 92',
   },
   {
     id: '3',
-    date: "Vendredi 15 Septembre 10h00",
-    place: "SPIP 92",
+    date: 'Vendredi 15 Septembre 10h00',
+    place: 'SPIP 92',
   },
-];
+]
 
 const Appointments = () => {
   if (APPOINTMENTS_LIST.length === 0) {
@@ -25,7 +25,7 @@ const Appointments = () => {
       <div className="my-10">
         <h1 className="text-xl">Vous n'avez pas encore de rendez-vous</h1>
       </div>
-    );
+    )
   }
 
   return (
@@ -42,7 +42,7 @@ const Appointments = () => {
         />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Appointments;
+export default Appointments

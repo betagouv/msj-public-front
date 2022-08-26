@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const AcceptInvitation = () => {
   return (
@@ -91,7 +91,10 @@ const AcceptInvitation = () => {
               </h5>
             </div>
             <div className="fr-tile__img">
-              <span className="fr-fi-mail-line icon-xl" aria-hidden="true"></span>
+              <span
+                className="fr-fi-mail-line icon-xl"
+                aria-hidden="true"
+              ></span>
             </div>
           </div>
         </div>
@@ -108,18 +111,22 @@ const AcceptInvitation = () => {
             Mes données personnelles sont protégées
           </button>
         </h3>
-        <div className="fr-collapse" id="accordion-106" data-fr-js-collapse="true">
+        <div
+          className="fr-collapse"
+          id="accordion-106"
+          data-fr-js-collapse="true"
+        >
           La présente interface est à l’initiative du Ministère de la Justice.
           Le respect de vos droits et de votre vie privée est une priorité. Pour
           plus d’informations sur l’utilisation de vos données personnelles,
-          vous pouvez vous rendre sur{" "}
+          vous pouvez vous rendre sur{' '}
           <a target="_blank" href="/donnees_personnelles">
             la page dédiée
           </a>
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default AcceptInvitation;
+export default AcceptInvitation
