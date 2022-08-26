@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const AppointementItem = ({ item }) => {
+function AppointementItem({ item }) {
   return (
     <li className="col-span-1 fr-card fr-enlarge-link">
       <div className="fr-card__body">
@@ -14,6 +14,6 @@ const AppointementItem = ({ item }) => {
       </div>
     </li>
   );
-};
+}
 
 export default AppointementItem;

@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-const AcceptInvitation = () => {
+function AcceptInvitation() {
   return (
     <div className="fr-container fr-py-4w px-12 lg:px-72">
       <h2 className="text-2xl mb-4">Je choisis mon mot de passe</h2>
@@ -8,13 +8,13 @@ const AcceptInvitation = () => {
         className="edit_convict"
         id="edit_convict"
         action="/convicts/invitation"
-        accept-charset="UTF-8"
+        acceptCharset="UTF-8"
         method="post"
       >
-        {/* 
-        
+        {/*
+
         Rails specific  code that will be removed
-        
+
         <input type="hidden" name="_method" value="put" autocomplete="off" />
         <input
           type="hidden"
@@ -32,7 +32,7 @@ const AcceptInvitation = () => {
           id="convict_invitation_token"
         /> */}
 
-        <label className="fr-label -mb-1" for="convict_password">
+        <label className="fr-label -mb-1" htmlFor="convict_password">
           Mot de passe
         </label>
         <div className="leading-none">
@@ -42,14 +42,14 @@ const AcceptInvitation = () => {
           </span>
         </div>
         <input
-          autocomplete="current-password"
+          autoComplete="current-password"
           className="fr-input mt-2 mb-4"
           type="password"
           name="convict[password]"
           id="convict_password"
         />
 
-        <label className="fr-label" for="convict_password_confirmation">
+        <label className="fr-label" htmlFor="convict_password_confirmation">
           Confirmation du mot de passe
         </label>
         <input
@@ -79,7 +79,7 @@ const AcceptInvitation = () => {
               <span
                 className="fr-fi-calendar-line icon-xl"
                 aria-hidden="true"
-              ></span>
+              />
             </div>
           </div>
         </div>
@@ -94,7 +94,7 @@ const AcceptInvitation = () => {
               <span
                 className="fr-fi-mail-line icon-xl"
                 aria-hidden="true"
-              ></span>
+              />
             </div>
           </div>
         </div>
@@ -119,14 +119,15 @@ const AcceptInvitation = () => {
           La présente interface est à l’initiative du Ministère de la Justice.
           Le respect de vos droits et de votre vie privée est une priorité. Pour
           plus d’informations sur l’utilisation de vos données personnelles,
-          vous pouvez vous rendre sur{' '}
+          vous pouvez vous rendre sur
+          {' '}
           <a target="_blank" href="/donnees_personnelles">
             la page dédiée
           </a>
         </div>
       </section>
     </div>
-  )
+  );
 }
 
-export default AcceptInvitation
+export default AcceptInvitation;
