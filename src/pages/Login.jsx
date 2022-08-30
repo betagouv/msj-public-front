@@ -48,6 +48,10 @@ function Login() {
         value: '',
         isValid: false,
       },
+      convict_remember_me: {
+        value: false,
+        isValid: true,
+      },
     },
   });
 
@@ -61,6 +65,10 @@ function Login() {
     return true;
   };
 
+  const loginSubmitHandler = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="fr-container fr-py-6w px-12 lg:px-72">
       <h2 className="mb-4">Je me connecte</h2>
@@ -70,6 +78,7 @@ function Login() {
         action="/convicts/sign_in"
         acceptCharset="UTF-8"
         method="post"
+        onSubmit={loginSubmitHandler}
       >
         <TextInput
           label="Numéro de téléphone"
@@ -102,16 +111,19 @@ function Login() {
         <Checkbox
           label="Se souvenir de moi ?"
           id="convict_remember_me"
+          onChange={(e) => inputHandler(e.target.id, e.target.checked, true)}
         />
 
-        <input
+        <button
           type="submit"
           name="commit"
-          value="Je me connecte"
           className="fr-btn mb-4"
           data-disable-with="Je me connecte"
           disabled={!formState.isValid}
-        />
+        >
+          Je me connecte
+
+        </button>
       </form>
 
       <a href="/convicts/password/new">J&apos;ai oublié mon mot de passe ?</a>
