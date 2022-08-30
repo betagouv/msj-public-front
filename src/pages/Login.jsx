@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useReducer } from 'react';
 import Checkbox from 'components/Forms/Checkbox';
 import TextInput from 'components/Forms/TextInput';
 import {
@@ -9,7 +9,66 @@ import {
   VALIDATOR_ONE_SPECIAL_CHAR,
 } from 'utils/validators';
 
+const formReducer = (state, action) => {
+  switch (action.type) {
+    case 'INPUT_CHANGE':
+    {
+      let formIsValid = true;
+      Object.keys(state.inputs).forEach((inputId) => {
+        if (inputId === action.inputId) {
+          formIsValid = formIsValid && action.isValid;
+        } else {
+          formIsValid = formIsValid && state.inputs[inputId].isValid;
+        }
+      });
+
+      return {
+        ...state,
+        inputs: {
+          ...state.inputs,
+          [action.inputId]: { value: action.value, isValid: action.isValid },
+        },
+        isValid: formIsValid,
+      };
+    }
+    default:
+      return state;
+  }
+};
+
 function Login() {
+  const [formState, dispatch] = useReducer(formReducer, {
+    isValid: false,
+    inputs: {
+      phoneNumber: {
+        value: '',
+        isValid: false,
+      },
+      password: {
+        value: '',
+        isValid: false,
+      },
+      convict_remember_me: {
+        value: false,
+        isValid: true,
+      },
+    },
+  });
+
+  const inputHandler = (id, value, isValid) => {
+    dispatch({
+      type: 'INPUT_CHANGE',
+      inputId: id,
+      value,
+      isValid,
+    });
+    return true;
+  };
+
+  const loginSubmitHandler = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="fr-container fr-py-6w px-12 lg:px-72">
       <h2 className="mb-4">Je me connecte</h2>
@@ -19,24 +78,27 @@ function Login() {
         action="/convicts/sign_in"
         acceptCharset="UTF-8"
         method="post"
+        onSubmit={loginSubmitHandler}
       >
         <TextInput
           label="Numéro de téléphone"
           type="tel"
-          id="convict_phone"
+          id="phoneNumber"
           required
           autoComplete="tel"
+          onInput={(inputHandler)}
           errorMessage="Veuillez saisir un numéro de téléphone valide"
           validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(8)]}
         />
 
         <TextInput
           label="Mot de passe"
-          id="convict_password"
+          id="password"
           required
           hint="10 caractères, avec une majuscule, un chiffre et un caractère spécial"
           autoComplete="current-password"
           errorMessage="Le mot de passe doit contenir 10 caractères, avec une majuscule, un chiffre et un caractère spécial"
+          onInput={(inputHandler)}
           validators={[
             VALIDATOR_REQUIRE(),
             VALIDATOR_MINLENGTH(10),
@@ -49,15 +111,19 @@ function Login() {
         <Checkbox
           label="Se souvenir de moi ?"
           id="convict_remember_me"
+          onChange={(e) => inputHandler(e.target.id, e.target.checked, true)}
         />
 
-        <input
+        <button
           type="submit"
           name="commit"
-          value="Je me connecte"
           className="fr-btn mb-4"
           data-disable-with="Je me connecte"
-        />
+          disabled={!formState.isValid}
+        >
+          Je me connecte
+
+        </button>
       </form>
 
       <a href="/convicts/password/new">J&apos;ai oublié mon mot de passe ?</a>
