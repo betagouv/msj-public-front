@@ -34,11 +34,7 @@ function Login() {
     <div className="fr-container fr-py-6w px-12 lg:px-72">
       <h2 className="mb-4">Je me connecte</h2>
       <form
-        className="new_convict"
-        id="new_convict"
-        action="/convicts/sign_in"
         acceptCharset="UTF-8"
-        method="post"
         onSubmit={loginSubmitHandler}
       >
         <TextInput

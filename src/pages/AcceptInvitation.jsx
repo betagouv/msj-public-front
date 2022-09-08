@@ -1,52 +1,87 @@
 import React from 'react';
-import { useSearchParams } from 'react-router-dom';
-// import TextInput from 'shared/components/Forms/TextInput';
+// import { useSearchParams } from 'react-router-dom';
+
+import useForm from 'shared/hooks/form-hook';
+import TextInput from 'shared/components/Forms/TextInput';
+import {
+  VALIDATOR_MINLENGTH,
+  VALIDATOR_ONE_UPPERCASE,
+  VALIDATOR_REQUIRE,
+  VALIDATOR_ONE_DIGIT,
+  VALIDATOR_ONE_SPECIAL_CHAR,
+  VALIDATOR_IDENTICAL,
+} from 'shared/utils/validators';
 
 function AcceptInvitation() {
-  const [searchParams] = useSearchParams();
-  const token = searchParams.get('token');
+  // const [searchParams] = useSearchParams();
+  // const token = searchParams.get('token');
 
-  console.log(token);
+  const [formState, inputHandler] = useForm({
+    password: {
+      value: '',
+      isValid: false,
+    },
+    passwordConfirmation: {
+      value: '',
+      isValid: false,
+    },
+  }, false);
+
+  const acceptInvitationSubmitHandler = (e) => {
+    e.preventDefault();
+  };
+
+  console.log(formState);
 
   return (
     <div className="fr-container fr-py-4w px-12 lg:px-72">
       <h2 className="text-2xl mb-4">Je choisis mon mot de passe</h2>
+
       <form
-        className="edit_convict"
-        id="edit_convict"
-        action="/convicts/invitation"
         acceptCharset="UTF-8"
-        method="post"
+        onSubmit={acceptInvitationSubmitHandler}
       >
-        <div className="leading-none">
-          <span className="text-xs text-gray-500">
-            10 caractères, avec une majuscule, une chiffre et un caractère
-            spécial
-          </span>
-        </div>
-        <input
+        <TextInput
+          label="Numéro de téléphone"
+          type="password"
+          id="password"
+          hint="10 caractères, avec une majuscule, un chiffre et un caractère spécial"
+          required
           autoComplete="current-password"
-          className="fr-input mt-2 mb-4"
-          type="password"
-          name="convict[password]"
-          id="convict_password"
+          onInput={inputHandler}
+          errorMessage="Le mot de passe doit contenir 10 caractères, avec une majuscule, un chiffre et un caractère spécial"
+          validators={[
+            VALIDATOR_REQUIRE(),
+            VALIDATOR_MINLENGTH(10),
+            VALIDATOR_ONE_UPPERCASE(),
+            VALIDATOR_ONE_DIGIT(),
+            VALIDATOR_ONE_SPECIAL_CHAR(),
+          ]}
         />
 
-        <input
-          className="fr-input mb-4"
-          type="password"
-          name="convict[password_confirmation]"
-          id="convict_password_confirmation"
+        <TextInput
+          label="Mot de passe"
+          id="passwordConfirmation"
+          required
+          autoComplete="current-password"
+          errorMessage="Les mots de passe ne correspondent pas"
+          onInput={inputHandler}
+          validators={[
+            VALIDATOR_IDENTICAL(formState.password),
+          ]}
         />
 
-        <input
+        <button
           type="submit"
           name="commit"
-          value="Je valide"
-          className="fr-btn"
+          className="fr-btn mb-4"
           data-disable-with="Je valide"
-        />
+          disabled={!formState.isValid}
+        >
+          Je valide
+        </button>
       </form>
+
       <h2 className="text-xl mb-4 mt-10">Mon compte est désormais actif</h2>
 
       <div className="fr-grid-row fr-grid-row--gutters">
