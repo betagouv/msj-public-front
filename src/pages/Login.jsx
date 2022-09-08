@@ -1,4 +1,5 @@
-import { React, useReducer } from 'react';
+import { React } from 'react';
+import useForm from 'shared/hooks/form-hook';
 import Checkbox from 'shared/components/Forms/Checkbox';
 import TextInput from 'shared/components/Forms/TextInput';
 import {
@@ -9,60 +10,21 @@ import {
   VALIDATOR_ONE_SPECIAL_CHAR,
 } from 'shared/utils/validators';
 
-const formReducer = (state, action) => {
-  switch (action.type) {
-    case 'INPUT_CHANGE': {
-      let formIsValid = true;
-      Object.keys(state.inputs).forEach((inputId) => {
-        if (inputId === action.inputId) {
-          formIsValid = formIsValid && action.isValid;
-        } else {
-          formIsValid = formIsValid && state.inputs[inputId].isValid;
-        }
-      });
-
-      return {
-        ...state,
-        inputs: {
-          ...state.inputs,
-          [action.inputId]: { value: action.value, isValid: action.isValid },
-        },
-        isValid: formIsValid,
-      };
-    }
-    default:
-      return state;
-  }
-};
-
 function Login() {
-  const [formState, dispatch] = useReducer(formReducer, {
-    isValid: false,
-    inputs: {
-      phoneNumber: {
-        value: '',
-        isValid: false,
-      },
-      password: {
-        value: '',
-        isValid: false,
-      },
-      convict_remember_me: {
-        value: false,
-        isValid: true,
-      },
+  const [formState, inputHandler] = useForm({
+    phoneNumber: {
+      value: '',
+      isValid: false,
     },
-  });
-
-  const inputHandler = (id, value, isValid) => {
-    dispatch({
-      type: 'INPUT_CHANGE',
-      inputId: id,
-      value,
-      isValid,
-    });
-    return true;
-  };
+    password: {
+      value: '',
+      isValid: false,
+    },
+    convict_remember_me: {
+      value: false,
+      isValid: true,
+    },
+  }, false);
 
   const loginSubmitHandler = (e) => {
     e.preventDefault();
