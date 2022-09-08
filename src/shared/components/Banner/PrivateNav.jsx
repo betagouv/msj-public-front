@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Nav() {
+function PrivateNav() {
   return (
     <div
       className="fr-header__menu fr-modal"
@@ -42,4 +42,4 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default PrivateNav;

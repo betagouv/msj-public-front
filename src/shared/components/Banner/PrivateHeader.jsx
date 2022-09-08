@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import MSJLogo from './logo_msj.svg';
 
-function Header() {
+function PrivateHeader() {
   return (
     <div className="fr-header__body">
       <div className="fr-container">
@@ -67,4 +67,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default PrivateHeader;

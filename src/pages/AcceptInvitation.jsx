@@ -42,7 +42,7 @@ function AcceptInvitation() {
         onSubmit={acceptInvitationSubmitHandler}
       >
         <TextInput
-          label="Numéro de téléphone"
+          label="Mot de passe"
           type="password"
           id="password"
           hint="10 caractères, avec une majuscule, un chiffre et un caractère spécial"
@@ -60,7 +60,7 @@ function AcceptInvitation() {
         />
 
         <TextInput
-          label="Mot de passe"
+          label="Confirmation de mot de passe"
           id="passwordConfirmation"
           required
           autoComplete="current-password"
