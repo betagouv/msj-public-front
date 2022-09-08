@@ -1,6 +1,13 @@
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
+// import TextInput from 'shared/components/Forms/TextInput';
 
 function AcceptInvitation() {
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get('token');
+
+  console.log(token);
+
   return (
     <div className="fr-container fr-py-4w px-12 lg:px-72">
       <h2 className="text-2xl mb-4">Je choisis mon mot de passe</h2>
@@ -11,27 +18,6 @@ function AcceptInvitation() {
         acceptCharset="UTF-8"
         method="post"
       >
-        {/*
-
-        Rails specific  code that will be removed
-
-        <input type="hidden" name="_method" value="put" autocomplete="off" />
-        <input
-          type="hidden"
-          name="authenticity_token"
-          value=""
-          autocomplete="off"
-        />
-
-        <input
-          readonly="readonly"
-          autocomplete="off"
-          type="hidden"
-          value=""
-          name="convict[invitation_token]"
-          id="convict_invitation_token"
-        /> */}
-
         <div className="leading-none">
           <span className="text-xs text-gray-500">
             10 caractères, avec une majuscule, une chiffre et un caractère
@@ -112,7 +98,6 @@ function AcceptInvitation() {
           Le respect de vos droits et de votre vie privée est une priorité. Pour
           plus d’informations sur l’utilisation de vos données personnelles,
           vous pouvez vous rendre sur
-          {' '}
           <a target="_blank" href="/donnees_personnelles">
             la page dédiée
           </a>

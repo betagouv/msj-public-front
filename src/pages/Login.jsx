@@ -1,18 +1,17 @@
 import { React, useReducer } from 'react';
-import Checkbox from 'components/Forms/Checkbox';
-import TextInput from 'components/Forms/TextInput';
+import Checkbox from 'shared/components/Forms/Checkbox';
+import TextInput from 'shared/components/Forms/TextInput';
 import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_ONE_UPPERCASE,
   VALIDATOR_REQUIRE,
   VALIDATOR_ONE_DIGIT,
   VALIDATOR_ONE_SPECIAL_CHAR,
-} from 'utils/validators';
+} from 'shared/utils/validators';
 
 const formReducer = (state, action) => {
   switch (action.type) {
-    case 'INPUT_CHANGE':
-    {
+    case 'INPUT_CHANGE': {
       let formIsValid = true;
       Object.keys(state.inputs).forEach((inputId) => {
         if (inputId === action.inputId) {
@@ -86,7 +85,7 @@ function Login() {
           id="phoneNumber"
           required
           autoComplete="tel"
-          onInput={(inputHandler)}
+          onInput={inputHandler}
           errorMessage="Veuillez saisir un numéro de téléphone valide"
           validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(8)]}
         />
@@ -98,7 +97,7 @@ function Login() {
           hint="10 caractères, avec une majuscule, un chiffre et un caractère spécial"
           autoComplete="current-password"
           errorMessage="Le mot de passe doit contenir 10 caractères, avec une majuscule, un chiffre et un caractère spécial"
-          onInput={(inputHandler)}
+          onInput={inputHandler}
           validators={[
             VALIDATOR_REQUIRE(),
             VALIDATOR_MINLENGTH(10),
@@ -122,7 +121,6 @@ function Login() {
           disabled={!formState.isValid}
         >
           Je me connecte
-
         </button>
       </form>
 
@@ -153,10 +151,7 @@ function Login() {
               </h5>
             </div>
             <div className="fr-tile__img">
-              <span
-                className="fr-fi-mail-line icon-xl"
-                aria-hidden="true"
-              />
+              <span className="fr-fi-mail-line icon-xl" aria-hidden="true" />
             </div>
           </div>
         </div>
@@ -182,7 +177,6 @@ function Login() {
           Le respect de vos droits et de votre vie privée est une priorité. Pour
           plus d’informations sur l’utilisation de vos données personnelles,
           vous pouvez vous rendre sur
-          {' '}
           <a target="_blank" href="/donnees_personnelles">
             la page dédiée
           </a>

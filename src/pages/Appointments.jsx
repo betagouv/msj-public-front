@@ -1,5 +1,5 @@
 import React from 'react';
-import AppointmentsList from 'components/Appointments/AppointmentsList';
+import AppointmentsList from 'shared/components/Appointments/AppointmentsList';
 
 const APPOINTMENTS_LIST = [
   {
@@ -35,10 +35,7 @@ function Appointments() {
         items={APPOINTMENTS_LIST}
         title="Rendez-vous suivants"
       />
-      <AppointmentsList
-        items={APPOINTMENTS_LIST}
-        title="Rendez-vous passés"
-      />
+      <AppointmentsList items={APPOINTMENTS_LIST} title="Rendez-vous passés" />
     </div>
   );
 }
