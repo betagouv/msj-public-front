@@ -11,14 +11,15 @@ export function AuthProvider({ children }) {
 
   // call this function when you want to authenticate the user
   const login = async (data) => {
-    setUser(data);
-    navigate('/profile');
+    console.log('on se loggue');
+    setUser({ data });
+    navigate('/mon_compte/appointments');
   };
 
   // call this function to sign out logged in user
   const logout = () => {
     setUser(null);
-    navigate('/', { replace: true });
+    navigate('/sign_in', { replace: true });
   };
 
   const value = useMemo(
@@ -29,6 +30,8 @@ export function AuthProvider({ children }) {
     }),
     [user],
   );
+
+  console.log('value', value);
 
   AuthProvider.propTypes = {
     children: PropTypes.oneOfType([

@@ -45,8 +45,17 @@ function PublicHeader() {
                   </a>
                 </li>
                 <li>
+                  <a
+                    className="fr-link fr-fi-lock-line"
+                    data-method="get"
+                    href="https://agents.mon-suivi-justice.incubateur.net/"
+                  >
+                    Espace agents
+                  </a>
+                </li>
+                <li>
                   <Link to="sign_in" className="fr-link fr-fi-account-line">
-                    Se déconnecter
+                    Mon Espace Personnel
                   </Link>
                 </li>
               </ul>

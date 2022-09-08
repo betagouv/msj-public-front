@@ -5,12 +5,10 @@ import PrivateBanner from 'shared/components/Banner/PrivateBanner';
 import { useAuth } from '../hooks/auth-hook';
 
 function ProtectedLayout() {
-  const user = useAuth();
-
-  console.log(user);
+  const { user } = useAuth();
 
   if (!user) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/sign_in" />;
   }
 
   return (

@@ -1,4 +1,5 @@
 import { React } from 'react';
+
 import useForm from 'shared/hooks/form-hook';
 import Checkbox from 'shared/components/Forms/Checkbox';
 import TextInput from 'shared/components/Forms/TextInput';
@@ -9,8 +10,11 @@ import {
   VALIDATOR_ONE_DIGIT,
   VALIDATOR_ONE_SPECIAL_CHAR,
 } from 'shared/utils/validators';
+import { useAuth } from 'shared/hooks/auth-hook';
 
 function Login() {
+  const { login } = useAuth();
+
   const [formState, inputHandler] = useForm({
     phoneNumber: {
       value: '',
@@ -28,6 +32,10 @@ function Login() {
 
   const loginSubmitHandler = (e) => {
     e.preventDefault();
+    login({
+      name: 'Bob',
+      token: 'tokenDeTest',
+    });
   };
 
   return (

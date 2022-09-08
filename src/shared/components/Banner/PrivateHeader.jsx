@@ -1,9 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
+import { useAuth } from 'shared/hooks/auth-hook';
 
 import MSJLogo from './logo_msj.svg';
 
 function PrivateHeader() {
+  const { logout } = useAuth();
+
+  const logoutHandler = (e) => {
+    console.log('logout');
+    e.preventDefault();
+    logout();
+  };
+
   return (
     <div className="fr-header__body">
       <div className="fr-container">
@@ -45,22 +54,14 @@ function PrivateHeader() {
                   </a>
                 </li>
                 <li>
-                  <a
-                    className="fr-link fr-fi-lock-line"
-                    data-method="get"
-                    href="https://agents.mon-suivi-justice.incubateur.net/"
-                  >
-                    Espace agents
-                  </a>
-                </li>
-                <li>
-                  <Link to="sign_in" className="fr-link fr-fi-account-line">
-                    Mon Espace Personnel
-                  </Link>
+                  <button type="button" className="fr-link fr-fi-account-line" onClick={logoutHandler}>
+                    Se déconnecter
+                  </button>
                 </li>
               </ul>
             </div>
           </div>
+
         </div>
       </div>
     </div>
