@@ -1,5 +1,5 @@
 import React from 'react';
-// import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 import useForm from 'shared/hooks/form-hook';
 import TextInput from 'shared/components/Forms/TextInput';
@@ -13,8 +13,8 @@ import {
 } from 'shared/utils/validators';
 
 function AcceptInvitation() {
-  // const [searchParams] = useSearchParams();
-  // const token = searchParams.get('token');
+  const [searchParams] = useSearchParams();
+  const invitationToken = searchParams.get('token');
 
   const [formState, inputHandler] = useForm({
     password: {
@@ -27,8 +27,26 @@ function AcceptInvitation() {
     },
   }, false);
 
-  const acceptInvitationSubmitHandler = (e) => {
+  const acceptInvitationSubmitHandler = async (e) => {
     e.preventDefault();
+
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_HOST}/api/users/signup`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          invitationToken,
+          password: formState.password,
+        }),
+      });
+
+      const data = response.json();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   console.log(formState);
