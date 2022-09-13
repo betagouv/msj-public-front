@@ -1,4 +1,4 @@
-import { React } from 'react';
+import React, {useState} from 'react';
 
 import useForm from 'shared/hooks/form-hook';
 import Checkbox from 'shared/components/Forms/Checkbox';
@@ -11,9 +11,13 @@ import {
   VALIDATOR_ONE_SPECIAL_CHAR,
 } from 'shared/utils/validators';
 import { useAuth } from 'shared/hooks/auth-hook';
+import { useState } from 'react';
 
 function Login() {
   const { login } = useAuth();
+
+  // const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const [formState, inputHandler] = useForm({
     phoneNumber: {
@@ -30,125 +34,153 @@ function Login() {
     },
   }, false);
 
-  const loginSubmitHandler = (e) => {
+  const loginSubmitHandler = async (e) => {
     e.preventDefault();
-    login({
-      name: 'Bob',
-      token: 'tokenDeTest',
-    });
+
+    try {
+      // setIsLoading(true);
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_HOST}/api/users/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          phone: formState.phone,
+          password: formState.password,
+        }),
+      });
+
+      const resData = await response.json();
+
+      if (!resData.ok) {
+        throw new Error(resData.message);
+      }
+
+      // setIsLoading(false);
+      login(resData);
+    } catch (err) {
+      // setIsLoading(false);
+      setError(err || "Une erreur s'est produite, contactez l'administrateur du site");
+    }
   };
 
   return (
-    <div className="fr-container fr-py-6w px-12 lg:px-72">
-      <h2 className="mb-4">Je me connecte</h2>
-      <form
-        acceptCharset="UTF-8"
-        onSubmit={loginSubmitHandler}
-      >
-        <TextInput
-          label="Numéro de téléphone"
-          type="tel"
-          id="phoneNumber"
-          required
-          autoComplete="tel"
-          onInput={inputHandler}
-          errorMessage="Veuillez saisir un numéro de téléphone valide"
-          validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(8)]}
-        />
 
-        <TextInput
-          label="Mot de passe"
-          id="password"
-          required
-          hint="10 caractères, avec une majuscule, un chiffre et un caractère spécial"
-          autoComplete="current-password"
-          errorMessage="Le mot de passe doit contenir 10 caractères, avec une majuscule, un chiffre et un caractère spécial"
-          onInput={inputHandler}
-          validators={[
-            VALIDATOR_REQUIRE(),
-            VALIDATOR_MINLENGTH(10),
-            VALIDATOR_ONE_UPPERCASE(),
-            VALIDATOR_ONE_DIGIT(),
-            VALIDATOR_ONE_SPECIAL_CHAR(),
-          ]}
-        />
-
-        <Checkbox
-          label="Se souvenir de moi ?"
-          id="convict_remember_me"
-          onChange={(e) => inputHandler(e.target.id, e.target.checked, true)}
-        />
-
-        <button
-          type="submit"
-          name="commit"
-          className="fr-btn mb-4"
-          data-disable-with="Je me connecte"
-          disabled={!formState.isValid}
+    <>
+      <Alert title={error?.message} show={!!error} type="error" closable onClose={onCloseAlertHandler} />
+      <div className="fr-container fr-py-6w px-12 lg:px-72">
+        <h2 className="mb-4">Je me connecte</h2>
+        <form
+          acceptCharset="UTF-8"
+          onSubmit={loginSubmitHandler}
         >
-          Je me connecte
-        </button>
-      </form>
+          <TextInput
+            label="Numéro de téléphone"
+            type="tel"
+            id="phoneNumber"
+            required
+            autoComplete="tel"
+            onInput={inputHandler}
+            errorMessage="Veuillez saisir un numéro de téléphone valide"
+            validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(8)]}
+          />
 
-      <a href="/convicts/password/new">J&apos;ai oublié mon mot de passe ?</a>
-      <br />
+          <TextInput
+            label="Mot de passe"
+            id="password"
+            required
+            hint="10 caractères, avec une majuscule, un chiffre et un caractère spécial"
+            autoComplete="current-password"
+            errorMessage="Le mot de passe doit contenir 10 caractères, avec une majuscule, un chiffre et un caractère spécial"
+            onInput={inputHandler}
+            validators={[
+              VALIDATOR_REQUIRE(),
+              VALIDATOR_MINLENGTH(10),
+              VALIDATOR_ONE_UPPERCASE(),
+              VALIDATOR_ONE_DIGIT(),
+              VALIDATOR_ONE_SPECIAL_CHAR(),
+            ]}
+          />
 
-      <h2 className="text-xl mb-4 mt-10">Ce que mon compte me permet</h2>
+          <Checkbox
+            label="Se souvenir de moi ?"
+            id="convict_remember_me"
+            onChange={(e) => inputHandler(e.target.id, e.target.checked, true)}
+          />
 
-      <div className="fr-grid-row fr-grid-row--gutters">
-        <div className="fr-col-6">
-          <div className="fr-tile">
-            <div className="fr-tile__body">
-              <h5 className="fr-tile__title">Je peux suivre mes rendez-vous</h5>
+          <button
+            type="submit"
+            name="commit"
+            className="fr-btn mb-4"
+            data-disable-with="Je me connecte"
+            disabled={!formState.isValid}
+          >
+            Je me connecte
+          </button>
+        </form>
+
+        <a href="/convicts/password/new">J&apos;ai oublié mon mot de passe ?</a>
+        <br />
+
+        <h2 className="text-xl mb-4 mt-10">Ce que mon compte me permet</h2>
+
+        <div className="fr-grid-row fr-grid-row--gutters">
+          <div className="fr-col-6">
+            <div className="fr-tile">
+              <div className="fr-tile__body">
+                <h5 className="fr-tile__title">Je peux suivre mes rendez-vous</h5>
+              </div>
+              <div className="fr-tile__img">
+                <span
+                  className="fr-fi-calendar-line icon-xl"
+                  aria-hidden="true"
+                />
+              </div>
             </div>
-            <div className="fr-tile__img">
-              <span
-                className="fr-fi-calendar-line icon-xl"
-                aria-hidden="true"
-              />
+          </div>
+          <div className="fr-col-6">
+            <div className="fr-tile">
+              <div className="fr-tile__body">
+                <h5 className="fr-tile__title">
+                  Je peux contacter mes interlocuteurs
+                </h5>
+              </div>
+              <div className="fr-tile__img">
+                <span className="fr-fi-mail-line icon-xl" aria-hidden="true" />
+              </div>
             </div>
           </div>
         </div>
-        <div className="fr-col-6">
-          <div className="fr-tile">
-            <div className="fr-tile__body">
-              <h5 className="fr-tile__title">
-                Je peux contacter mes interlocuteurs
-              </h5>
-            </div>
-            <div className="fr-tile__img">
-              <span className="fr-fi-mail-line icon-xl" aria-hidden="true" />
-            </div>
+
+        <section className="fr-accordion mt-8">
+          <h3 className="fr-accordion__title">
+            <span
+              className="fr-accordion__btn"
+              aria-expanded="false"
+              aria-controls="accordion-106"
+              data-fr-js-collapse-span="true"
+            >
+              Mes données personnelles sont protégées
+            </span>
+          </h3>
+          <div
+            className="fr-collapse"
+            id="accordion-106"
+            data-fr-js-collapse="true"
+          >
+            La présente interface est à l’initiative du Ministère de la Justice.
+            Le respect de vos droits et de votre vie privée est une priorité. Pour
+            plus d’informations sur l’utilisation de vos données personnelles,
+            vous pouvez vous rendre sur
+            <a target="_blank" href="/donnees_personnelles">
+              la page dédiée
+            </a>
           </div>
-        </div>
+        </section>
       </div>
 
-      <section className="fr-accordion mt-8">
-        <h3 className="fr-accordion__title">
-          <span
-            className="fr-accordion__btn"
-            aria-expanded="false"
-            aria-controls="accordion-106"
-            data-fr-js-collapse-span="true"
-          >
-            Mes données personnelles sont protégées
-          </span>
-        </h3>
-        <div
-          className="fr-collapse"
-          id="accordion-106"
-          data-fr-js-collapse="true"
-        >
-          La présente interface est à l’initiative du Ministère de la Justice.
-          Le respect de vos droits et de votre vie privée est une priorité. Pour
-          plus d’informations sur l’utilisation de vos données personnelles,
-          vous pouvez vous rendre sur
-          <a target="_blank" href="/donnees_personnelles">
-            la page dédiée
-          </a>
-        </div>
-      </section>
-    </div>
+    </>
+
   );
 }
 
