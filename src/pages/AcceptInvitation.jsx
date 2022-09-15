@@ -51,20 +51,20 @@ function AcceptInvitation() {
         },
         body: JSON.stringify({
           invitationToken,
-          password: formState.password,
+          password: formState.inputs.password.value,
         }),
       });
 
       const resData = await response.json();
 
-      if (!resData.ok) {
+      if (!response.ok) {
         throw new Error(resData.message);
       }
 
-      setIsLoading(false);
+      // setIsLoading(false);
       login(resData);
     } catch (err) {
-      setIsLoading(false);
+      // setIsLoading(false);
       setError(err || "Une erreur s'est produite, contactez l'administrateur du site");
     }
   };
@@ -106,7 +106,7 @@ function AcceptInvitation() {
             errorMessage="Les mots de passe ne correspondent pas"
             onInput={inputHandler}
             validators={[
-              VALIDATOR_IDENTICAL(formState.password),
+              VALIDATOR_IDENTICAL(formState.inputs.password.value),
             ]}
           />
 

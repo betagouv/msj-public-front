@@ -54,7 +54,7 @@ function PublicHeader() {
                   </a>
                 </li>
                 <li>
-                  <Link to="sign_in" className="fr-link fr-fi-account-line">
+                  <Link to="connexion" className="fr-link fr-fi-account-line">
                     Mon Espace Personnel
                   </Link>
                 </li>

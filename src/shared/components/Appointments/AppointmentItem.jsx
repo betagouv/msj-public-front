@@ -23,7 +23,11 @@ AppointementItem.defaultProps = {
 };
 
 AppointementItem.propTypes = {
-  item: PropTypes.shape,
+  item: PropTypes.shape({
+    id: PropTypes.number,
+    date: PropTypes.string,
+    place: PropTypes.string,
+  }),
 };
 
 export default AppointementItem;

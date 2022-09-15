@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 function Appointment() {
   const { appointmentId } = useParams();
 
-  // TODO : faire une requête vers  l'appliction agent pour avoir le détail du rdv
+  useEffect(() => {}, []);
 
   return (
     <div className="fr-container fr-py-6w px-12 lg:px-32">

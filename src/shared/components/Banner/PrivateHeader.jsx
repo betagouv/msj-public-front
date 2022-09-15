@@ -8,7 +8,6 @@ function PrivateHeader() {
   const { logout } = useAuth();
 
   const logoutHandler = (e) => {
-    console.log('logout');
     e.preventDefault();
     logout();
   };

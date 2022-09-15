@@ -8,7 +8,7 @@ function ProtectedLayout() {
   const { user } = useAuth();
 
   if (!user) {
-    return <Navigate to="/sign_in" />;
+    return <Navigate to="/connexion" />;
   }
 
   return (

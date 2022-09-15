@@ -19,7 +19,7 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/" element={<HomePage />}>
-            <Route path="sign_in" element={<Login />} exact />
+            <Route path="connexion" element={<Login />} exact />
             <Route
               path="accept_invitation"
               element={<AcceptInvitation />}

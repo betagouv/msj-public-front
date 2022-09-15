@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import useForm from 'shared/hooks/form-hook';
 import Checkbox from 'shared/components/Forms/Checkbox';
@@ -11,7 +11,8 @@ import {
   VALIDATOR_ONE_SPECIAL_CHAR,
 } from 'shared/utils/validators';
 import { useAuth } from 'shared/hooks/auth-hook';
-import { useState } from 'react';
+
+import Alert from 'shared/components/Alerts/Alert';
 
 function Login() {
   const { login } = useAuth();
@@ -20,7 +21,7 @@ function Login() {
   const [error, setError] = useState(false);
 
   const [formState, inputHandler] = useForm({
-    phoneNumber: {
+    phone: {
       value: '',
       isValid: false,
     },
@@ -34,6 +35,10 @@ function Login() {
     },
   }, false);
 
+  const onCloseAlertHandler = () => {
+    setError(null);
+  };
+
   const loginSubmitHandler = async (e) => {
     e.preventDefault();
 
@@ -45,14 +50,14 @@ function Login() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          phone: formState.phone,
-          password: formState.password,
+          phone: formState.inputs.phone.value,
+          password: formState.inputs.password.value,
         }),
       });
 
       const resData = await response.json();
 
-      if (!resData.ok) {
+      if (!response.ok) {
         throw new Error(resData.message);
       }
 
@@ -77,7 +82,7 @@ function Login() {
           <TextInput
             label="Numéro de téléphone"
             type="tel"
-            id="phoneNumber"
+            id="phone"
             required
             autoComplete="tel"
             onInput={inputHandler}

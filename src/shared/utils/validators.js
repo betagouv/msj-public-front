@@ -31,7 +31,7 @@ export const VALIDATOR_ONE_SPECIAL_CHAR = (val) => ({
 export const VALIDATOR_MIN = (val) => ({ type: VALIDATOR_TYPE_MIN, val });
 
 export const VALIDATOR_IDENTICAL = (val) => ({
-  type: VALIDATOR_TYPE_ONE_SPECIAL_CHAR,
+  type: VALIDATOR_TYPE_IDENTICAL,
   val,
 });
 

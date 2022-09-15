@@ -41,7 +41,6 @@ function Alert({
   }, [show]);
 
   if (!internalShow) {
-    console.log('on voit pas alerte');
     return null;
   }
 
