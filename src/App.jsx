@@ -27,10 +27,10 @@ function App() {
             />
           </Route>
 
-          <Route path="/mon_compte" element={<ProtectedLayout />}>
-            <Route path="appointments" element={<Appointments />} exact />
+          <Route path="/mon-compte" element={<ProtectedLayout />}>
+            <Route path="mes-rendez-vous" element={<Appointments />} exact />
             <Route
-              path="appointments/:appointmentId"
+              path="mes-rendez-vous/:appointmentId"
               element={<Appointment />}
             />
             <Route path="agent" element={<Agents />} exact />

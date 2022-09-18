@@ -24,7 +24,7 @@ AppointementItem.defaultProps = {
 
 AppointementItem.propTypes = {
   item: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     date: PropTypes.string,
     place: PropTypes.string,
   }),

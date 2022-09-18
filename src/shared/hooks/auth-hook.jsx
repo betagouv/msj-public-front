@@ -11,7 +11,7 @@ export function AuthProvider({ children }) {
 
   const login = async (data) => {
     setUser({ data });
-    navigate('/mon_compte/appointments');
+    navigate('/mon-compte/mes-rendez-vous');
   };
 
   const logout = () => {

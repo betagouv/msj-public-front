@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import useForm from 'shared/hooks/form-hook';
 import Checkbox from 'shared/components/Forms/Checkbox';
@@ -11,14 +11,15 @@ import {
   VALIDATOR_ONE_SPECIAL_CHAR,
 } from 'shared/utils/validators';
 import { useAuth } from 'shared/hooks/auth-hook';
+import useHttpClient from 'shared/hooks/http-hook';
 
 import Alert from 'shared/components/Alerts/Alert';
 
 function Login() {
   const { login } = useAuth();
-
-  // const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const {
+    error, sendRequest, clearError,
+  } = useHttpClient();
 
   const [formState, inputHandler] = useForm({
     phone: {
@@ -35,44 +36,28 @@ function Login() {
     },
   }, false);
 
-  const onCloseAlertHandler = () => {
-    setError(null);
-  };
-
   const loginSubmitHandler = async (e) => {
     e.preventDefault();
 
-    try {
-      // setIsLoading(true);
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_HOST}/api/users/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          phone: formState.inputs.phone.value,
-          password: formState.inputs.password.value,
-        }),
-      });
-
-      const resData = await response.json();
-
-      if (!response.ok) {
-        throw new Error(resData.message);
-      }
-
-      // setIsLoading(false);
-      login(resData);
-    } catch (err) {
-      // setIsLoading(false);
-      setError(err || "Une erreur s'est produite, contactez l'administrateur du site");
-    }
+    const resData = await sendRequest(
+      `${process.env.REACT_APP_BACKEND_HOST}/api/users/login`,
+      'POST',
+      JSON.stringify({
+        phone: formState.inputs.phone.value,
+        password: formState.inputs.password.value,
+      }),
+      {
+        'Content-Type': 'application/json',
+      },
+    );
+    // TODO: how do we handle errors here ? (They are already handled in the http hook !)
+    login(resData);
   };
 
   return (
 
     <>
-      <Alert title={error?.message} show={!!error} type="error" closable onClose={onCloseAlertHandler} />
+      <Alert title={error?.message} show={!!error} type="error" closable onClose={clearError} />
       <div className="fr-container fr-py-6w px-12 lg:px-72">
         <h2 className="mb-4">Je me connecte</h2>
         <form
