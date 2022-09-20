@@ -4,26 +4,11 @@ import Alert from 'shared/components/Alerts/Alert';
 import { useAuth } from 'shared/hooks/auth-hook';
 import useHttpClient from 'shared/hooks/http-hook';
 
-const APPOINTMENTS_LIST = [
-  {
-    id: 1,
-    date: 'Vendredi 15 Septembre 10h00',
-    place: 'SPIP 92',
-  },
-  {
-    id: 2,
-    date: 'Vendredi 15 Septembre 10h00',
-    place: 'SPIP 92',
-  },
-  {
-    id: 3,
-    date: 'Vendredi 15 Septembre 10h00',
-    place: 'SPIP 92',
-  },
-];
-
 function Appointments() {
-  const [appointments, setAppointments] = useState();
+  const [appointments, setAppointments] = useState(null);
+
+  const futureAppointments = [];
+  const pastAppointments = [];
 
   const { user } = useAuth();
   const {
@@ -50,12 +35,16 @@ function Appointments() {
     fetchUserAppointments();
   }, [sendRequest]);
 
-  if (APPOINTMENTS_LIST.length === 0) {
-    return (
-      <div className="my-10">
-        <h1 className="text-xl">Vous n&apos;avez pas encore de rendez-vous</h1>
-      </div>
-    );
+  if (appointments) {
+    appointments.forEach((apt) => {
+      const aptDate = new Date(apt.datetime);
+
+      if (aptDate < Date.now()) {
+        pastAppointments.push(apt);
+      } else {
+        futureAppointments.push(apt);
+      }
+    });
   }
 
   return (
@@ -70,10 +59,10 @@ function Appointments() {
           && (
           <>
             <AppointmentsList
-              items={appointments}
+              items={futureAppointments}
               title="Rendez-vous suivants"
             />
-            <AppointmentsList items={appointments} title="Rendez-vous passés" />
+            <AppointmentsList items={pastAppointments} title="Rendez-vous passés" />
 
           </>
           )}

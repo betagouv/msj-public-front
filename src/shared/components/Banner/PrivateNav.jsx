@@ -20,7 +20,7 @@ function PrivateNav() {
         >
           <ul className="fr-nav__list">
             <li className="fr-nav__item">
-              <Link to="appointments" className="fr-nav__link">
+              <Link to="mes-rendez-vous" className="fr-nav__link">
                 Mes rendez-vous
               </Link>
             </li>

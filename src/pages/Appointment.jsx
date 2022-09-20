@@ -68,7 +68,7 @@ function Appointment() {
         </div>
       </div>
       <div className="flex justify-center">
-        <Link to="appointments">Retour à la liste</Link>
+        <Link to="/mon-compte/mes-rendez-vous">Retour à la liste</Link>
       </div>
     </div>
   );
