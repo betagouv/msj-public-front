@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 
-function AppointementItem({ item }) {
+function AppointementCard({ item }) {
   const date = new Date(item.datetime);
   const formattedDate = date.toLocaleDateString('fr-FR', {
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
@@ -34,11 +34,11 @@ function AppointementItem({ item }) {
   );
 }
 
-AppointementItem.defaultProps = {
+AppointementCard.defaultProps = {
   item: {},
 };
 
-AppointementItem.propTypes = {
+AppointementCard.propTypes = {
   item: PropTypes.shape({
     id: PropTypes.number,
     datetime: PropTypes.string,
@@ -53,4 +53,4 @@ AppointementItem.propTypes = {
   }),
 };
 
-export default AppointementItem;
+export default AppointementCard;
