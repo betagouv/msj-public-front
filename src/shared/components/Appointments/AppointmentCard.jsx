@@ -15,7 +15,7 @@ function AppointementCard({ item }) {
       <div className="fr-card__body">
         <div className="fr-card__content">
           <h3 className="fr-card__title">
-            <Link to={`${item.id}`}>
+            <Link to={`${item.id}`} state={{ appointment: item }}>
               {`${formattedDate}  à ${time}`}
             </Link>
           </h3>
