@@ -1,10 +1,26 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { useAuth } from 'shared/hooks/auth-hook';
+
+import {
+  Header,
+  HeaderOperator,
+  HeaderBody,
+  Logo,
+  Service,
+  Tool,
+  ToolItem,
+  ToolItemGroup,
+  HeaderNav,
+  NavItem,
+} from '@dataesr/react-dsfr';
 
 import MSJLogo from './logo_msj.svg';
 
-function PrivateHeader() {
+function HeaderExample() {
+  const location = useLocation();
+  const [path, setPath] = useState(() => location.pathname || '');
+
   const { logout } = useAuth();
 
   const logoutHandler = (e) => {
@@ -12,59 +28,56 @@ function PrivateHeader() {
     logout();
   };
 
+  useEffect(() => {
+
+  }, []);
+
+  useEffect(() => {
+    if (path !== location.pathname) {
+      setPath(location.pathname);
+    }
+  }, [path, setPath, location]);
+
   return (
-    <div className="fr-header__body">
-      <div className="fr-container">
-        <div className="fr-header__body-row">
-          <div className="fr-header__brand fr-enlarge-link">
-            <div className="fr-header__brand-top">
-              <div className="fr-header__logo">
-                <p className="fr-logo">
-                  Ministère de
-                  <br />
-                  la Justice
-                </p>
-              </div>
-              <div className="fr-header__navbar items-center">
-                <button
-                  className="fr-btn--menu fr-btn"
-                  type="button"
-                  data-fr-opened="false"
-                  aria-controls="modal-851"
-                  aria-haspopup="menu"
-                  id="button-852"
-                  title="Menu"
-                >
-                  Menu
-                </button>
-              </div>
-            </div>
-            <div className="fr-header__service">
-              <img alt="Logo Mon Suivi Justice" src={MSJLogo} />
-            </div>
-          </div>
-
-          <div className="fr-header__tools">
-            <div className="fr-header__tools-links">
-              <ul className="fr-links-group" data-fr-js-header-links="true">
-                <li>
-                  <a className="fr-link fr-fi-information-line" href="/landing">
-                    Revenir au site public
-                  </a>
-                </li>
-                <li>
-                  <button type="button" className="fr-link fr-fi-account-line" onClick={logoutHandler}>
-                    Se déconnecter
-                  </button>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
+    <Header>
+      <HeaderBody>
+        <Logo splitCharacter={10}>Ministère de la justice</Logo>
+        <HeaderOperator>
+          <img src={MSJLogo} alt="Ministère de la justice" />
+        </HeaderOperator>
+        <Service
+          title="Guichet unique du probationnaire"
+          description="Les infos utiles de mon parcours judiciaire"
+        />
+        <Tool
+          closeButtonLabel="fermer"
+        >
+          <ToolItemGroup>
+            <ToolItem icon="ri-lock-line" link="/landing" target="_blank">Revenir au site public</ToolItem>
+            <ToolItem onClick={logoutHandler} icon="fr-fi-account-line">
+              Se déconnecter
+            </ToolItem>
+          </ToolItemGroup>
+        </Tool>
+      </HeaderBody>
+      <HeaderNav path={path}>
+        <NavItem
+          title="Mes rendez-vous"
+          asLink={<RouterLink to="/mon-compte/mes-rendez-vous" />}
+        />
+        <NavItem
+          title="Mes interlocuteurs"
+          current={path.startsWith('/agent')}
+          asLink={<RouterLink to="/mon-compte/agent" />}
+        />
+        <NavItem
+          title="Mon compte"
+          current={path.startsWith('/convict')}
+          asLink={<RouterLink to="/mon-compte/convict" />}
+        />
+      </HeaderNav>
+    </Header>
   );
 }
 
-export default PrivateHeader;
+export default HeaderExample;

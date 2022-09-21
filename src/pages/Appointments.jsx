@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import AppointmentsList from 'shared/components/Appointments/AppointmentsList';
-import Alert from 'shared/components/Alerts/Alert';
+
 import { useAuth } from 'shared/hooks/auth-hook';
 import useHttpClient from 'shared/hooks/http-hook';
+
+import AppointmentsList from 'shared/components/Appointments/AppointmentsList';
+import AppointmentDetails from 'shared/components/Appointments/AppointmentDetails';
+import Alert from 'shared/components/Alerts/Alert';
 
 function Appointments() {
   const [appointments, setAppointments] = useState(null);
@@ -58,6 +61,7 @@ function Appointments() {
         {!loading && appointments
           && (
           <>
+            <AppointmentDetails appointment={futureAppointments[0]} />
             <AppointmentsList
               items={futureAppointments}
               title="Rendez-vous suivants"

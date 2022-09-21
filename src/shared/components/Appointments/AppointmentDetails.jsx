@@ -2,9 +2,16 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import * as PropTypes from 'prop-types';
 
-function AppointmentDetails() {
+function AppointmentDetails({ appointment }) {
   const location = useLocation();
-  const aptDate = new Date(location.state.appointment.datetime);
+
+  const status = location.state?.appointment.state || appointment.state;
+  // eslint-disable-next-line max-len
+  const appointmentTypeName = location.state?.appointment.appointment_type_name || appointment.appointment_type_name;
+  const adress = location.state?.appointment?.place.adress || appointment.place.adress;
+  const phone = location.state?.appointment?.place.phone || appointment.place.phone;
+
+  const aptDate = new Date(location.state?.appointment.datetime || appointment.datetime);
   const formattedDate = aptDate.toLocaleDateString('fr-FR', {
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
   });
@@ -44,14 +51,14 @@ function AppointmentDetails() {
               Statut
             </h3>
             <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold bg-gray-400 text-white">
-              {location.state.appointment.state}
+              {status}
             </span>
           </div>
           <div className="sm:col-span-2">
             <h3 className="text-xs mb-0 font-medium text-msj-blue uppercase mb-1">
               Type de rendez-vous
             </h3>
-            <p className="text-md font-bold mb-0">{location.state.appointment.appointment_type_name}</p>
+            <p className="text-md font-bold mb-0">{appointmentTypeName}</p>
           </div>
           <div className="sm:col-span-1">
             <h3 className="text-xs mb-0 font-medium text-msj-blue uppercase mb-1">
@@ -67,17 +74,17 @@ function AppointmentDetails() {
             </h3>
             <p className="text-sm font-bold mb-0">SPIP 92</p>
             <p className="text-sm font-bold mb-0">
-              {location.state.appointment.place.adress}
+              {adress}
             </p>
             <p className="text-sm font-bold mb-0">
               {' '}
-              {location.state.appointment.place.phone}
+              {phone}
             </p>
             <a
               target="_blank"
               rel="noreferrer"
               className="font-bold text-xs text-msj-blue mt-1"
-              href={`https://www.google.com/maps/search/?api=1&query=${location.state.appointment.place.adress}`}
+              href={`https://www.google.com/maps/search/?api=1&query=${adress}`}
             >
               Voir sur une carte
             </a>
@@ -101,6 +108,7 @@ AppointmentDetails.propTypes = {
     id: PropTypes.number,
     datetime: PropTypes.string,
     state: PropTypes.string,
+    appointment_type_name: PropTypes.string,
     place: PropTypes.shape({
       name: PropTypes.string,
       adress: PropTypes.string,
