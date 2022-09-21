@@ -53,8 +53,8 @@ function HeaderExample() {
           closeButtonLabel="fermer"
         >
           <ToolItemGroup>
-            <ToolItem icon="ri-lock-line" link="/landing" target="_blank">Revenir au site public</ToolItem>
-            <ToolItem onClick={logoutHandler} icon="fr-fi-account-line">
+            <ToolItem icon="fr-fi-information-line" link="/landing" target="_blank">Revenir au site public</ToolItem>
+            <ToolItem onClick={logoutHandler} icon="fr-fi-logout-box-r-line">
               Se déconnecter
             </ToolItem>
           </ToolItemGroup>

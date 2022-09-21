@@ -11,6 +11,7 @@ import '@gouvfr/dsfr/dist/utility/icons/icons-user/icons-user.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-business/icons-business.css';
 
 import 'font-awesome/css/font-awesome.min.css';
+import 'remixicon/fonts/remixicon.css';
 import './App.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
