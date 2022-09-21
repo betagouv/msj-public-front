@@ -14,6 +14,7 @@ function Appointments() {
   const pastAppointments = [];
 
   const { user } = useAuth();
+
   const {
     loading, error, sendRequest, clearError,
   } = useHttpClient();
@@ -27,6 +28,7 @@ function Appointments() {
           null,
           {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${user.data.token}`,
           },
         );
         setAppointments(resData);
