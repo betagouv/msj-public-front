@@ -7,7 +7,7 @@ import { useAuth } from '../hooks/auth-hook';
 function ProtectedLayout() {
   const { user } = useAuth();
 
-  if (!user) {
+  if (!user || new Date(user.tokenExpDate) < new Date()) {
     return <Navigate to="/connexion" />;
   }
 

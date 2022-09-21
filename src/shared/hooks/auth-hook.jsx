@@ -10,7 +10,11 @@ export function AuthProvider({ children }) {
   const navigate = useNavigate();
 
   const login = async (data) => {
-    setUser({ data });
+    const userData = data;
+    const tokenExpDate = data.tokenExpDate || new Date(new Date().getTime() + 1000 * 60 * 60);
+    userData.tokenExpDate = tokenExpDate.toISOString();
+
+    setUser({ ...userData });
     navigate('/mon-compte/mes-rendez-vous');
   };
 

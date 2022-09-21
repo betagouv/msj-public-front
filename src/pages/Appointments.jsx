@@ -23,12 +23,12 @@ function Appointments() {
     const fetchUserAppointments = async () => {
       try {
         const resData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_HOST}/api/appointments/${user.data.msjId}`,
+          `${process.env.REACT_APP_BACKEND_HOST}/api/appointments/${user.msjId}`,
           'GET',
           null,
           {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${user.data.token}`,
+            Authorization: `Bearer ${user.token}`,
           },
         );
         setAppointments(resData);
