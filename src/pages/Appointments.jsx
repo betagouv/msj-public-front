@@ -41,6 +41,8 @@ function Appointments() {
   }, [sendRequest]);
 
   if (appointments) {
+    appointments.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
+
     appointments.forEach((apt) => {
       const aptDate = new Date(apt.datetime);
 
