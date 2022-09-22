@@ -9,6 +9,7 @@ import {
   VALIDATOR_REQUIRE,
   VALIDATOR_ONE_DIGIT,
   VALIDATOR_ONE_SPECIAL_CHAR,
+  VALIDATOR_FRENCH_MOBILE_NUMBER,
 } from 'shared/utils/validators';
 import { useAuth } from 'shared/hooks/auth-hook';
 import useHttpClient from 'shared/hooks/http-hook';
@@ -69,10 +70,12 @@ function Login() {
             type="tel"
             id="phone"
             required
+            hint="En 06 ou 07 (ex: 0612131415 ou 0612131415)"
             autoComplete="tel"
             onInput={inputHandler}
             errorMessage="Veuillez saisir un numéro de téléphone valide"
-            validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(8)]}
+            maxlength="10"
+            validators={[VALIDATOR_REQUIRE(), VALIDATOR_FRENCH_MOBILE_NUMBER()]}
           />
 
           <TextInput

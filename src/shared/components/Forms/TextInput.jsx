@@ -37,6 +37,7 @@ function TextInput(props) {
     required,
     validators,
     onInput,
+    maxlength,
   } = props;
 
   const { value, isValid } = textInputState;
@@ -89,6 +90,7 @@ function TextInput(props) {
           id={id}
           defaultValue={textInputState.value}
           onChange={onChangeHandler}
+          maxLength={maxlength}
         />
       )}
 
@@ -108,6 +110,7 @@ TextInput.defaultProps = {
   required: false,
   validators: [],
   onInput: null,
+  maxlength: '',
 };
 
 TextInput.propTypes = {
@@ -115,6 +118,7 @@ TextInput.propTypes = {
   id: PropTypes.string.isRequired,
   textarea: PropTypes.bool,
   label: PropTypes.string,
+  maxlength: PropTypes.string,
   hint: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,
