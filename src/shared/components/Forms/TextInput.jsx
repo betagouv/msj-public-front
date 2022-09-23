@@ -1,12 +1,8 @@
-import {
-  React,
-  useEffect,
-  useReducer,
-} from 'react';
+import { React, useEffect, useReducer } from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { validate } from 'utils/validators';
+import { validate } from 'shared/utils/validators';
 
 const textInputReducer = (state, action) => {
   switch (action.type) {
@@ -32,7 +28,16 @@ function TextInput(props) {
   });
 
   const {
-    id, textarea, type, label, hint, errorMessage, required, validators, onInput,
+    id,
+    textarea,
+    type,
+    label,
+    hint,
+    errorMessage,
+    required,
+    validators,
+    onInput,
+    maxlength,
   } = props;
 
   const { value, isValid } = textInputState;
@@ -67,11 +72,7 @@ function TextInput(props) {
         <label className="fr-label" htmlFor={id}>
           {label}
           {required && <span className="error"> *</span>}
-          {hint && (
-            <p className="fr-hint-text">
-              {hint}
-            </p>
-          )}
+          {hint && <p className="fr-hint-text">{hint}</p>}
         </label>
       )}
       {textarea ? (
@@ -89,6 +90,7 @@ function TextInput(props) {
           id={id}
           defaultValue={textInputState.value}
           onChange={onChangeHandler}
+          maxLength={maxlength}
         />
       )}
 
@@ -108,6 +110,7 @@ TextInput.defaultProps = {
   required: false,
   validators: [],
   onInput: null,
+  maxlength: '',
 };
 
 TextInput.propTypes = {
@@ -115,6 +118,7 @@ TextInput.propTypes = {
   id: PropTypes.string.isRequired,
   textarea: PropTypes.bool,
   label: PropTypes.string,
+  maxlength: PropTypes.string,
   hint: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,

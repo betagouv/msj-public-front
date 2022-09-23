@@ -4,7 +4,7 @@ import React, { forwardRef, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
-import dataAttributes from 'utils/data-attributes';
+import dataAttributes from 'shared/utils/data-attributes';
 
 import '@gouvfr/dsfr/dist/component/checkbox/checkbox.css';
 
@@ -24,10 +24,14 @@ const Checkbox = forwardRef((props, ref) => {
     size,
     ...remainingProps
   } = props;
-  const computedClassName = classNames('fr-checkbox-group', {
-    [`fr-checkbox-group--${messageType}`]: messageType,
-    'fr-checkbox-group--sm': (size !== 'md'),
-  }, className);
+  const computedClassName = classNames(
+    'fr-checkbox-group',
+    {
+      [`fr-checkbox-group--${messageType}`]: messageType,
+      'fr-checkbox-group--sm': size !== 'md',
+    },
+    className,
+  );
   const checkboxId = useRef(id || uuidv4());
 
   useEffect(() => {
@@ -51,7 +55,9 @@ const Checkbox = forwardRef((props, ref) => {
         {label}
         {hint && <span className="fr-hint-text">{hint}</span>}
       </label>
-      {(message && messageType) && <p className={`fr-${messageType}-text`}>{message}</p>}
+      {message && messageType && (
+        <p className={`fr-${messageType}-text`}>{message}</p>
+      )}
     </div>
   );
 });

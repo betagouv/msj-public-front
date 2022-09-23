@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import MSJLogo from './logo_msj.svg';
 
-function Header() {
+function PublicHeader() {
   return (
     <div className="fr-header__body">
       <div className="fr-container">
@@ -54,7 +54,7 @@ function Header() {
                   </a>
                 </li>
                 <li>
-                  <Link to="sign_in" className="fr-link fr-fi-account-line">
+                  <Link to="connexion" className="fr-link fr-fi-account-line">
                     Mon Espace Personnel
                   </Link>
                 </li>
@@ -67,4 +67,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default PublicHeader;

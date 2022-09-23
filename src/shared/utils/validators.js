@@ -4,6 +4,8 @@ const VALIDATOR_TYPE_MIN = 'MIN';
 const VALIDATOR_TYPE_ONE_UPPERCASE = 'ONE_UPPERCASE';
 const VALIDATOR_TYPE_ONE_DIGIT = 'ONE_DIGIT';
 const VALIDATOR_TYPE_ONE_SPECIAL_CHAR = 'ONE_SPECIAL_CHAR';
+const VALIDATOR_TYPE_IDENTICAL = 'IDENTICAL';
+const VALIDATOR_TYPE_FRENCH_MOBILE_NUMBER = 'FRENCH_MOBILE_NUMBER';
 
 export const VALIDATOR_REQUIRE = () => ({ type: VALIDATOR_TYPE_REQUIRE });
 
@@ -28,6 +30,16 @@ export const VALIDATOR_ONE_SPECIAL_CHAR = (val) => ({
 });
 
 export const VALIDATOR_MIN = (val) => ({ type: VALIDATOR_TYPE_MIN, val });
+
+export const VALIDATOR_IDENTICAL = (val) => ({
+  type: VALIDATOR_TYPE_IDENTICAL,
+  val,
+});
+
+export const VALIDATOR_FRENCH_MOBILE_NUMBER = (val) => ({
+  type: VALIDATOR_TYPE_FRENCH_MOBILE_NUMBER,
+  val,
+});
 
 export const validate = (value, validators) => {
   let isValid = true;
@@ -57,6 +69,15 @@ export const validate = (value, validators) => {
 
     if (validator.type === VALIDATOR_TYPE_ONE_SPECIAL_CHAR) {
       const re = /(?=.*?[#?!@$%^&*-])/;
+      isValid = isValid && re.test(value);
+    }
+
+    if (validator.type === VALIDATOR_TYPE_IDENTICAL) {
+      isValid = validator.val === value;
+    }
+
+    if (validator.type === VALIDATOR_TYPE_FRENCH_MOBILE_NUMBER) {
+      const re = /^(0)[6-7](\d{2}){4}$/;
       isValid = isValid && re.test(value);
     }
   });
