@@ -67,9 +67,15 @@ function Appointments() {
           <>
             {futureAppointments.length === 0
               && <p>Vous n&apos;avez pas de rendez-vous à venir</p>}
-            {futureAppointments.length === 1
-              && <AppointmentDetails appointment={futureAppointments[0]} />}
-            {futureAppointments.length > 1 && <AppointmentsList items={futureAppointments} title="Rendez-vous à venir" />}
+
+            {futureAppointments.length >= 1
+            && (
+            <>
+              <AppointmentDetails appointment={futureAppointments[0]} />
+              <AppointmentsList items={futureAppointments.slice(1)} title="Rendez-vous suivants" />
+
+            </>
+            )}
             {pastAppointments.length >= 0 && <AppointmentsList items={pastAppointments} title="Rendez-vous passés" />}
 
           </>
