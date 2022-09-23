@@ -1,0 +1,55 @@
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* All variables copied from the rails public app. Not sure everything will be needed */
+  --msj-small-breakpoint: 576px;
+  --msj-medium-breakpoint: 992px;
+
+  --msj-orange: #D6411E;
+  --msj-blue: #5770BB;
+  --msj-green: #0C866F;
+  
+  --msj-background: #f5f4f1;
+  --msj-clear-background: #FFFFFF;
+  --msj-dark-background: #F0F0F0;
+  --msj-border: #DCD9D9;
+  
+  --msj-white-text: #FFFFFF;
+  --msj-grey-text: #808080;
+  --msj-dark-grey-text: #6A6A6A;
+  --msj-home-grey: #ebeae5;
+  
+  --msj-red: tomato;
+
+  --msj-small-breakpoint: 576px;
+  --msj-medium-breakpoint: 992px;
+}
+
+@font-face {
+  font-family: 'Marianne';
+  src:
+    url('./styles/fonts/Marianne-ExtraBold.woff') format('woff'),
+    url('./styles/fonts/Marianne-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Marianne';
+  src:
+    url('./styles/fonts/Marianne-ExtraBold_Italic.woff') format('woff'),
+    url('./styles/fonts/Marianne-ExtraBold_Italic.woff2') format('woff2');
+  font-weight: 800;
+  font-style: italic;
+}
+
+.static-wrapper {
+  background-color: var(--msj-background);
+  min-height: 80vh;
+}
+
+.static-footer {
+  border-top: 2px solid var(--msj-border);
+  box-shadow: none;
+}
