@@ -8,7 +8,7 @@ import AppointmentDetails from 'shared/components/Appointments/AppointmentDetail
 import Alert from 'shared/components/Alerts/Alert';
 
 function Appointments() {
-  const [appointments, setAppointments] = useState(null);
+  const [appointments, setAppointments] = useState([]);
 
   const futureAppointments = [];
   const pastAppointments = [];
@@ -40,7 +40,7 @@ function Appointments() {
     fetchUserAppointments();
   }, [sendRequest]);
 
-  if (appointments) {
+  if (appointments.length > 0) {
     appointments.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
 
     appointments.forEach((apt) => {
@@ -62,15 +62,15 @@ function Appointments() {
         <h1 className="text-3xl">Vos rendez-vous</h1>
         {loading && <p>Chargement...</p>}
 
-        {!loading && appointments
+        {!loading
           && (
           <>
-            <AppointmentDetails appointment={futureAppointments[0]} />
-            <AppointmentsList
-              items={futureAppointments}
-              title="Rendez-vous suivants"
-            />
-            <AppointmentsList items={pastAppointments} title="Rendez-vous passés" />
+            {futureAppointments.length === 0
+              && <p>Vous n&apos;avez pas de rendez-vous à venir</p>}
+            {futureAppointments.length === 1
+              && <AppointmentDetails appointment={futureAppointments[0]} />}
+            {futureAppointments.length > 1 && <AppointmentsList items={futureAppointments} title="Rendez-vous à venir" />}
+            {pastAppointments.length >= 0 && <AppointmentsList items={pastAppointments} title="Rendez-vous passés" />}
 
           </>
           )}
