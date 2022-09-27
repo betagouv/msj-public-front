@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import useForm from 'shared/hooks/form-hook';
 // import Checkbox from 'shared/components/Forms/Checkbox';
@@ -18,6 +18,9 @@ import useHttpClient from 'shared/hooks/http-hook';
 import Alert from 'shared/components/Alerts/Alert';
 
 function Login() {
+  const location = useLocation();
+  console.log('location', location);
+
   const { login } = useAuth();
   const {
     error, sendRequest, clearError,
@@ -59,7 +62,9 @@ function Login() {
   return (
 
     <>
-      <Alert title={error?.message} show={!!error} type="error" closable onClose={clearError} />
+
+      {error && <Alert title={error?.message} type="error" closable onClose={clearError} />}
+      {location.state?.alertSuccess.length && <Alert title={location.state?.alertSuccess} type="success" closable /> }
       <div className="fr-container fr-py-6w px-12 lg:px-72">
         <h2 className="mb-4">Je me connecte</h2>
         <form
