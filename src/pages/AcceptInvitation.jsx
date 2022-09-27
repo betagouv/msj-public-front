@@ -6,7 +6,6 @@ import TextInput from 'shared/components/Forms/TextInput';
 import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_ONE_UPPERCASE,
-  VALIDATOR_REQUIRE,
   VALIDATOR_ONE_DIGIT,
   VALIDATOR_ONE_SPECIAL_CHAR,
   VALIDATOR_IDENTICAL,
@@ -90,7 +89,6 @@ function AcceptInvitation() {
             onInput={inputHandler}
             errorMessage="Le mot de passe doit contenir 10 caractères, avec une majuscule, un chiffre et un caractère spécial"
             validators={[
-              VALIDATOR_REQUIRE(),
               VALIDATOR_MINLENGTH(10),
               VALIDATOR_ONE_UPPERCASE(),
               VALIDATOR_ONE_DIGIT(),

@@ -5,12 +5,16 @@ import classNames from 'classnames';
 import { validate } from 'shared/utils/validators';
 
 const textInputReducer = (state, action) => {
+  let isValid;
+  let errorHints;
   switch (action.type) {
     case 'CHANGE':
+      [isValid, errorHints] = validate(action.val, action.validators);
       return {
         ...state,
         value: action.val,
-        isValid: validate(action.val, action.validators),
+        isValid,
+        errorHints,
       };
     default:
       return state;
@@ -25,6 +29,7 @@ function TextInput(props) {
   const [textInputState, dispatch] = useReducer(textInputReducer, {
     value: '',
     isValid: null,
+    errorHints: [],
   });
 
   const {
@@ -33,7 +38,6 @@ function TextInput(props) {
     type,
     label,
     hint,
-    errorMessage,
     required,
     validators,
     onInput,
@@ -93,10 +97,7 @@ function TextInput(props) {
           maxLength={maxlength}
         />
       )}
-
-      {textInputState.isValid === false && (
-        <p className="fr-error-text">{errorMessage}</p>
-      )}
+      {textInputState.errorHints.length > 0 && textInputState.errorHints.map((errorHint) => <p className="fr-error-text" key={errorHint}>{errorHint}</p>)}
     </div>
   );
 }
@@ -105,7 +106,6 @@ TextInput.defaultProps = {
   textarea: false,
   hint: '',
   label: null,
-  errorMessage: '',
   type: 'text',
   required: false,
   validators: [],
@@ -124,7 +124,6 @@ TextInput.propTypes = {
     PropTypes.object,
     PropTypes.array,
   ]),
-  errorMessage: PropTypes.string,
   required: PropTypes.bool,
   validators: PropTypes.arrayOf(PropTypes.shape),
   onInput: PropTypes.func,

@@ -7,7 +7,6 @@ import TextInput from 'shared/components/Forms/TextInput';
 import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_ONE_UPPERCASE,
-  VALIDATOR_REQUIRE,
   VALIDATOR_ONE_DIGIT,
   VALIDATOR_ONE_SPECIAL_CHAR,
   VALIDATOR_FRENCH_MOBILE_NUMBER,
@@ -19,7 +18,7 @@ import Alert from 'shared/components/Alerts/Alert';
 
 function Login() {
   const location = useLocation();
-  console.log('location', location);
+  window.history.replaceState({}, document.title);
 
   const { login } = useAuth();
   const {
@@ -60,9 +59,7 @@ function Login() {
   };
 
   return (
-
     <>
-
       {error && <Alert title={error?.message} type="error" closable onClose={clearError} />}
       {location.state?.alertSuccess.length && <Alert title={location.state?.alertSuccess} type="success" closable /> }
       <div className="fr-container fr-py-6w px-12 lg:px-72">
@@ -79,9 +76,8 @@ function Login() {
             hint="En 06 ou 07 (ex: 0612131415 ou 0612131415)"
             autoComplete="tel"
             onInput={inputHandler}
-            errorMessage="Veuillez saisir un numéro de téléphone valide"
             maxlength="10"
-            validators={[VALIDATOR_REQUIRE(), VALIDATOR_FRENCH_MOBILE_NUMBER()]}
+            validators={[VALIDATOR_FRENCH_MOBILE_NUMBER()]}
           />
 
           <TextInput
@@ -90,10 +86,8 @@ function Login() {
             required
             hint="10 caractères, avec une majuscule, un chiffre et un caractère spécial"
             autoComplete="current-password"
-            errorMessage="Le mot de passe doit contenir 10 caractères, avec une majuscule, un chiffre et un caractère spécial"
             onInput={inputHandler}
             validators={[
-              VALIDATOR_REQUIRE(),
               VALIDATOR_MINLENGTH(10),
               VALIDATOR_ONE_UPPERCASE(),
               VALIDATOR_ONE_DIGIT(),
