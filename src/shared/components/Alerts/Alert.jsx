@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import dataAttributes from 'shared/utils/data-attributes';
 
-import '@gouvfr/dsfr/dist/component/alert/alert.css';
+// import '@gouvfr/dsfr/dist/component/alert/alert.css';
 
 /**
  *

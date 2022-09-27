@@ -17,7 +17,7 @@ import {
 
 import MSJLogo from './logo_msj.svg';
 
-function HeaderExample() {
+function PrivateHeader() {
   const location = useLocation();
   const [path, setPath] = useState(() => location.pathname || '');
 
@@ -80,4 +80,4 @@ function HeaderExample() {
   );
 }
 
-export default HeaderExample;
+export default PrivateHeader;

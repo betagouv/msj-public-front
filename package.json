@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@dataesr/react-dsfr": "^3.1.6",
-    "@gouvfr/dsfr": "^1.7.2",
+    "@dataesr/react-dsfr": "^3.1.7",
+    "@gouvfr/dsfr": "^1.7.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
