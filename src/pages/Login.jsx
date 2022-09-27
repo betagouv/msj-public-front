@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import useForm from 'shared/hooks/form-hook';
-import Checkbox from 'shared/components/Forms/Checkbox';
+// import Checkbox from 'shared/components/Forms/Checkbox';
 import TextInput from 'shared/components/Forms/TextInput';
 import {
   VALIDATOR_MINLENGTH,
@@ -31,10 +32,10 @@ function Login() {
       value: '',
       isValid: false,
     },
-    convict_remember_me: {
-      value: false,
-      isValid: true,
-    },
+    // convict_remember_me: {
+    //   value: false,
+    //   isValid: true,
+    // },
   }, false);
 
   const loginSubmitHandler = async (e) => {
@@ -95,11 +96,11 @@ function Login() {
             ]}
           />
 
-          <Checkbox
+          {/* <Checkbox
             label="Se souvenir de moi ?"
             id="convict_remember_me"
             onChange={(e) => inputHandler(e.target.id, e.target.checked, true)}
-          />
+          /> */}
 
           <button
             type="submit"
@@ -112,7 +113,8 @@ function Login() {
           </button>
         </form>
 
-        <a href="/convicts/password/new">J&apos;ai oublié mon mot de passe ?</a>
+        <Link to="/reinitialiser-mot-de-passe">Mot de passe oublié ?</Link>
+
         <br />
 
         <h2 className="text-xl mb-4 mt-10">Ce que mon compte me permet</h2>

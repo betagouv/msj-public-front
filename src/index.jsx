@@ -10,6 +10,8 @@ import '@gouvfr/dsfr/dist/utility/icons/icons-system/icons-system.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-user/icons-user.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-business/icons-business.css';
 
+import '@gouvfr/dsfr/dist/dsfr.nomodule.min';
+
 import 'remixicon/fonts/remixicon.css';
 import './App.css';
 

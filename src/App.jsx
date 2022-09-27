@@ -12,6 +12,7 @@ import Agents from 'pages/Agents';
 import Account from 'pages/Account';
 import Appointment from 'pages/Appointment';
 import ProtectedLayout from 'shared/layouts/ProtectedLayout';
+import ForgotPassword from 'pages/ForgotPassword';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />}>
             <Route path="connexion" element={<Login />} exact />
+            <Route path="reinitialiser-mot-de-passe" element={<ForgotPassword />} exact />
             <Route
               path="accept_invitation"
               element={<AcceptInvitation />}
