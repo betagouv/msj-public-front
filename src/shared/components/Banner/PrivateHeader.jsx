@@ -46,7 +46,7 @@ function PrivateHeader() {
           <img src={MSJLogo} alt="Ministère de la justice" />
         </HeaderOperator>
         <Service
-          title="Guichet unique du probationnaire"
+          title="Mon espace personnel"
           description="Les infos utiles de mon parcours judiciaire"
         />
         <Tool
