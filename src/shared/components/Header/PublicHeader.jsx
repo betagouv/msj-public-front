@@ -18,12 +18,12 @@ function PublicHeader() {
   const navigate = useNavigate();
   const goToAgentsApp = (e) => {
     e.preventDefault();
-    window.location.replace(process.env.REACT_APP_AGENTS_SIGN_IN_URL);
+    window.location = process.env.REACT_APP_AGENTS_SIGN_IN_URL;
   };
 
   const goToPublicWebsite = (e) => {
     e.preventDefault();
-    window.location.replace(process.env.REACT_APP_SPINA_URL);
+    window.location = process.env.REACT_APP_SPINA_URL;
   };
 
   const goToLoginPage = (e) => {

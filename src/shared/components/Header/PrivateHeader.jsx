@@ -25,7 +25,7 @@ function PrivateHeader() {
 
   const goToPublicWebsite = (e) => {
     e.preventDefault();
-    window.location.replace(process.env.REACT_APP_SPINA_URL);
+    window.location = process.env.REACT_APP_SPINA_URL;
   };
 
   const logoutHandler = (e) => {
