@@ -23,14 +23,15 @@ function PrivateHeader() {
 
   const { logout } = useAuth();
 
+  const goToPublicWebsite = (e) => {
+    e.preventDefault();
+    window.location.replace(process.env.REACT_APP_SPINA_URL);
+  };
+
   const logoutHandler = (e) => {
     e.preventDefault();
     logout();
   };
-
-  useEffect(() => {
-
-  }, []);
 
   useEffect(() => {
     if (path !== location.pathname) {
@@ -53,7 +54,7 @@ function PrivateHeader() {
           closeButtonLabel="fermer"
         >
           <ToolItemGroup>
-            <ToolItem icon="fr-fi-information-line" link="/landing" target="_blank">Revenir au site public</ToolItem>
+            <ToolItem icon="fr-fi-information-line" onClick={goToPublicWebsite} target="_blank">Revenir au site public</ToolItem>
             <ToolItem onClick={logoutHandler} icon="fr-fi-logout-box-r-line">
               Se déconnecter
             </ToolItem>
