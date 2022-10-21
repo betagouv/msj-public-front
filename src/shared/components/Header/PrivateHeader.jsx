@@ -19,7 +19,7 @@ import MSJLogo from './logo_msj.svg';
 
 function PrivateHeader() {
   const location = useLocation();
-  const [path, setPath] = useState(() => location.pathname || '');
+  const [path, setPath] = useState(() => (location && location.pathname) || '');
 
   const { logout } = useAuth();
 
@@ -34,7 +34,7 @@ function PrivateHeader() {
   };
 
   useEffect(() => {
-    if (path !== location.pathname) {
+    if (location && path !== location.pathname) {
       setPath(location.pathname);
     }
   }, [path, setPath, location]);
