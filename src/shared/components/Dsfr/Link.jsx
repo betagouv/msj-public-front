@@ -1,6 +1,7 @@
 import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Icon } from './Icon';
 
 /**
  *
@@ -13,13 +14,19 @@ function Link({
   title,
   target,
   isSimple,
-  className,
+  className: defaultClassname,
   as,
   current,
+  display,
+  verticalIconPosition,
+  iconSize,
+  icon,
+  iconPosition,
   onClick,
   size,
 }) {
-  const updatedClassName = classNames(className, {
+  const className = classNames(defaultClassname, {
+    [`ds-fr--${display}`]: display && icon,
     'fr-link': isSimple,
     [`fr-link--${size}`]: size,
   });
@@ -30,14 +37,14 @@ function Link({
 
   const asLink = as
     ? cloneElement(as, {
-      className: updatedClassName,
+      className,
       children,
       'aria-current': (current && 'page') || undefined,
       onClick,
     })
     : null;
 
-  const link = (
+  const linkElement = (
     <a
       aria-disabled={(disabled || !href) ? true : undefined}
       role={disabled || !href ? 'link' : undefined}
@@ -47,12 +54,22 @@ function Link({
       title={title || undefined}
       target={target}
       rel={(target === '_blank') ? 'noopener noreferrer' : undefined}
-      className={updatedClassName}
+      className={className}
     >
       {children}
     </a>
   );
-  return as ? asLink : link;
+  const element = as ? asLink : linkElement;
+  return icon ? (
+    <Icon
+      verticalAlign={verticalIconPosition}
+      name={icon}
+      size={iconSize}
+      iconPosition={element.props && element.props.children ? iconPosition : 'center'}
+    >
+      {element}
+    </Icon>
+  ) : element;
 }
 
 Link.defaultProps = {
@@ -62,10 +79,15 @@ Link.defaultProps = {
   target: '_self',
   isSimple: false,
   current: false,
+  icon: '',
   as: null,
+  iconPosition: 'right',
   href: '',
   children: '',
   onClick: null,
+  display: 'inline',
+  verticalIconPosition: 'middle',
+  iconSize: 'sm',
   size: 'md',
 };
 
@@ -82,13 +104,21 @@ Link.propTypes = {
   ]),
   href: PropTypes.string,
   disabled: PropTypes.bool,
+  verticalIconPosition: PropTypes.oneOf(['top', 'middle', 'sub']),
   as: PropTypes.element,
   title: PropTypes.string,
   target: PropTypes.string,
   isSimple: PropTypes.bool,
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
   current: PropTypes.bool,
+  icon: PropTypes.string,
   onClick: PropTypes.func,
+  iconPosition: PropTypes.oneOf(['left', 'right']),
+  iconSize: PropTypes.oneOf(['fw', 'xxs', 'xs', 'sm', '1x', 'lg', 'xl', '2x', '3x', '10x']),
+  /**
+     * @ignore
+     */
+  display: PropTypes.oneOf(['inline', 'flex']),
 };
 
 export default Link;

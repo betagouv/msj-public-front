@@ -1,16 +1,31 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+
+import { useAuth } from 'shared/hooks/auth-hook';
+
 import Logo from './Logo';
 import Service from './Service';
-
 import MSJLogo from './logo_msj.svg';
 import HeaderContext from './HeaderContext';
+import { Tool, ToolItem } from './Tool';
 
 function HeaderBody({
   className,
 }) {
   const { onOpenNav, navButton } = useContext(HeaderContext);
+
+  const { logout } = useAuth();
+
+  const goToPublicWebsite = (e) => {
+    e.preventDefault();
+    window.location = process.env.REACT_APP_SPINA_URL;
+  };
+
+  const logoutHandler = (e) => {
+    e.preventDefault();
+    logout();
+  };
 
   return (
     <div
@@ -43,6 +58,12 @@ function HeaderBody({
               description="Les infos utiles de mon parcours judiciaire"
             />
           </div>
+          <Tool>
+            <ToolItem icon="fr-fi-information-line" onClick={goToPublicWebsite} target="_blank">Revenir au site public</ToolItem>
+            <ToolItem onClick={logoutHandler} icon="fr-fi-logout-box-r-line">
+              Se déconnecter
+            </ToolItem>
+          </Tool>
         </div>
       </div>
     </div>
