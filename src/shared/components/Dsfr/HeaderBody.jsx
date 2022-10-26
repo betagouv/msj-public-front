@@ -15,7 +15,7 @@ function HeaderBody({
   className,
 }) {
   const navigate = useNavigate();
-  const { onOpenNav, navButton, isOpenNav } = useContext(HeaderContext);
+  const { onOpenNav, navButton } = useContext(HeaderContext);
 
   const { logout, isLogin } = useAuth();
 
@@ -58,10 +58,7 @@ function HeaderBody({
               </div>
               <div className="fr-header__navbar">
                 <button
-                  onClick={() => {
-                    console.log('open in body');
-                    onOpenNav(!isOpenNav);
-                  }}
+                  onClick={onOpenNav}
                   type="button"
                   className="fr-btn--menu fr-btn"
                   title={navButton}

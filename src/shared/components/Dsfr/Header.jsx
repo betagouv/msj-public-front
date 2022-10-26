@@ -1,14 +1,15 @@
 import React, { useMemo, useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link as RouterLink } from 'react-router-dom';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import { useAuth } from 'shared/hooks/auth-hook';
 import useViewport from 'shared/hooks/useViewport';
+import { useAuth } from 'shared/hooks/auth-hook';
 
 import HeaderBody from './HeaderBody';
 import HeaderContext from './HeaderContext';
-import PrivateHeaderNav from './PrivateHeaderNav';
+import HeaderNav from './HeaderNav';
+import Link from './Link';
 
 export default function Header({ isOpenNav, className }) {
   const [openNav, setOpenNav] = useState(isOpenNav || false);
@@ -35,8 +36,36 @@ export default function Header({ isOpenNav, className }) {
         className={classNames(className, 'fr-header')}
         role="banner"
       >
-        <HeaderBody path={path} />
-        { isLogin && <PrivateHeaderNav /> }
+        <HeaderBody />
+        <HeaderNav path={path}>
+          {isLogin && (
+            <>
+              <Link
+                onClick={() => setOpenNav(false)}
+                as={<RouterLink to="/mon-compte/mes-rendez-vous" />}
+                className="fr-nav__link"
+              >
+                Mes rendez-vous
+              </Link>
+              <Link
+                onClick={() => setOpenNav(false)}
+                current={path.startsWith('/agent')}
+                as={<RouterLink to="/mon-compte/agent" />}
+                className="fr-nav__link"
+              >
+                Mes interlocuteurs
+              </Link>
+              <Link
+                onClick={() => setOpenNav(false)}
+                current={path.startsWith('/convict')}
+                as={<RouterLink to="/mon-compte/convict" />}
+                className="fr-nav__link"
+              >
+                Mon compte
+              </Link>
+            </>
+          )}
+        </HeaderNav>
       </header>
     </HeaderContext.Provider>
   );
