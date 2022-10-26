@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -13,18 +14,32 @@ import { Tool, ToolItem } from './Tool';
 function HeaderBody({
   className,
 }) {
-  const { onOpenNav, navButton } = useContext(HeaderContext);
+  const navigate = useNavigate();
+  const { onOpenNav, navButton, isOpenNav } = useContext(HeaderContext);
 
-  const { logout } = useAuth();
+  const { logout, isLogin } = useAuth();
+
+  const logoutHandler = (e) => {
+    e.preventDefault();
+    if (!isLogin) {
+      return;
+    }
+    logout();
+  };
+
+  const goToAgentsApp = (e) => {
+    e.preventDefault();
+    window.location = process.env.REACT_APP_AGENTS_SIGN_IN_URL;
+  };
 
   const goToPublicWebsite = (e) => {
     e.preventDefault();
     window.location = process.env.REACT_APP_SPINA_URL;
   };
 
-  const logoutHandler = (e) => {
+  const goToLoginPage = (e) => {
     e.preventDefault();
-    logout();
+    navigate('/connexion');
   };
 
   return (
@@ -43,7 +58,10 @@ function HeaderBody({
               </div>
               <div className="fr-header__navbar">
                 <button
-                  onClick={onOpenNav}
+                  onClick={() => {
+                    console.log('open in body');
+                    onOpenNav(!isOpenNav);
+                  }}
                   type="button"
                   className="fr-btn--menu fr-btn"
                   title={navButton}
@@ -58,12 +76,20 @@ function HeaderBody({
               description="Les infos utiles de mon parcours judiciaire"
             />
           </div>
-          <Tool>
-            <ToolItem icon="fr-fi-information-line" onClick={goToPublicWebsite} target="_blank">Revenir au site public</ToolItem>
-            <ToolItem onClick={logoutHandler} icon="fr-fi-logout-box-r-line">
-              Se déconnecter
-            </ToolItem>
-          </Tool>
+          {isLogin ? (
+            <Tool>
+              <ToolItem icon="fr-fi-information-line" onClick={goToPublicWebsite} target="_blank">Revenir au site public</ToolItem>
+              <ToolItem onClick={logoutHandler} icon="fr-fi-logout-box-r-line">
+                Se déconnecter
+              </ToolItem>
+            </Tool>
+          ) : (
+            <Tool>
+              <ToolItem icon="fr-fi-information-line" onClick={goToPublicWebsite} target="_blank">Revenir au site public</ToolItem>
+              <ToolItem icon="fr-fi-information-line" onClick={goToAgentsApp} link="/landing" target="_blank">Espace agents</ToolItem>
+              <ToolItem icon="fr-fi-information-line" onClick={goToLoginPage} target="_blank">Mon espace personnel</ToolItem>
+            </Tool>
+          )}
         </div>
       </div>
     </div>

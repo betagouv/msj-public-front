@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import useLocalStorage from 'shared/hooks/localstorage-hook';
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useLocalStorage('user', null);
@@ -28,6 +28,7 @@ export function AuthProvider({ children }) {
       user,
       login,
       logout,
+      isLogin: user && new Date(user.tokenExpDate) > new Date(),
     }),
     [user],
   );

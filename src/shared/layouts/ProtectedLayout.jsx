@@ -5,9 +5,9 @@ import PrivateHeader from 'shared/components/Header/PrivateHeader';
 import { useAuth } from '../hooks/auth-hook';
 
 function ProtectedLayout() {
-  const { user } = useAuth();
+  const { isLogin } = useAuth();
 
-  if (!user || new Date(user.tokenExpDate) < new Date()) {
+  if (!isLogin) {
     return <Navigate to="/connexion" />;
   }
 
