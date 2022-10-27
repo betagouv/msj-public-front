@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import HeaderContext from './HeaderContext';
+import { ToolItemGroup } from './Tool';
 
 function HeaderNav({
   className, children, path,
 }) {
   const {
-    isOpenNav, onOpenNav, isMobile, shortcutClassName,
+    isOpenNav, onOpenNav, isMobile,
   } = useContext(HeaderContext);
+
   const updatedClassName = classNames(className, 'fr-header__menu fr-modal', {
     'fr-modal--opened': isOpenNav,
   });
@@ -17,6 +19,7 @@ function HeaderNav({
     // eslint-disable-next-line react/no-array-index-key
     (child, index) => cloneElement(child, { key: index, path: path || undefined }),
   );
+
   return (
     <div
       className={updatedClassName}
@@ -31,11 +34,7 @@ function HeaderNav({
         >
           Fermer
         </button>
-        {isMobile && (
-        <div className="fr-header__menu-links">
-          <ul className={classNames(shortcutClassName, 'fr-links-group')} />
-        </div>
-        )}
+        {isMobile && <ToolItemGroup />}
         <nav
           id="header-navigation"
           className="fr-nav"

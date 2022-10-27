@@ -19,8 +19,9 @@ export function AuthProvider({ children }) {
   };
 
   const logout = () => {
-    setUser(null);
-    navigate('/connexion', { replace: true });
+    setUser(null, () => {
+      navigate('/connexion', { replace: true });
+    });
   };
 
   const value = useMemo(

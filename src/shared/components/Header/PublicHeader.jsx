@@ -46,9 +46,9 @@ function PublicHeader() {
           closeButtonLabel="fermer"
         >
           <ToolItemGroup>
-            <ToolItem icon="fr-fi-information-line" onClick={goToPublicWebsite} target="_blank">Revenir au site public</ToolItem>
-            <ToolItem icon="fr-fi-information-line" onClick={goToAgentsApp} link="/landing" target="_blank">Espace agents</ToolItem>
-            <ToolItem icon="fr-fi-information-line" onClick={goToLoginPage} target="_blank">Mon espace personnel</ToolItem>
+            <ToolItem icon="fr-fi-information-line" onClick={goToPublicWebsite} link="/landing">Revenir au site public</ToolItem>
+            <ToolItem icon="fr-fi-lock-line" onClick={goToAgentsApp}>Espace agents</ToolItem>
+            <ToolItem icon="fr-fi-account-line" onClick={goToLoginPage}>Mon espace personnel</ToolItem>
           </ToolItemGroup>
         </Tool>
       </HeaderBody>

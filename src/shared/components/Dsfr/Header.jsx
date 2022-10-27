@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useMemo, useState, useEffect } from 'react';
 import { useLocation, Link as RouterLink } from 'react-router-dom';
 import classNames from 'classnames';
