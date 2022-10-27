@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Outlet, Navigate } from 'react-router-dom';
-// import PrivateHeader from 'shared/components/Header/PrivateHeader';
 import Header from 'shared/components/Dsfr/Header';
 import { useAuth } from '../hooks/auth-hook';
 

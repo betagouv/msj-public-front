@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Logo from './Logo';
+import Logo from '../Logo';
 import Service from './Service';
 import MSJLogo from './logo_msj.svg';
 import HeaderContext from './HeaderContext';

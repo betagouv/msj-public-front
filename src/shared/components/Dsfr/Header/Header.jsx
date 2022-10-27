@@ -10,7 +10,7 @@ import { useAuth } from 'shared/hooks/auth-hook';
 import HeaderBody from './HeaderBody';
 import HeaderContext from './HeaderContext';
 import HeaderNav from './HeaderNav';
-import Link from './Link';
+import Link from '../Link';
 
 export default function Header({ isOpenNav, className }) {
   const [openNav, setOpenNav] = useState(isOpenNav || false);
