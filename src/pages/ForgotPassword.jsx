@@ -28,7 +28,7 @@ function ForgotPassword() {
   const loginSubmitHandler = async (e) => {
     e.preventDefault();
 
-    const resData = await sendRequest(
+    await sendRequest(
       `${process.env.REACT_APP_BACKEND_HOST}/api/users/reset-password`,
       'POST',
       JSON.stringify({
@@ -39,7 +39,6 @@ function ForgotPassword() {
       },
     );
     navigate('/connexion', { state: { alertSuccess: 'Un SMS avec un lien de réinitialisation de votre mot de passe vous a été envoyé' } });
-    console.log(resData);
     // TODO: how do we handle errors here ? (They are already handled in the http hook !)
   };
 

@@ -34,6 +34,7 @@ function Appointments() {
         setAppointments(resData);
       } catch (err) {
         // TODO: how do we handle errors here ? (They are already handled in the http hook !)
+        // eslint-disable-next-line no-console
         console.log(err);
       }
     };
