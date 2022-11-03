@@ -1,19 +1,19 @@
 import React from 'react';
 
 import { Outlet, Navigate } from 'react-router-dom';
-import PrivateHeader from 'shared/components/Header/PrivateHeader';
+import Header from 'shared/components/Dsfr/Header';
 import { useAuth } from '../hooks/auth-hook';
 
 function ProtectedLayout() {
-  const { user } = useAuth();
+  const { isLogin } = useAuth();
 
-  if (!user || new Date(user.tokenExpDate) < new Date()) {
+  if (!isLogin) {
     return <Navigate to="/connexion" />;
   }
 
   return (
     <>
-      <PrivateHeader />
+      <Header />
       <Outlet />
     </>
   );

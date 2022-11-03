@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Outlet, Navigate } from 'react-router-dom';
-import PublicHeader from 'shared/components/Header/PublicHeader';
+import Header from 'shared/components/Dsfr/Header';
 import { useAuth } from '../shared/hooks/auth-hook';
 
 function HomePage() {
@@ -13,7 +13,7 @@ function HomePage() {
 
   return (
     <>
-      <PublicHeader />
+      <Header />
       <Outlet />
     </>
   );
