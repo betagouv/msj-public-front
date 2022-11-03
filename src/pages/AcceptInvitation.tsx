@@ -95,9 +95,7 @@ function AcceptInvitation() {
             id="password"
             hint="10 caractères, avec une majuscule, un chiffre et un caractère spécial"
             required
-            autoComplete="current-password"
             onInput={inputHandler}
-            errorMessage="Le mot de passe doit contenir 10 caractères, avec une majuscule, un chiffre et un caractère spécial"
             validators={[
               VALIDATOR_MINLENGTH(10),
               VALIDATOR_ONE_UPPERCASE(),
@@ -110,8 +108,6 @@ function AcceptInvitation() {
             label="Confirmation de mot de passe"
             id="passwordConfirmation"
             required
-            autoComplete="current-password"
-            errorMessage="Les mots de passe ne correspondent pas"
             onInput={inputHandler}
             validators={[VALIDATOR_IDENTICAL(formState.inputs.password.value)]}
           />
