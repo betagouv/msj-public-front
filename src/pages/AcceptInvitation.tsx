@@ -1,38 +1,41 @@
-import React, { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import React, { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
-import useForm from 'shared/hooks/form-hook';
-import TextInput from 'shared/components/Forms/TextInput';
+import useForm from "shared/hooks/form-hook";
+import TextInput from "shared/components/Forms/TextInput";
 import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_ONE_UPPERCASE,
   VALIDATOR_ONE_DIGIT,
   VALIDATOR_ONE_SPECIAL_CHAR,
   VALIDATOR_IDENTICAL,
-} from 'shared/utils/validators';
-import { useAuth } from 'shared/hooks/auth-hook';
+} from "shared/utils/validators";
+import { useAuth } from "shared/hooks/auth-hook";
 
-import Alert from 'shared/components/Alerts/Alert';
+import Alert from "shared/components/Alerts/Alert";
 
 function AcceptInvitation() {
   const [searchParams] = useSearchParams();
-  const invitationToken = searchParams.get('token');
+  const invitationToken = searchParams.get("token");
 
   const { login } = useAuth();
 
   // const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const [formState, inputHandler] = useForm({
-    password: {
-      value: '',
-      isValid: false,
+  const [formState, inputHandler] = useForm(
+    {
+      password: {
+        value: "",
+        isValid: false,
+      },
+      passwordConfirmation: {
+        value: "",
+        isValid: false,
+      },
     },
-    passwordConfirmation: {
-      value: '',
-      isValid: false,
-    },
-  }, false);
+    false
+  );
 
   const onCloseAlertHandler = () => {
     setError(null);
@@ -43,16 +46,19 @@ function AcceptInvitation() {
 
     try {
       // setIsLoading(true);
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_HOST}/api/users/signup`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          invitationToken,
-          password: formState.inputs.password.value,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_HOST}/api/users/signup`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            invitationToken,
+            password: formState.inputs.password.value,
+          }),
+        }
+      );
 
       const resData = await response.json();
 
@@ -64,21 +70,25 @@ function AcceptInvitation() {
       login(resData);
     } catch (err) {
       // setIsLoading(false);
-      setError(err || "Une erreur s'est produite, contactez l'administrateur du site");
+      setError(
+        err || "Une erreur s'est produite, contactez l'administrateur du site"
+      );
     }
   };
 
   return (
-
     <>
-      <Alert title={error?.message} show={!!error} type="error" closable onClose={onCloseAlertHandler} />
+      <Alert
+        title={error?.message}
+        show={!!error}
+        type="error"
+        closable
+        onClose={onCloseAlertHandler}
+      />
 
       <div className="fr-container fr-py-4w px-12 lg:px-72">
         <h2 className="text-2xl mb-4">Je choisis mon mot de passe</h2>
-        <form
-          acceptCharset="UTF-8"
-          onSubmit={acceptInvitationSubmitHandler}
-        >
+        <form acceptCharset="UTF-8" onSubmit={acceptInvitationSubmitHandler}>
           <TextInput
             label="Mot de passe"
             type="password"
@@ -103,9 +113,7 @@ function AcceptInvitation() {
             autoComplete="current-password"
             errorMessage="Les mots de passe ne correspondent pas"
             onInput={inputHandler}
-            validators={[
-              VALIDATOR_IDENTICAL(formState.inputs.password.value),
-            ]}
+            validators={[VALIDATOR_IDENTICAL(formState.inputs.password.value)]}
           />
 
           <button
@@ -125,7 +133,9 @@ function AcceptInvitation() {
           <div className="fr-col-6">
             <div className="fr-tile">
               <div className="fr-tile__body">
-                <h5 className="fr-tile__title">Je peux suivre mes rendez-vous</h5>
+                <h5 className="fr-tile__title">
+                  Je peux suivre mes rendez-vous
+                </h5>
               </div>
               <div className="fr-tile__img">
                 <span
@@ -166,19 +176,17 @@ function AcceptInvitation() {
             id="accordion-106"
             data-fr-js-collapse="true"
           >
-            La présente interface est à l&apos;initiative du Ministère de la Justice.
-            Le respect de vos droits et de votre vie privée est une priorité. Pour
-            plus d&apos;informations sur l&apos;utilisation de vos données personnelles,
-            vous pouvez vous rendre sur
+            La présente interface est à l&apos;initiative du Ministère de la
+            Justice. Le respect de vos droits et de votre vie privée est une
+            priorité. Pour plus d&apos;informations sur l&apos;utilisation de
+            vos données personnelles, vous pouvez vous rendre sur
             <a target="_blank" href="/donnees_personnelles">
               la page dédiée
             </a>
           </div>
         </section>
       </div>
-
     </>
-
   );
 }
 

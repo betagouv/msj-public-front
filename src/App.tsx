@@ -20,35 +20,32 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/" element={<HomePage />}>
-            <Route path="connexion" element={<Login />} exact />
-            <Route path="reinitialiser-mot-de-passe" element={<ForgotPassword />} exact />
+            <Route path="connexion" element={<Login />} />
             <Route
-              path="accept_invitation"
-              element={<AcceptInvitation />}
-              exact
+              path="reinitialiser-mot-de-passe"
+              element={<ForgotPassword />}
             />
+            <Route path="accept_invitation" element={<AcceptInvitation />} />
           </Route>
 
           <Route path="/mon-compte" element={<ProtectedLayout />}>
-            <Route path="mes-rendez-vous" element={<Appointments />} exact />
+            <Route path="mes-rendez-vous" element={<Appointments />} />
             <Route
               path="mes-rendez-vous/:appointmentId"
               element={<Appointment />}
             />
-            <Route path="agent" element={<Agents />} exact />
-            <Route path="convict" element={<Account />} exact />
+            <Route path="agent" element={<Agents />} />
+            <Route path="convict" element={<Account />} />
             <Route
               path="*"
               element={(
                 <main style={{ padding: '1rem' }}>
                   <p>404 page non trouvée</p>
                 </main>
-        )}
+              )}
             />
           </Route>
-
         </Routes>
-
       </AuthProvider>
     </div>
   );
