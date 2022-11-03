@@ -21,7 +21,7 @@ function AcceptInvitation() {
   const { login } = useAuth();
 
   // const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
 
   const [formState, inputHandler] = useForm(
     {
@@ -71,7 +71,10 @@ function AcceptInvitation() {
     } catch (err) {
       // setIsLoading(false);
       setError(
-        err || "Une erreur s'est produite, contactez l'administrateur du site"
+        err ?? {
+          message:
+            "Une erreur s'est produite, contactez l'administrateur du site",
+        }
       );
     }
   };

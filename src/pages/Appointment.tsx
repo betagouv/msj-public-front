@@ -1,10 +1,21 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import * as PropTypes from 'prop-types';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import AppointmentDetails from 'shared/components/Appointments/AppointmentDetails';
+import AppointmentDetails from "shared/components/Appointments/AppointmentDetails";
 
-function Appointment({ appointment }) {
+interface AppointementData {
+  id: number;
+  datetime: string;
+  state: string;
+  place: {
+    name: string;
+    adress: string;
+    phone: string;
+    email: string;
+    contact_method: string;
+  };
+}
+function Appointment({ appointment }: { appointment: AppointementData }) {
   return (
     <div className="fr-container fr-py-6w px-12 lg:px-32">
       <AppointmentDetails appointment={appointment} />
@@ -14,24 +25,5 @@ function Appointment({ appointment }) {
     </div>
   );
 }
-
-Appointment.defaultProps = {
-  appointment: {},
-};
-
-Appointment.propTypes = {
-  appointment: PropTypes.shape({
-    id: PropTypes.number,
-    datetime: PropTypes.string,
-    state: PropTypes.string,
-    place: PropTypes.shape({
-      name: PropTypes.string,
-      adress: PropTypes.string,
-      phone: PropTypes.string,
-      email: PropTypes.string,
-      contact_method: PropTypes.string,
-    }),
-  }),
-};
 
 export default Appointment;
