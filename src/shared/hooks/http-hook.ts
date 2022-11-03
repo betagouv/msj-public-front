@@ -3,7 +3,7 @@ import {
 } from 'react';
 
 const useHttpClient = () => {
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<{message: string, name: string} | null>(null);
   const [loading, setIsLoading] = useState(false);
 
   const httpRequests = useRef([]);

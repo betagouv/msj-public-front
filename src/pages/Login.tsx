@@ -63,7 +63,7 @@ function Login() {
     <>
       {error && (
         <Alert
-          title={error?.message}
+          title={error.message}
           type="error"
           closable
           onClose={clearError}
