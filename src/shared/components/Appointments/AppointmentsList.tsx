@@ -1,9 +1,15 @@
-import React from 'react';
-import * as PropTypes from 'prop-types';
+import React from "react";
 
-import AppointementCard from './AppointmentCard';
+import AppointementCard from "./AppointmentCard";
+import { AppointmentData } from "./type";
 
-function AppointmentsList({ items, title }) {
+function AppointmentsList({
+  items = [],
+  title = "",
+}: {
+  items: AppointmentData[];
+  title: string;
+}) {
   let appointments;
 
   if (items.length > 0) {
@@ -11,7 +17,7 @@ function AppointmentsList({ items, title }) {
       <AppointementCard key={appointment.id} item={appointment} />
     ));
   } else {
-    appointments = 'Pas de rendez-vous';
+    appointments = "Pas de rendez-vous";
   }
 
   return (
@@ -20,19 +26,8 @@ function AppointmentsList({ items, title }) {
       <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 pl-0">
         {appointments}
       </ul>
-
     </div>
   );
 }
-
-AppointmentsList.defaultProps = {
-  items: [],
-  title: '',
-};
-
-AppointmentsList.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.shape),
-  title: PropTypes.string,
-};
 
 export default AppointmentsList;
