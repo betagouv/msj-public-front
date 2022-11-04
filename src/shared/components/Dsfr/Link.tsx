@@ -7,7 +7,7 @@ interface LinkProps {
   children: string | JSX.Element;
   href?: string;
   disabled?: boolean;
-  verticalIconPosition?: "top" | "middle |sub";
+  verticalIconPosition?: "top" | "middle" | "sub";
   as?: JSX.Element;
   title?: string;
   target?: string;

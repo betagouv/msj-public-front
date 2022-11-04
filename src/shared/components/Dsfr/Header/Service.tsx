@@ -1,15 +1,25 @@
-import React from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import Link from '../Link';
+import React from "react";
+import classNames from "classnames";
+import Link from "../Link";
 
-function Service({
-  title, description, className, link, asLink,
-}) {
+interface ServiceProps {
+  description?: string;
+  title?: string;
+  link?: string;
+  className?: classNames.Argument;
+  asLink?: JSX.Element;
+}
+
+function Service(props: ServiceProps) {
+  const {
+    className = "",
+    description = "Ouvrir le menu",
+    link = "/",
+    asLink,
+    title,
+  } = props;
   return (
-    <div
-      className={classNames(className, 'fr-header__service')}
-    >
+    <div className={classNames(className, "fr-header__service")}>
       <Link
         as={asLink}
         className="fr-header__service-title"
@@ -22,27 +32,5 @@ function Service({
     </div>
   );
 }
-
-Service.defaultProps = {
-  __TYPE: 'Service',
-  className: '',
-  description: 'Ouvrir le menu',
-  link: '/',
-  asLink: null,
-};
-
-Service.propTypes = {
-  // eslint-disable-next-line react/no-unused-prop-types
-  __TYPE: 'Service',
-  description: PropTypes.node,
-  title: PropTypes.node.isRequired,
-  link: PropTypes.string,
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-    PropTypes.array,
-  ]),
-  asLink: PropTypes.element,
-};
 
 export default Service;

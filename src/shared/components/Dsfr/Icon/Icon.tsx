@@ -1,38 +1,48 @@
-import React, { cloneElement, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import React, { cloneElement, useEffect, useRef } from "react";
+import classNames from "classnames";
 
-import './Icon.css';
+import "./Icon.css";
+
+interface IconProps {
+  size?: "fw" | "xxs" | "xs" | "sm" | "1x" | "lg" | "xl" | "2x" | "3x" | "10x";
+  name: string;
+  verticalAlign: "middle" | "sub" | "top";
+  className?: classNames.Argument;
+  iconPosition: "left" | "right" | "center";
+  as?: "span" | "i" | "div" | "p";
+  children: JSX.Element | string;
+  title?: string;
+  color?: string;
+}
 
 /**
  *
  * @visibleName Icon
  */
-function Icon({
-  size,
-  name,
-  as,
-  children,
-  className: defaultClassname,
-  iconPosition,
-  title,
-  verticalAlign,
-  color,
-
-}) {
-  const iconRef = useRef();
-  const HTMLTag = `${as}`;
+function Icon(props: IconProps) {
+  const {
+    size = "sm",
+    color = "",
+    as: HTMLTag = "span",
+    className: defaultClassname = "",
+    verticalAlign = "middle",
+    iconPosition = "left",
+    children = null,
+    title = "",
+    name,
+  } = props;
+  const iconRef = useRef(null);
   const className = classNames(
     `ri-${size}`,
     {
-      [`icon-${iconPosition}`]: iconPosition !== 'center',
+      [`icon-${iconPosition}`]: iconPosition !== "center",
       [`ds-fr--v-${verticalAlign}`]: verticalAlign,
     },
     name,
-    defaultClassname,
+    defaultClassname
   );
 
-  const isChildrenElement = children && children.props;
+  const isChildrenElement = typeof children !== "string";
   const newChildren = isChildrenElement ? children.props.children : children;
 
   const icon = title ? (
@@ -43,17 +53,13 @@ function Icon({
       aria-hidden={!!newChildren}
     />
   ) : (
-    <HTMLTag
-      ref={iconRef}
-      className={className}
-      aria-hidden={!!newChildren}
-    />
+    <HTMLTag ref={iconRef} className={className} aria-hidden={!!newChildren} />
   );
 
   const childrenWithIcon = (
     <>
-      {iconPosition === 'right' ? newChildren : icon}
-      {iconPosition === 'right' ? icon : newChildren}
+      {iconPosition === "right" ? newChildren : icon}
+      {iconPosition === "right" ? icon : newChildren}
     </>
   );
 
@@ -63,40 +69,17 @@ function Icon({
     }
   }, [color]);
 
-  return isChildrenElement ? cloneElement(children, {
-    ...children.props,
-    className: children.props ? classNames({
-      [`${children.props.className}`]: children.props.className,
-    }) : '',
-    children: childrenWithIcon,
-  }) : childrenWithIcon;
+  return isChildrenElement
+    ? cloneElement(children, {
+        ...children.props,
+        className: children.props
+          ? classNames({
+              [`${children.props.className}`]: children.props.className,
+            })
+          : "",
+        children: childrenWithIcon,
+      })
+    : childrenWithIcon;
 }
-
-Icon.defaultProps = {
-  size: 'sm',
-  color: '',
-  as: 'span',
-  className: '',
-  verticalAlign: 'middle',
-  iconPosition: 'left',
-  children: null,
-  title: '',
-};
-
-Icon.propTypes = {
-  size: PropTypes.oneOf(['fw', 'xxs', 'xs', 'sm', '1x', 'lg', 'xl', '2x', '3x', '10x']),
-  name: PropTypes.string.isRequired,
-  verticalAlign: PropTypes.oneOf(['middle', 'sub', 'top']),
-  className: PropTypes.string,
-  iconPosition: PropTypes.oneOf(['left', 'right', 'center']),
-  as: PropTypes.oneOf(['span', 'i', 'div', 'p']),
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.element),
-    PropTypes.element,
-    PropTypes.string,
-  ]),
-  title: PropTypes.string,
-  color: PropTypes.string,
-};
 
 export default Icon;
