@@ -1,29 +1,37 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useMemo, useState, useEffect } from 'react';
-import { useLocation, Link as RouterLink } from 'react-router-dom';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import React, { useMemo, useState, useEffect } from "react";
+import { useLocation, Link as RouterLink } from "react-router-dom";
+import classNames from "classnames";
 
-import useViewport from 'shared/hooks/useViewport';
-import { useAuth } from 'shared/hooks/auth-hook';
+import useViewport from "shared/hooks/useViewport";
+import { useAuth } from "shared/hooks/auth-hook";
 
-import HeaderBody from './HeaderBody';
-import HeaderContext from './HeaderContext';
-import HeaderNav from './HeaderNav';
-import Link from '../Link';
+import HeaderBody from "./HeaderBody";
+import HeaderContext from "./HeaderContext";
+import HeaderNav from "./HeaderNav";
+import Link from "../Link";
 
-export default function Header({ isOpenNav, className }) {
-  const [openNav, setOpenNav] = useState(isOpenNav || false);
+export default function Header({
+  isOpenNav,
+  className,
+}: {
+  isOpenNav?: boolean;
+  className: classNames.Argument;
+}) {
+  const [openNav, setOpenNav] = useState(isOpenNav ?? false);
   const { width } = useViewport();
   const location = useLocation();
-  const [path, setPath] = useState(() => (location && location.pathname) || '');
+  const [path, setPath] = useState(() => (location && location.pathname) || "");
   const { isLogin } = useAuth();
 
-  const contextProps = useMemo(() => ({
-    isOpenNav: !!openNav,
-    onOpenNav: (open) => setOpenNav(open),
-    isMobile: width < 992,
-  }), [openNav, width, setOpenNav]);
+  const contextProps = useMemo(
+    () => ({
+      isOpenNav: !!openNav,
+      onOpenNav: (open) => setOpenNav(open ?? !isOpenNav),
+      isMobile: width < 992,
+    }),
+    [openNav, width, setOpenNav]
+  );
 
   useEffect(() => {
     if (location && path !== location.pathname) {
@@ -33,10 +41,7 @@ export default function Header({ isOpenNav, className }) {
 
   return (
     <HeaderContext.Provider value={contextProps}>
-      <header
-        className={classNames(className, 'fr-header')}
-        role="banner"
-      >
+      <header className={classNames(className, "fr-header")} role="banner">
         <HeaderBody />
         <HeaderNav path={path}>
           {isLogin && (
@@ -50,7 +55,7 @@ export default function Header({ isOpenNav, className }) {
               </Link>
               <Link
                 onClick={() => setOpenNav(false)}
-                current={path.startsWith('/agent')}
+                current={path.startsWith("/agent")}
                 as={<RouterLink to="/mon-compte/agent" />}
                 className="fr-nav__link"
               >
@@ -58,7 +63,7 @@ export default function Header({ isOpenNav, className }) {
               </Link>
               <Link
                 onClick={() => setOpenNav(false)}
-                current={path.startsWith('/convict')}
+                current={path.startsWith("/convict")}
                 as={<RouterLink to="/mon-compte/convict" />}
                 className="fr-nav__link"
               >
@@ -71,20 +76,3 @@ export default function Header({ isOpenNav, className }) {
     </HeaderContext.Provider>
   );
 }
-
-Header.defaultProps = {
-  className: '',
-  isOpenNav: false,
-};
-
-Header.propTypes = {
-  /**
-   * Ouverture de la popin de navigation en mobile
-   */
-  isOpenNav: PropTypes.bool,
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-    PropTypes.array,
-  ]),
-};

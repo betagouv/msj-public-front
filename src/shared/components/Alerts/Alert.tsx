@@ -16,7 +16,7 @@ interface AlertProps {
   show?: boolean;
   closable?: boolean;
   onClose?: () => void;
-  className?: classNames.ArgumentArray;
+  className?: classNames.Argument;
 }
 
 /**

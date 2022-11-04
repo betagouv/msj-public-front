@@ -4,7 +4,7 @@ import { Icon } from "./Icon";
 
 interface LinkProps {
   className?: classNames.Argument;
-  children: JSX.Element;
+  children: string | JSX.Element;
   href?: string;
   disabled?: boolean;
   verticalIconPosition?: "top" | "middle |sub";
