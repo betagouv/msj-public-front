@@ -1,19 +1,19 @@
-import React, { useContext } from "react";
-import classNames from "classnames";
+import React, { useContext } from 'react';
+import classNames from 'classnames';
 
-import Logo from "../Logo";
-import Service from "./Service";
-import MSJLogo from "./LogoMSJ";
-import HeaderContext from "./HeaderContext";
-import { Tool } from "./Tool";
+import Logo from '../Logo';
+import Service from './Service';
+import MSJLogo from './LogoMSJ';
+import HeaderContext from './HeaderContext';
+import { Tool } from './Tool';
 
-function HeaderBody({ className = "" }: { className?: classNames.Argument }) {
+function HeaderBody({ className = '' }: { className?: classNames.Argument }) {
   const { onOpenNav, navButton, isMobile } = useContext(HeaderContext);
 
   return (
     <div className="fr-header__body">
       <div className="fr-container">
-        <div className={classNames(className, "fr-header__body-row")}>
+        <div className={classNames(className, 'fr-header__body-row')}>
           <div className="fr-header__brand fr-enlarge-link">
             <div className="fr-header__brand-top">
               <div className="fr-header__logo">

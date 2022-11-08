@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import { useAuth } from "shared/hooks/auth-hook";
-import useHttpClient from "shared/hooks/http-hook";
+import { useAuth } from 'shared/hooks/auth-hook';
+import useHttpClient from 'shared/hooks/http-hook';
 
-import AppointmentsList from "shared/components/Appointments/AppointmentsList";
-import AppointmentDetails from "shared/components/Appointments/AppointmentDetails";
-import Alert from "shared/components/Alerts/Alert";
+import AppointmentsList from 'shared/components/Appointments/AppointmentsList';
+import AppointmentDetails from 'shared/components/Appointments/AppointmentDetails';
+import Alert from 'shared/components/Alerts/Alert';
 
 function Appointments() {
   const [appointments, setAppointments] = useState([]);
@@ -15,19 +15,21 @@ function Appointments() {
 
   const { user } = useAuth();
 
-  const { loading, error, sendRequest, clearError } = useHttpClient();
+  const {
+    loading, error, sendRequest, clearError,
+  } = useHttpClient();
 
   useEffect(() => {
     const fetchUserAppointments = async () => {
       try {
         const resData = await sendRequest(
           `${process.env.REACT_APP_BACKEND_HOST}/api/appointments/${user.msjId}`,
-          "GET",
+          'GET',
           null,
           {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${user.token}`,
-          }
+          },
         );
         setAppointments(resData);
       } catch (err) {
@@ -61,7 +63,7 @@ function Appointments() {
   return (
     <>
       <Alert
-        title={error?.message || ""}
+        title={error?.message || ''}
         show={!!error}
         type="error"
         closable

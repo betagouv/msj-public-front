@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import classNames from "classnames";
-import { useNavigate } from "react-router-dom";
+import React, { useContext } from 'react';
+import classNames from 'classnames';
+import { useNavigate } from 'react-router-dom';
 
-import { useAuth } from "shared/hooks/auth-hook";
+import { useAuth } from 'shared/hooks/auth-hook';
 
-import HeaderContext from "../HeaderContext";
-import ToolItem from "./ToolItem";
+import HeaderContext from '../HeaderContext';
+import ToolItem from './ToolItem';
 
 function ToolItemGroup({ className }: { className?: classNames.Argument }) {
   const { isMobile } = useContext(HeaderContext);
@@ -32,14 +32,14 @@ function ToolItemGroup({ className }: { className?: classNames.Argument }) {
 
   const goToLoginPage = (e) => {
     e.preventDefault();
-    navigate("/connexion");
+    navigate('/connexion');
   };
 
   return (
     <div
       className={classNames(className, {
-        "fr-header__tools-links": !isMobile,
-        "fr-header__menu-links": isMobile,
+        'fr-header__tools-links': !isMobile,
+        'fr-header__menu-links': isMobile,
       })}
     >
       <ul className="fr-links-group">

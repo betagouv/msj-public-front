@@ -1,10 +1,11 @@
 // Copyright (c) 2021 #dataESR
-import React, { ForwardedRef, forwardRef, useEffect, useRef } from "react";
-import classNames from "classnames";
-import { v4 as uuidv4 } from "uuid";
-import dataAttributes from "shared/utils/data-attributes";
+import React, {
+  ForwardedRef, forwardRef, useEffect, useRef,
+} from 'react';
+import classNames from 'classnames';
+import { v4 as uuidv4 } from 'uuid';
 
-import "@gouvfr/dsfr/dist/component/checkbox/checkbox.css";
+import '@gouvfr/dsfr/dist/component/checkbox/checkbox.css';
 
 interface CheckboxProps {
   className?: classNames.Argument;
@@ -13,8 +14,8 @@ interface CheckboxProps {
   hint?: any;
   label: string;
   message?: string;
-  messageType?: "error" | "valid";
-  size?: "sm" | "md";
+  messageType?: 'error' | 'valid';
+  size?: 'sm' | 'md';
 }
 
 /**
@@ -24,22 +25,22 @@ interface CheckboxProps {
 const Checkbox = forwardRef(
   (props: CheckboxProps, ref: ForwardedRef<HTMLInputElement> = null) => {
     const {
-      className = "",
-      hint = "",
+      className = '',
+      hint = '',
       id = null,
       disabled = undefined,
-      size = "md",
-      messageType = "",
-      message = "",
+      size = 'md',
+      messageType = '',
+      message = '',
       label,
     } = props;
     const computedClassName = classNames(
-      "fr-checkbox-group",
+      'fr-checkbox-group',
       {
         [`fr-checkbox-group--${messageType}`]: messageType,
-        "fr-checkbox-group--sm": size !== "md",
+        'fr-checkbox-group--sm': size !== 'md',
       },
-      className
+      className,
     );
     const checkboxId = useRef(id || uuidv4());
 
@@ -65,7 +66,7 @@ const Checkbox = forwardRef(
         )}
       </div>
     );
-  }
+  },
 );
 
 export default Checkbox;

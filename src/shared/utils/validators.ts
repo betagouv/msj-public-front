@@ -1,4 +1,4 @@
-enum ValidatorType {
+export enum ValidatorType {
   Require = 'REQUIRE',
   Minlength = 'MINLENGTH',
   Min = 'MIN',
@@ -10,8 +10,8 @@ enum ValidatorType {
 }
 
 export interface Validator {
-  type: ValidatorType; 
-  val?: string | number; 
+  type: ValidatorType;
+  val?: string | number;
   errorHint: string
 }
 type ValidatorFunc = (val?: string | number) => Validator
@@ -23,7 +23,7 @@ export const VALIDATOR_REQUIRE: ValidatorFunc = () => ({
 export const VALIDATOR_MINLENGTH: ValidatorFunc = (val: number) => ({
   type: ValidatorType.Minlength,
   val,
-  errorHint: `Ce champs doit contenir au moins ${val} caractères`
+  errorHint: `Ce champs doit contenir au moins ${val} caractères`,
 });
 
 export const VALIDATOR_ONE_UPPERCASE: ValidatorFunc = () => ({

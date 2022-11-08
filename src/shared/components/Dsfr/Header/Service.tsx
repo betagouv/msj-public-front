@@ -1,6 +1,6 @@
-import React from "react";
-import classNames from "classnames";
-import Link from "../Link";
+import React from 'react';
+import classNames from 'classnames';
+import Link from '../Link';
 
 interface ServiceProps {
   description?: string;
@@ -12,14 +12,14 @@ interface ServiceProps {
 
 function Service(props: ServiceProps) {
   const {
-    className = "",
-    description = "Ouvrir le menu",
-    link = "/",
+    className = '',
+    description = 'Ouvrir le menu',
+    link = '/',
     asLink,
     title,
   } = props;
   return (
-    <div className={classNames(className, "fr-header__service")}>
+    <div className={classNames(className, 'fr-header__service')}>
       <Link
         as={asLink}
         className="fr-header__service-title"

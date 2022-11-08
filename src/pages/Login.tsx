@@ -1,20 +1,20 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
-import useForm from "shared/hooks/form-hook";
+import useForm from 'shared/hooks/form-hook';
 // import Checkbox from 'shared/components/Forms/Checkbox';
-import TextInput from "shared/components/Forms/TextInput";
+import TextInput from 'shared/components/Forms/TextInput';
 import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_ONE_UPPERCASE,
   VALIDATOR_ONE_DIGIT,
   VALIDATOR_ONE_SPECIAL_CHAR,
   VALIDATOR_FRENCH_MOBILE_NUMBER,
-} from "shared/utils/validators";
-import { useAuth } from "shared/hooks/auth-hook";
-import useHttpClient from "shared/hooks/http-hook";
+} from 'shared/utils/validators';
+import { useAuth } from 'shared/hooks/auth-hook';
+import useHttpClient from 'shared/hooks/http-hook';
 
-import Alert from "shared/components/Alerts/Alert";
+import Alert from 'shared/components/Alerts/Alert';
 
 function Login() {
   const location = useLocation();
@@ -26,11 +26,11 @@ function Login() {
   const [formState, inputHandler] = useForm(
     {
       phone: {
-        value: "",
+        value: '',
         isValid: false,
       },
       password: {
-        value: "",
+        value: '',
         isValid: false,
       },
       // convict_remember_me: {
@@ -38,7 +38,7 @@ function Login() {
       //   isValid: true,
       // },
     },
-    false
+    false,
   );
 
   const loginSubmitHandler = async (e) => {
@@ -46,14 +46,14 @@ function Login() {
 
     const resData = await sendRequest(
       `${process.env.REACT_APP_BACKEND_HOST}/api/users/login`,
-      "POST",
+      'POST',
       JSON.stringify({
         phone: formState.inputs.phone.value,
         password: formState.inputs.password.value,
       }),
       {
-        "Content-Type": "application/json",
-      }
+        'Content-Type': 'application/json',
+      },
     );
     // TODO: how do we handle errors here ? (They are already handled in the http hook !)
     login(resData);

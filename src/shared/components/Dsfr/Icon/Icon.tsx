@@ -1,15 +1,15 @@
-import React, { cloneElement, useEffect, useRef } from "react";
-import classNames from "classnames";
+import React, { cloneElement, useEffect, useRef } from 'react';
+import classNames from 'classnames';
 
-import "./Icon.css";
+import './Icon.css';
 
 interface IconProps {
-  size?: "fw" | "xxs" | "xs" | "sm" | "1x" | "lg" | "xl" | "2x" | "3x" | "10x";
+  size?: 'fw' | 'xxs' | 'xs' | 'sm' | '1x' | 'lg' | 'xl' | '2x' | '3x' | '10x';
   name: string;
-  verticalAlign: "middle" | "sub" | "top";
+  verticalAlign: 'middle' | 'sub' | 'top';
   className?: classNames.Argument;
-  iconPosition: "left" | "right" | "center";
-  as?: "span" | "i" | "div" | "p";
+  iconPosition: 'left' | 'right' | 'center';
+  as?: 'span' | 'i' | 'div' | 'p';
   children: JSX.Element | string;
   title?: string;
   color?: string;
@@ -21,28 +21,28 @@ interface IconProps {
  */
 function Icon(props: IconProps) {
   const {
-    size = "sm",
-    color = "",
-    as: HTMLTag = "span",
-    className: defaultClassname = "",
-    verticalAlign = "middle",
-    iconPosition = "left",
+    size = 'sm',
+    color = '',
+    as: HTMLTag = 'span',
+    className: defaultClassname = '',
+    verticalAlign = 'middle',
+    iconPosition = 'left',
     children = null,
-    title = "",
+    title = '',
     name,
   } = props;
   const iconRef = useRef(null);
   const className = classNames(
     `ri-${size}`,
     {
-      [`icon-${iconPosition}`]: iconPosition !== "center",
+      [`icon-${iconPosition}`]: iconPosition !== 'center',
       [`ds-fr--v-${verticalAlign}`]: verticalAlign,
     },
     name,
-    defaultClassname
+    defaultClassname,
   );
 
-  const isChildrenElement = typeof children !== "string";
+  const isChildrenElement = typeof children !== 'string';
   const newChildren = isChildrenElement ? children.props.children : children;
 
   const icon = title ? (
@@ -58,8 +58,8 @@ function Icon(props: IconProps) {
 
   const childrenWithIcon = (
     <>
-      {iconPosition === "right" ? newChildren : icon}
-      {iconPosition === "right" ? icon : newChildren}
+      {iconPosition === 'right' ? newChildren : icon}
+      {iconPosition === 'right' ? icon : newChildren}
     </>
   );
 
@@ -71,14 +71,14 @@ function Icon(props: IconProps) {
 
   return isChildrenElement
     ? cloneElement(children, {
-        ...children.props,
-        className: children.props
-          ? classNames({
-              [`${children.props.className}`]: children.props.className,
-            })
-          : "",
-        children: childrenWithIcon,
-      })
+      ...children.props,
+      className: children.props
+        ? classNames({
+          [`${children.props.className}`]: children.props.className,
+        })
+        : '',
+      children: childrenWithIcon,
+    })
     : childrenWithIcon;
 }
 

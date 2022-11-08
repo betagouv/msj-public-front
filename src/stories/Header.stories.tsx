@@ -9,9 +9,22 @@ export default {
 };
 
 export function newPrivateHeader() {
-  const authData = useMemo(() => ({
-    user: { token: 'abc123' }, isLogin: true, login: () => {}, logout: () => {},
-  }), []);
+  const authData = useMemo(
+    () => ({
+      user: {
+        token: 'abc123',
+        tokenExpDate: '',
+        firstName: 'bob',
+        lastName: 'mortimer',
+        phone: '0666778899',
+        msjId: '12',
+      },
+      isLogin: true,
+      login: () => new Promise<void>(() => {}),
+      logout: () => {},
+    }),
+    [],
+  );
   return (
     <MemoryRouter initialEntries={['/mon-compte']}>
       <AuthContext.Provider value={authData}>

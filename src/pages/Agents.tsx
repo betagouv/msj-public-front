@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import { useAuth } from "shared/hooks/auth-hook";
-import useHttpClient from "shared/hooks/http-hook";
+import { useAuth } from 'shared/hooks/auth-hook';
+import useHttpClient from 'shared/hooks/http-hook';
 
-import Alert from "shared/components/Alerts/Alert";
+import Alert from 'shared/components/Alerts/Alert';
 
 interface Agent {
   organizationName: string;
@@ -24,19 +24,21 @@ function Agents() {
 
   const { user } = useAuth();
 
-  const { loading, error, sendRequest, clearError } = useHttpClient();
+  const {
+    loading, error, sendRequest, clearError,
+  } = useHttpClient();
 
   useEffect(() => {
     const fetchAgent = async () => {
       try {
         const resData = await sendRequest(
           `${process.env.REACT_APP_BACKEND_HOST}/api/users/${user.msjId}/cpip`,
-          "GET",
+          'GET',
           null,
           {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${user.token}`,
-          }
+          },
         );
         setAgent(agentDataToAgent(resData));
       } catch (err) {
@@ -51,7 +53,7 @@ function Agents() {
   return (
     <>
       <Alert
-        title={error?.message || ""}
+        title={error?.message || ''}
         show={!!error}
         type="error"
         closable

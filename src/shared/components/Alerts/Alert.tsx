@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import classNames from "classnames";
+import classNames from 'classnames';
 
-import dataAttributes from "shared/utils/data-attributes";
+import dataAttributes from 'shared/utils/data-attributes';
 
-import "@gouvfr/dsfr/dist/component/alert/alert.css";
+import '@gouvfr/dsfr/dist/component/alert/alert.css';
 
 interface AlertProps {
-  HtmlTitleTag?: "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  HtmlTitleTag?: 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   title: string;
   description?: string;
-  type?: "error" | "success" | "info";
+  type?: 'error' | 'success' | 'info';
   small?: boolean;
   role?: string;
   show?: boolean;
@@ -25,13 +25,13 @@ interface AlertProps {
  */
 function Alert(props: AlertProps) {
   const {
-    HtmlTitleTag = "p",
-    type = "info",
-    role = "",
+    HtmlTitleTag = 'p',
+    type = 'info',
+    role = '',
     small = false,
     show = true,
     closable = false,
-    className = "",
+    className = '',
     title,
     description,
     onClose,
@@ -40,12 +40,12 @@ function Alert(props: AlertProps) {
   const [internalShow, setInternalShow] = useState(show);
   // eslint-disable-next-line no-underscore-dangle
   const _className = classNames(
-    "fr-alert",
+    'fr-alert',
     `fr-alert--${type}`,
     {
-      "fr-alert--sm": small,
+      'fr-alert--sm': small,
     },
-    className
+    className,
   );
 
   useEffect(() => {

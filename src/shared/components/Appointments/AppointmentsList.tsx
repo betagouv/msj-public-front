@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import AppointementCard from "./AppointmentCard";
-import { AppointmentData } from "./type";
+import AppointementCard from './AppointmentCard';
+import { AppointmentData } from './type';
 
 function AppointmentsList({
   items = [],
-  title = "",
+  title = '',
 }: {
   items: AppointmentData[];
   title: string;
@@ -17,7 +17,7 @@ function AppointmentsList({
       <AppointementCard key={appointment.id} item={appointment} />
     ));
   } else {
-    appointments = "Pas de rendez-vous";
+    appointments = 'Pas de rendez-vous';
   }
 
   return (

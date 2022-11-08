@@ -1,8 +1,8 @@
-import classNames from "classnames";
-import React, { useContext } from "react";
+import classNames from 'classnames';
+import React, { useContext } from 'react';
 
-import Link from "../../Link";
-import HeaderContext from "../HeaderContext";
+import Link from '../../Link';
+import HeaderContext from '../HeaderContext';
 
 interface ToolItemProps {
   className?: classNames.Argument;
@@ -10,7 +10,7 @@ interface ToolItemProps {
   /**
    * html tag to render
    */
-  as?: "p" | "span" | "div";
+  as?: 'p' | 'span' | 'div';
   children: string | JSX.Element;
   link?: string;
   onClick?: (e: Event) => void;
@@ -20,12 +20,12 @@ interface ToolItemProps {
 
 function ToolItem(props: ToolItemProps) {
   const {
-    className = "",
-    icon = "",
-    link = "",
+    className = '',
+    icon = '',
+    link = '',
     asLink = null,
     as: HTMLTag = undefined,
-    target = "_self",
+    target = '_self',
     onClick = undefined,
     children,
   } = props;
@@ -57,7 +57,7 @@ function ToolItem(props: ToolItemProps) {
           icon={icon}
           iconPosition="left"
           iconSize="1x"
-          href={onClick && !link ? "/" : link}
+          href={onClick && !link ? '/' : link}
         >
           {children}
         </Link>

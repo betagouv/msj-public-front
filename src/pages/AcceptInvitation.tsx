@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
-import useForm from "shared/hooks/form-hook";
-import TextInput from "shared/components/Forms/TextInput";
+import useForm from 'shared/hooks/form-hook';
+import TextInput from 'shared/components/Forms/TextInput';
 import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_ONE_UPPERCASE,
   VALIDATOR_ONE_DIGIT,
   VALIDATOR_ONE_SPECIAL_CHAR,
   VALIDATOR_IDENTICAL,
-} from "shared/utils/validators";
-import { useAuth } from "shared/hooks/auth-hook";
+} from 'shared/utils/validators';
+import { useAuth } from 'shared/hooks/auth-hook';
 
-import Alert from "shared/components/Alerts/Alert";
+import Alert from 'shared/components/Alerts/Alert';
 
 function AcceptInvitation() {
   const [searchParams] = useSearchParams();
-  const invitationToken = searchParams.get("token");
+  const invitationToken = searchParams.get('token');
 
   const { login } = useAuth();
 
@@ -26,15 +26,15 @@ function AcceptInvitation() {
   const [formState, inputHandler] = useForm(
     {
       password: {
-        value: "",
+        value: '',
         isValid: false,
       },
       passwordConfirmation: {
-        value: "",
+        value: '',
         isValid: false,
       },
     },
-    false
+    false,
   );
 
   const onCloseAlertHandler = () => {
@@ -49,15 +49,15 @@ function AcceptInvitation() {
       const response = await fetch(
         `${process.env.REACT_APP_BACKEND_HOST}/api/users/signup`,
         {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             invitationToken,
             password: formState.inputs.password.value,
           }),
-        }
+        },
       );
 
       const resData = await response.json();
@@ -74,7 +74,7 @@ function AcceptInvitation() {
         err ?? {
           message:
             "Une erreur s'est produite, contactez l'administrateur du site",
-        }
+        },
       );
     }
   };

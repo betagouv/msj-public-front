@@ -1,19 +1,19 @@
-import React from "react";
+import React from 'react';
 
-import { Link } from "react-router-dom";
-import { AppointmentData } from "./type";
+import { Link } from 'react-router-dom';
+import { AppointmentData } from './type';
 
 function AppointementCard({ item }: { item: AppointmentData }) {
   const date = new Date(item.datetime);
-  const formattedDate = date.toLocaleDateString("fr-FR", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+  const formattedDate = date.toLocaleDateString('fr-FR', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
   });
   const time = date.toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
+    hour: '2-digit',
+    minute: '2-digit',
   });
 
   return (

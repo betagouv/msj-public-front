@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
-import useLocalStorage from "shared/hooks/localstorage-hook";
+import React, { createContext, useContext, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useLocalStorage from 'shared/hooks/localstorage-hook';
 
 interface User {
   tokenExpDate: string;
@@ -24,22 +24,21 @@ export const AuthContext = createContext<AuthData>({
 });
 
 export function AuthProvider({ children }: { children: JSX.Element }) {
-  const [user, setUser] = useLocalStorage("user", null);
+  const [user, setUser] = useLocalStorage('user', null);
   const navigate = useNavigate();
 
   const login = async (data) => {
     const userData = data;
-    const tokenExpDate =
-      data.tokenExpDate || new Date(new Date().getTime() + 1000 * 60 * 60);
+    const tokenExpDate = data.tokenExpDate || new Date(new Date().getTime() + 1000 * 60 * 60);
     userData.tokenExpDate = tokenExpDate.toISOString();
 
     setUser({ ...userData });
-    navigate("/mon-compte/mes-rendez-vous");
+    navigate('/mon-compte/mes-rendez-vous');
   };
 
   const logout = () => {
     setUser(null, () => {
-      navigate("/connexion", { replace: true });
+      navigate('/connexion', { replace: true });
     });
   };
 
@@ -50,7 +49,7 @@ export function AuthProvider({ children }: { children: JSX.Element }) {
       logout,
       isLogin: user && new Date(user.tokenExpDate) > new Date(),
     }),
-    [user]
+    [user],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

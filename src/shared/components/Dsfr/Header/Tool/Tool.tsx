@@ -1,14 +1,14 @@
-import React from "react";
-import classNames from "classnames";
+import React from 'react';
+import classNames from 'classnames';
 
-import ToolItemGroup from "./ToolItemGroup";
+import ToolItemGroup from './ToolItemGroup';
 
 export default function Tool({
   className,
 }: {
-  className: classNames.Argument;
+  className?: classNames.Argument;
 }) {
-  const toolClassName = classNames("fr-header__tools", className);
+  const toolClassName = classNames('fr-header__tools', className);
 
   return (
     <div className={toolClassName}>

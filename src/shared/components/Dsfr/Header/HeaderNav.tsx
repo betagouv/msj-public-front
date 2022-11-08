@@ -4,15 +4,14 @@ import React, {
   Children,
   ReactNode,
   ReactElement,
-} from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
+} from 'react';
+import classNames from 'classnames';
 
-import HeaderContext from "./HeaderContext";
-import { ToolItemGroup } from "./Tool";
+import HeaderContext from './HeaderContext';
+import { ToolItemGroup } from './Tool';
 
 function HeaderNav({
-  className = "",
+  className = '',
   children,
   path,
 }: {
@@ -22,12 +21,12 @@ function HeaderNav({
 }) {
   const { isOpenNav, onOpenNav, isMobile } = useContext(HeaderContext);
 
-  const updatedClassName = classNames(className, "fr-header__menu fr-modal", {
-    "fr-modal--opened": isOpenNav,
+  const updatedClassName = classNames(className, 'fr-header__menu fr-modal', {
+    'fr-modal--opened': isOpenNav,
   });
   const childs = Children.toArray(children).map(
     // eslint-disable-next-line react/no-array-index-key
-    (child, index) => cloneElement(child as ReactElement, { key: index, path })
+    (child, index) => cloneElement(child as ReactElement, { key: index, path }),
   );
 
   return (

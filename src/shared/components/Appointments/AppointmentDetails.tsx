@@ -1,32 +1,29 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
-import { AppointmentData } from "./type";
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import { AppointmentData } from './type';
 
 function AppointmentDetails({ appointment }: { appointment: AppointmentData }) {
   const location = useLocation();
 
   const status = location.state?.appointment.state || appointment.state;
   // eslint-disable-next-line max-len
-  const appointmentTypeName =
-    location.state?.appointment.appointment_type_name ||
-    appointment.appointment_type_name;
-  const adress =
-    location.state?.appointment?.place.adress || appointment.place.adress;
-  const phone =
-    location.state?.appointment?.place.phone || appointment.place.phone;
+  const appointmentTypeName = location.state?.appointment.appointment_type_name
+    || appointment.appointment_type_name;
+  const adress = location.state?.appointment?.place.adress || appointment.place.adress;
+  const phone = location.state?.appointment?.place.phone || appointment.place.phone;
 
   const aptDate = new Date(
-    location.state?.appointment.datetime || appointment.datetime
+    location.state?.appointment.datetime || appointment.datetime,
   );
-  const formattedDate = aptDate.toLocaleDateString("fr-FR", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+  const formattedDate = aptDate.toLocaleDateString('fr-FR', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
   });
   const time = aptDate.toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
+    hour: '2-digit',
+    minute: '2-digit',
   });
 
   const now = new Date();
@@ -39,7 +36,7 @@ function AppointmentDetails({ appointment }: { appointment: AppointmentData }) {
 
   const daysToApt = days(aptDate, now);
 
-  let dayToAptMessage = "";
+  let dayToAptMessage = '';
 
   if (daysToApt === 0) {
     dayToAptMessage = "Aujourd'hui";
@@ -86,7 +83,10 @@ function AppointmentDetails({ appointment }: { appointment: AppointmentData }) {
             </h3>
             <p className="text-sm font-bold mb-0">SPIP 92</p>
             <p className="text-sm font-bold mb-0">{adress}</p>
-            <p className="text-sm font-bold mb-0"> {phone}</p>
+            <p className="text-sm font-bold mb-0">
+              {' '}
+              {phone}
+            </p>
             <a
               target="_blank"
               rel="noreferrer"

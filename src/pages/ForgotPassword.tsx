@@ -1,15 +1,15 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-import useForm from "shared/hooks/form-hook";
-import TextInput from "shared/components/Forms/TextInput";
+import useForm from 'shared/hooks/form-hook';
+import TextInput from 'shared/components/Forms/TextInput';
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_FRENCH_MOBILE_NUMBER,
-} from "shared/utils/validators";
-import useHttpClient from "shared/hooks/http-hook";
+} from 'shared/utils/validators';
+import useHttpClient from 'shared/hooks/http-hook';
 
-import Alert from "shared/components/Alerts/Alert";
+import Alert from 'shared/components/Alerts/Alert';
 
 function ForgotPassword() {
   const { error, sendRequest, clearError } = useHttpClient();
@@ -19,11 +19,11 @@ function ForgotPassword() {
   const [formState, inputHandler] = useForm(
     {
       phone: {
-        value: "",
+        value: '',
         isValid: false,
       },
     },
-    false
+    false,
   );
 
   const loginSubmitHandler = async (e) => {
@@ -31,18 +31,18 @@ function ForgotPassword() {
 
     await sendRequest(
       `${process.env.REACT_APP_BACKEND_HOST}/api/users/reset-password`,
-      "POST",
+      'POST',
       JSON.stringify({
         phone: formState.inputs.phone.value,
       }),
       {
-        "Content-Type": "application/json",
-      }
+        'Content-Type': 'application/json',
+      },
     );
-    navigate("/connexion", {
+    navigate('/connexion', {
       state: {
         alertSuccess:
-          "Un SMS avec un lien de réinitialisation de votre mot de passe vous a été envoyé",
+          'Un SMS avec un lien de réinitialisation de votre mot de passe vous a été envoyé',
       },
     });
     // TODO: how do we handle errors here ? (They are already handled in the http hook !)
