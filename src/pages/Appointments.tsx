@@ -7,7 +7,11 @@ import AppointmentsList from 'shared/components/Appointments/AppointmentsList';
 import AppointmentDetails from 'shared/components/Appointments/AppointmentDetails';
 import Alert from 'shared/components/Alerts/Alert';
 
+import { useMatomo } from '@jonkoops/matomo-tracker-react';
+
 function Appointments() {
+  const { trackPageView } = useMatomo();
+
   const [appointments, setAppointments] = useState([]);
 
   const futureAppointments = [];
@@ -18,6 +22,10 @@ function Appointments() {
   const {
     loading, error, sendRequest, clearError,
   } = useHttpClient();
+
+  useEffect(() => {
+    trackPageView();
+  });
 
   useEffect(() => {
     const fetchUserAppointments = async () => {
