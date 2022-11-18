@@ -16,7 +16,7 @@ import '@gouvfr/dsfr/dist/dsfr.nomodule.min';
 import 'remixicon/fonts/remixicon.css';
 import './App.css';
 
-import matomoInstance from './api/matomo.js';
+import matomoInstance from './api/matomo';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

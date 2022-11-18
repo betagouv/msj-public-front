@@ -25,7 +25,7 @@ function Appointments() {
 
   useEffect(() => {
     trackPageView();
-  });
+  }, []);
 
   useEffect(() => {
     const fetchUserAppointments = async () => {
