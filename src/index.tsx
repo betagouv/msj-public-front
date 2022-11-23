@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import reportWebVitals from 'reportWebVitals';
 
 import { MatomoProvider } from '@jonkoops/matomo-tracker-react';
+import { AuthProvider } from 'shared/hooks/auth-hook';
 import App from './App';
 
 import '@gouvfr/dsfr/dist/dsfr/dsfr.css';
@@ -21,11 +22,13 @@ import matomoInstance from './api/matomo';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <MatomoProvider value={matomoInstance}>
-      <Router>
-        <App />
-      </Router>
-    </MatomoProvider>
+    <Router>
+      <AuthProvider>
+        <MatomoProvider value={matomoInstance}>
+          <App />
+        </MatomoProvider>
+      </AuthProvider>
+    </Router>
   </React.StrictMode>,
 );
 
