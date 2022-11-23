@@ -7,7 +7,9 @@ import { useAuth } from 'shared/hooks/auth-hook';
 const usePageTracking = () => {
   const location = useLocation();
   const { user } = useAuth();
-  const { trackPageView, pushInstruction } = useMatomo();
+  const { trackPageView, pushInstruction, enableLinkTracking } = useMatomo();
+
+  enableLinkTracking();
 
   useEffect(() => {
     if (user) {
