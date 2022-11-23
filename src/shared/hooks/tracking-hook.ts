@@ -9,6 +9,7 @@ const usePageTracking = () => {
   const { user } = useAuth();
   const { trackPageView, pushInstruction, enableLinkTracking } = useMatomo();
 
+  // re-scan the entire DOM for newly added links whenever the DOM changes
   enableLinkTracking();
 
   useEffect(() => {
