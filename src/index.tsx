@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 import reportWebVitals from 'reportWebVitals';
 
+import { MatomoProvider } from '@jonkoops/matomo-tracker-react';
+import { AuthProvider } from 'shared/hooks/auth-hook';
 import App from './App';
 
 import '@gouvfr/dsfr/dist/dsfr/dsfr.css';
@@ -15,11 +17,17 @@ import '@gouvfr/dsfr/dist/dsfr.nomodule.min';
 import 'remixicon/fonts/remixicon.css';
 import './App.css';
 
+import matomoInstance from './api/matomo';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <AuthProvider>
+        <MatomoProvider value={matomoInstance}>
+          <App />
+        </MatomoProvider>
+      </AuthProvider>
     </Router>
   </React.StrictMode>,
 );
