@@ -87,7 +87,7 @@ function Agents() {
                 </h3>
                 <a
                   className="text-md font-bold mb-0"
-                  href="mailto:johan.goncalves@coleurope.eu"
+                  href={`mailto:${agent.email}`}
                 >
                   {agent.email}
                 </a>
