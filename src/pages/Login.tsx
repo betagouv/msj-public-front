@@ -169,10 +169,10 @@ function Login() {
             id="accordion-106"
             data-fr-js-collapse="true"
           >
-            La présente interface est à l’initiative du Ministère de la Justice.
-            Le respect de vos droits et de votre vie privée est une priorité.
-            Pour plus d’informations sur l’utilisation de vos données
-            personnelles, vous pouvez vous rendre sur
+            La présente interface est à l&apos;initiative du Ministère de la
+            Justice. Le respect de vos droits et de votre vie privée est une
+            priorité. Pour plus d&apos;informations sur l&apos;utilisation de
+            vos données personnelles, vous pouvez vous rendre sur
             <a target="_blank" href="/donnees_personnelles">
               la page dédiée
             </a>

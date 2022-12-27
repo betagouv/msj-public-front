@@ -9,7 +9,7 @@ function AppointmentDetails({ appointment }: { appointment: AppointmentData }) {
   // eslint-disable-next-line max-len
   const appointmentTypeName = location.state?.appointment.appointment_type_name
     || appointment.appointment_type_name;
-  const adress = location.state?.appointment?.place.adress || appointment.place.adress;
+  const address = location.state?.appointment?.place.adress || appointment.place.adress;
   const phone = location.state?.appointment?.place.phone || appointment.place.phone;
 
   const aptDate = new Date(
@@ -74,27 +74,34 @@ function AppointmentDetails({ appointment }: { appointment: AppointmentData }) {
               Date
             </h3>
             <p className="text-md font-bold mb-0">
-              {`${formattedDate}  à ${time}`}
+              {`${formattedDate} à ${time}`}
             </p>
           </div>
           <div className="sm:col-span-1">
             <h3 className="text-xs mb-0 font-medium text-msj-blue uppercase mb-1">
               Adresse
             </h3>
-            <p className="text-sm font-bold mb-0">SPIP 92</p>
-            <p className="text-sm font-bold mb-0">{adress}</p>
+            <p className="text-sm font-bold mb-0">
+              {appointment.organization_name}
+            </p>
+            {address !== 'Multiple' && (
+              <>
+                <p className="text-sm font-bold mb-0">{address}</p>
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-bold text-xs text-msj-blue mt-1"
+                  href={`https://www.google.com/maps/search/?api=1&query=${address}`}
+                >
+                  Voir sur une carte
+                </a>
+              </>
+            )}
+
             <p className="text-sm font-bold mb-0">
               {' '}
               {phone}
             </p>
-            <a
-              target="_blank"
-              rel="noreferrer"
-              className="font-bold text-xs text-msj-blue mt-1"
-              href={`https://www.google.com/maps/search/?api=1&query=${adress}`}
-            >
-              Voir sur une carte
-            </a>
           </div>
         </div>
         <p className="mt-8 mb-2 font-bold text-center">

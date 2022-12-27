@@ -109,6 +109,7 @@ function AcceptInvitation() {
 
           <TextInput
             label="Confirmation de mot de passe"
+            type="password"
             id="passwordConfirmation"
             required
             onInput={inputHandler}
