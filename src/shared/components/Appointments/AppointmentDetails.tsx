@@ -84,7 +84,7 @@ function AppointmentDetails({ appointment }: { appointment: AppointmentData }) {
             <p className="text-sm font-bold mb-0">
               {appointment.organization_name}
             </p>
-            {address !== 'Multiple' && (
+            {address === 'Multiple' ? null : (
               <>
                 <p className="text-sm font-bold mb-0">{address}</p>
                 <a
@@ -99,8 +99,7 @@ function AppointmentDetails({ appointment }: { appointment: AppointmentData }) {
             )}
 
             <p className="text-sm font-bold mb-0">
-              {' '}
-              {phone}
+              <a href={`tel:${phone}`}>{phone}</a>
             </p>
           </div>
         </div>
