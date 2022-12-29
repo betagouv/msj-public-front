@@ -90,6 +90,7 @@ function Login() {
             label="Mot de passe"
             id="password"
             required
+            type="password"
             hint="10 caractères, avec une majuscule, un chiffre et un caractère spécial"
             onInput={inputHandler}
             validators={[
