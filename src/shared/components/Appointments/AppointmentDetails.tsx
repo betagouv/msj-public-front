@@ -7,13 +7,10 @@ function AppointmentDetails({ appointment }: { appointment: AppointmentData }) {
 
   const status = location.state?.appointment.state || appointment.state;
   // eslint-disable-next-line max-len
-  const appointmentTypeName =
-    location.state?.appointment.appointment_type_name ||
-    appointment.appointment_type_name;
-  const address =
-    location.state?.appointment?.place.adress || appointment.place.adress;
-  const phone =
-    location.state?.appointment?.place.phone || appointment.place.phone;
+  const appointmentTypeName = location.state?.appointment.appointment_type_name
+    || appointment.appointment_type_name;
+  const address = location.state?.appointment?.place.adress || appointment.place.adress;
+  const phone = location.state?.appointment?.place.phone || appointment.place.phone;
 
   const aptDate = new Date(
     location.state?.appointment.datetime || appointment.datetime,
