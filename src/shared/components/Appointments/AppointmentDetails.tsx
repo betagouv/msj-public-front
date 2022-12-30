@@ -2,19 +2,22 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { AppointmentData } from './type';
 
-function AppointmentDetails({ appointment }: { appointment: AppointmentData }) {
+function AppointmentDetails({
+  appointment: appointmentProps,
+}: {
+  appointment: AppointmentData;
+}) {
   const location = useLocation();
-
-  const status = location.state?.appointment.state || appointment.state;
-  // eslint-disable-next-line max-len
-  const appointmentTypeName = location.state?.appointment.appointment_type_name
-    || appointment.appointment_type_name;
-  const address = location.state?.appointment?.place.adress || appointment.place.adress;
-  const phone = location.state?.appointment?.place.phone || appointment.place.phone;
-
-  const aptDate = new Date(
-    location.state?.appointment.datetime || appointment.datetime,
-  );
+  // eslint-disable-next-line operator-linebreak
+  const appointment: AppointmentData | undefined =
+    appointmentProps ?? location.state?.appointment;
+  const {
+    state: status,
+    appointment_type_name: appointmentTypeName,
+    place,
+    datetime,
+  } = appointment;
+  const aptDate = new Date(datetime);
   const formattedDate = aptDate.toLocaleDateString('fr-FR', {
     weekday: 'long',
     year: 'numeric',
@@ -84,14 +87,14 @@ function AppointmentDetails({ appointment }: { appointment: AppointmentData }) {
             <p className="text-sm font-bold mb-0">
               {appointment.organization_name}
             </p>
-            {address === 'Multiple' ? null : (
+            {place.adress === 'Multiple' ? null : (
               <>
-                <p className="text-sm font-bold mb-0">{address}</p>
+                <p className="text-sm font-bold mb-0">{place.adress}</p>
                 <a
                   target="_blank"
                   rel="noreferrer"
                   className="font-bold text-xs text-msj-blue mt-1"
-                  href={`https://www.google.com/maps/search/?api=1&query=${address}`}
+                  href={`https://www.google.com/maps/search/?api=1&query=${place.adress}`}
                 >
                   Voir sur une carte
                 </a>
@@ -99,7 +102,7 @@ function AppointmentDetails({ appointment }: { appointment: AppointmentData }) {
             )}
 
             <p className="text-sm font-bold mb-0">
-              <a href={`tel:${phone}`}>{phone}</a>
+              <a href={`tel:${place.phone}`}>{place.phone}</a>
             </p>
           </div>
         </div>
