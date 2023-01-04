@@ -1,6 +1,7 @@
 import {
   useState, useCallback, useRef, useEffect,
 } from 'react';
+import axios, { Method } from 'axios';
 
 const useHttpClient = () => {
   const [error, setError] = useState < { message: string, name: string } | null >(null);
@@ -8,39 +9,32 @@ const useHttpClient = () => {
 
   const httpRequests = useRef([]);
 
-  const sendRequest = useCallback(async (url, method = 'GET', body = null, headers = {}) => {
+  const sendRequest = useCallback(async (url, method: Method = 'GET', body = null, headers = {}) => {
     setIsLoading(true);
     const httpAbortCtrl = new AbortController();
     httpRequests.current.push(httpAbortCtrl);
 
-    let resData;
-
     try {
-      const res = await fetch(url, {
+      const res = await axios.request({
+        url,
         method,
-        body,
+        data: body,
         headers,
         signal: httpAbortCtrl.signal,
       });
 
-      resData = await res.json();
-
       // Make sure we do not cancel requests which are already completed
       httpRequests.current = httpRequests.current.filter((reqCtrl) => reqCtrl !== httpAbortCtrl);
 
-      if (!res.ok) {
-        throw Error(resData.message);
-      }
       setIsLoading(false);
-      return resData;
+      return res.data;
     } catch (err) {
       // We don't care about errors thrown by the abortControllers
-      if (err.name !== 'AbortError') {
-        setError(err);
-        setIsLoading(false);
-        throw err;
+      if (err.name === 'AbortError') {
+        return false;
       }
-      return false;
+      setIsLoading(false);
+      throw err;
     }
   }, []);
 

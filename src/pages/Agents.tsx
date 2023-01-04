@@ -24,9 +24,8 @@ function Agents() {
 
   const { user } = useAuth();
 
-  const {
-    loading, error, sendRequest, clearError,
-  } = useHttpClient();
+  // eslint-disable-next-line object-curly-newline
+  const { loading, error, sendRequest, clearError } = useHttpClient();
 
   useEffect(() => {
     const fetchAgent = async () => {
@@ -40,11 +39,13 @@ function Agents() {
             Authorization: `Bearer ${user.token}`,
           },
         );
-        setAgent(agentDataToAgent(resData));
+        if (resData) {
+          setAgent(agentDataToAgent(resData));
+        }
       } catch (err) {
         // TODO: how do we handle errors here ? (They are already handled in the http hook !)
         // eslint-disable-next-line no-console
-        console.log(err);
+        console.error(err);
       }
     };
     fetchAgent();
