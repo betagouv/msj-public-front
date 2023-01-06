@@ -80,31 +80,29 @@ function AppointmentDetails({
               {`${formattedDate} à ${time}`}
             </p>
           </div>
-          <div className="sm:col-span-1">
-            <h3 className="text-xs mb-0 font-medium text-msj-blue uppercase mb-1">
-              Adresse
-            </h3>
-            <p className="text-sm font-bold mb-0">
-              {appointment.organization_name}
-            </p>
-            {place.adress === 'Multiple' ? null : (
-              <>
-                <p className="text-sm font-bold mb-0">{place.adress}</p>
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-bold text-xs text-msj-blue mt-1"
-                  href={`https://www.google.com/maps/search/?api=1&query=${place.adress}`}
-                >
-                  Voir sur une carte
-                </a>
-              </>
-            )}
+          {place.adress === 'Multiple' ? null : (
+            <div className="sm:col-span-1">
+              <h3 className="text-xs mb-0 font-medium text-msj-blue uppercase mb-1">
+                Adresse
+              </h3>
+              <p className="text-sm font-bold mb-0">
+                {appointment.organization_name}
+              </p>
+              <p className="text-sm font-bold mb-0">{place.adress}</p>
+              <a
+                target="_blank"
+                rel="noreferrer"
+                className="font-bold text-xs text-msj-blue mt-1"
+                href={`https://www.google.com/maps/search/?api=1&query=${place.adress}`}
+              >
+                Voir sur une carte
+              </a>
 
-            <p className="text-sm font-bold mb-0">
-              <a href={`tel:${place.phone}`}>{place.phone}</a>
-            </p>
-          </div>
+              <p className="text-sm font-bold mb-0">
+                <a href={`tel:${place.phone}`}>{place.phone}</a>
+              </p>
+            </div>
+          )}
         </div>
         <p className="mt-8 mb-2 font-bold text-center">
           N&apos;oubliez pas de vous munir des justificatifs mentionnés dans

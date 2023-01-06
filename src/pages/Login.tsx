@@ -44,19 +44,21 @@ function Login() {
   const loginSubmitHandler = async (e) => {
     e.preventDefault();
 
-    const resData = await sendRequest(
-      `${process.env.REACT_APP_BACKEND_HOST}/api/users/login`,
-      'POST',
-      JSON.stringify({
+    const resData = await sendRequest({
+      url: `${process.env.REACT_APP_BACKEND_HOST}/api/users/login`,
+      method: 'POST',
+      body: JSON.stringify({
         phone: formState.inputs.phone.value,
         password: formState.inputs.password.value,
       }),
-      {
+      headers: {
         'Content-Type': 'application/json',
       },
-    );
-    // TODO: how do we handle errors here ? (They are already handled in the http hook !)
-    login(resData);
+    });
+
+    if (resData?.data) {
+      login(resData.data);
+    }
   };
 
   return (

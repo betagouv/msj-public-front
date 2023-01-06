@@ -29,16 +29,16 @@ function ForgotPassword() {
   const loginSubmitHandler = async (e) => {
     e.preventDefault();
 
-    await sendRequest(
-      `${process.env.REACT_APP_BACKEND_HOST}/api/users/reset-password`,
-      'POST',
-      JSON.stringify({
+    await sendRequest({
+      url: `${process.env.REACT_APP_BACKEND_HOST}/api/users/reset-password`,
+      method: 'POST',
+      body: JSON.stringify({
         phone: formState.inputs.phone.value,
       }),
-      {
+      headers: {
         'Content-Type': 'application/json',
       },
-    );
+    });
     navigate('/connexion', {
       state: {
         alertSuccess:
