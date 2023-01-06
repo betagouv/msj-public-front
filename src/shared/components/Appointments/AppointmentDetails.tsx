@@ -88,17 +88,15 @@ function AppointmentDetails({
               <p className="text-sm font-bold mb-0">
                 {appointment.organization_name}
               </p>
-              <>
-                <p className="text-sm font-bold mb-0">{place.adress}</p>
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-bold text-xs text-msj-blue mt-1"
-                  href={`https://www.google.com/maps/search/?api=1&query=${place.adress}`}
-                >
-                  Voir sur une carte
-                </a>
-              </>
+              <p className="text-sm font-bold mb-0">{place.adress}</p>
+              <a
+                target="_blank"
+                rel="noreferrer"
+                className="font-bold text-xs text-msj-blue mt-1"
+                href={`https://www.google.com/maps/search/?api=1&query=${place.adress}`}
+              >
+                Voir sur une carte
+              </a>
 
               <p className="text-sm font-bold mb-0">
                 <a href={`tel:${place.phone}`}>{place.phone}</a>

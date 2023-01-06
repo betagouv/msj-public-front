@@ -22,16 +22,15 @@ function Appointments() {
   useEffect(() => {
     const fetchUserAppointments = async () => {
       try {
-        const resData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_HOST}/api/appointments/${user.msjId}`,
-          'GET',
-          null,
-          {
+        const resData = await sendRequest({
+          url: `${process.env.REACT_APP_BACKEND_HOST}/api/appointments/${user.msjId}`,
+          method: 'GET',
+          headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${user.token}`,
           },
-        );
-        setAppointments(resData);
+        });
+        setAppointments(resData?.data ?? []);
       } catch (err) {
         // TODO: how do we handle errors here ? (They are already handled in the http hook !)
         // eslint-disable-next-line no-console

@@ -1,21 +1,50 @@
 import {
   useState, useCallback, useRef, useEffect,
 } from 'react';
-import axios, { Method } from 'axios';
+import axios, { AxiosRequestConfig, HttpStatusCode, Method } from 'axios';
+
+interface HttpRequestParam {
+  url: string;
+  method?: Method;
+  body?: any,
+  errorWhiteList?: HttpStatusCode[],
+  headers?: AxiosRequestConfig['headers']
+}
+
+interface HttpError {
+  message: string,
+  name: string,
+  code: HttpStatusCode
+}
+
+interface HttpResponse {
+  error?: HttpError;
+  data?: any;
+}
+
+const defaultRequest: Partial<HttpRequestParam> = {
+  method: 'GET',
+  body: null,
+  headers: {},
+  errorWhiteList: [],
+};
 
 const useHttpClient = () => {
-  const [error, setError] = useState < { message: string, name: string } | null >(null);
+  const [error, setError] = useState < HttpError | null>(null);
   const [loading, setIsLoading] = useState(false);
 
   const httpRequests = useRef([]);
 
-  const sendRequest = useCallback(async (url, method: Method = 'GET', body = null, headers = {}) => {
+  const sendRequest = useCallback(async (request: HttpRequestParam): Promise<HttpResponse> => {
+    const {
+      url, method, body, headers, errorWhiteList,
+    } = { ...defaultRequest, ...request };
     setIsLoading(true);
     const httpAbortCtrl = new AbortController();
     httpRequests.current.push(httpAbortCtrl);
 
     try {
-      const res = await axios.request({
+      const { data } = await axios.request({
         url,
         method,
         data: body,
@@ -27,14 +56,27 @@ const useHttpClient = () => {
       httpRequests.current = httpRequests.current.filter((reqCtrl) => reqCtrl !== httpAbortCtrl);
 
       setIsLoading(false);
-      return res.data;
+      return { data };
     } catch (err) {
-      // We don't care about errors thrown by the abortControllers
-      if (err.name === 'AbortError') {
-        return false;
-      }
       setIsLoading(false);
-      throw err;
+
+      const errData = {
+        name: err.name,
+        message: err.response?.data?.message || null,
+        code: err.response?.status,
+      };
+      // We don't care about errors thrown by the abortControllers
+      if (err.name === 'CanceledError') {
+        return { error: errData };
+      }
+
+      if (errorWhiteList.includes(err.response?.status)) {
+        throw err;
+      } else {
+        setError(errData);
+      }
+
+      return { error: errData };
     }
   }, []);
 

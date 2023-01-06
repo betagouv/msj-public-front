@@ -4,6 +4,7 @@ import { useAuth } from 'shared/hooks/auth-hook';
 import useHttpClient from 'shared/hooks/http-hook';
 
 import Alert from 'shared/components/Alerts/Alert';
+import { HttpStatusCode } from 'axios';
 
 interface Agent {
   organizationName: string;
@@ -30,22 +31,22 @@ function Agents() {
   useEffect(() => {
     const fetchAgent = async () => {
       try {
-        const resData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_HOST}/api/users/${user.msjId}/cpip`,
-          'GET',
-          null,
-          {
+        const resData = await sendRequest({
+          url: `${process.env.REACT_APP_BACKEND_HOST}/api/users/${user.msjId}/cpip`,
+          method: 'GET',
+          headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${user.token}`,
           },
-        );
-        if (resData) {
-          setAgent(agentDataToAgent(resData));
+          errorWhiteList: [HttpStatusCode.NotFound],
+        });
+        if (resData.data) {
+          setAgent(agentDataToAgent(resData.data));
         }
       } catch (err) {
         // TODO: how do we handle errors here ? (They are already handled in the http hook !)
         // eslint-disable-next-line no-console
-        console.error(err);
+        setAgent(null);
       }
     };
     fetchAgent();
