@@ -46,7 +46,7 @@
 
 .static-wrapper {
   background-color: var(--msj-background);
-  min-height: 80vh;
+  min-height: 100vh;
 }
 
 .static-footer {
