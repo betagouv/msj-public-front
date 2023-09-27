@@ -61,7 +61,6 @@ function ToolItemGroup({ className }: { className?: classNames.Argument }) {
             <ToolItem
               icon="fr-fi-information-line"
               onClick={goToPublicWebsite}
-              link="/landing"
             >
               Revenir au site public
             </ToolItem>
