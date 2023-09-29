@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import HomePage from 'pages/HomePage';
 import Login from 'pages/Login';
@@ -21,6 +21,7 @@ function App() {
     <div className="static-wrapper">
       <Routes>
         <Route path="/" element={<HomePage />}>
+          <Route path="/" element={<Navigate to="connexion" replace />} />
           <Route path="connexion" element={<Login />} />
           <Route
             path="reinitialiser-mot-de-passe"
@@ -43,7 +44,7 @@ function App() {
               <main style={{ padding: '1rem' }}>
                 <p>404 page non trouvée</p>
               </main>
-              )}
+            )}
           />
         </Route>
       </Routes>
