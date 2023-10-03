@@ -20,16 +20,6 @@ function ToolItemGroup({ className }: { className?: classNames.Argument }) {
     logout();
   };
 
-  const goToAgentsApp = (e) => {
-    e.preventDefault();
-    navigate(process.env.REACT_APP_AGENTS_SIGN_IN_URL, { replace: true });
-  };
-
-  const goToPublicWebsite = (e) => {
-    e.preventDefault();
-    navigate(process.env.REACT_APP_SPINA_URL, { replace: true });
-  };
-
   const goToLoginPage = (e) => {
     e.preventDefault();
     navigate('/connexion');
@@ -47,7 +37,7 @@ function ToolItemGroup({ className }: { className?: classNames.Argument }) {
           <>
             <ToolItem
               icon="fr-fi-information-line"
-              onClick={goToPublicWebsite}
+              link={process.env.REACT_APP_SPINA_URL}
               target="_blank"
             >
               Revenir au site public
@@ -60,11 +50,11 @@ function ToolItemGroup({ className }: { className?: classNames.Argument }) {
           <>
             <ToolItem
               icon="fr-fi-information-line"
-              onClick={goToPublicWebsite}
+              link={process.env.REACT_APP_SPINA_URL}
             >
               Revenir au site public
             </ToolItem>
-            <ToolItem icon="fr-fi-lock-line" onClick={goToAgentsApp}>
+            <ToolItem icon="fr-fi-lock-line" link={process.env.REACT_APP_AGENTS_SIGN_IN_URL}>
               Espace agents
             </ToolItem>
             <ToolItem icon="fr-fi-account-line" onClick={goToLoginPage}>

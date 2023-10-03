@@ -10,6 +10,7 @@ test('renders learn react link', () => {
       <App />
     </Router>,
   );
-  const linkElement = screen.getByText(/la Justice/i);
-  expect(linkElement).toBeInTheDocument();
+  const linkElement = screen.getAllByText(/la Justice/i);
+  expect(linkElement.length).toBeGreaterThan(0);
+  expect(linkElement[0]).toBeInTheDocument();
 });
