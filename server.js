@@ -16,6 +16,11 @@ app.use(helmet({
       fontSrc: ["'self'"],
     },
   },
+  frameguard: { action: 'deny' },
+  xssFilter: {},
+  noSniff: {},
+  ieNoOpen: {},
+  permittedCrossDomainPolicies: { permittedPolicies: 'none' },
 }));
 
 app.use(express.static(path.join(__dirname, directory)));
