@@ -11,6 +11,7 @@ import {
   VALIDATOR_IDENTICAL,
 } from 'shared/utils/validators';
 import { useAuth } from 'shared/hooks/auth-hook';
+import useHttpClient from 'shared/hooks/http-hook';
 
 import Alert from 'shared/components/Alerts/Alert';
 
@@ -19,8 +20,8 @@ function AcceptInvitation() {
   const invitationToken = searchParams.get('token');
 
   const { login } = useAuth();
+  const { sendRequest } = useHttpClient();
 
-  // const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const [formState, inputHandler] = useForm(
@@ -45,31 +46,22 @@ function AcceptInvitation() {
     e.preventDefault();
 
     try {
-      // setIsLoading(true);
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_HOST}/api/users/signup`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            invitationToken,
-            password: formState.inputs.password.value,
-          }),
+      const resData = await sendRequest({
+        url: `${process.env.REACT_APP_BACKEND_HOST}/api/users/signup`,
+        method: 'POST',
+        body: JSON.stringify({
+          invitationToken,
+          password: formState.inputs.password.value,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
         },
-      );
+      });
 
-      const resData = await response.json();
-
-      if (!response.ok) {
-        throw new Error(resData.message);
+      if (resData?.data) {
+        login(resData.data);
       }
-
-      // setIsLoading(false);
-      login(resData);
     } catch (err) {
-      // setIsLoading(false);
       setError(
         err ?? {
           message:
