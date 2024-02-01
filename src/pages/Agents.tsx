@@ -32,7 +32,7 @@ function Agents() {
     const fetchAgent = async () => {
       try {
         const resData = await sendRequest({
-          url: `${process.env.REACT_APP_BACKEND_HOST}/api/users/${user.msjId}/cpip`,
+          url: `${process.env.REACT_APP_BACKEND_HOST}/api/users/cpip`,
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

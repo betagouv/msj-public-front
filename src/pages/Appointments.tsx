@@ -23,7 +23,7 @@ function Appointments() {
     const fetchUserAppointments = async () => {
       try {
         const resData = await sendRequest({
-          url: `${process.env.REACT_APP_BACKEND_HOST}/api/appointments/${user.msjId}`,
+          url: `${process.env.REACT_APP_BACKEND_HOST}/api/appointments`,
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
