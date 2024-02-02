@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import useForm from 'shared/hooks/form-hook';
@@ -11,6 +11,7 @@ import {
   VALIDATOR_IDENTICAL,
 } from 'shared/utils/validators';
 import { useAuth } from 'shared/hooks/auth-hook';
+import useHttpClient from 'shared/hooks/http-hook';
 
 import Alert from 'shared/components/Alerts/Alert';
 
@@ -19,9 +20,7 @@ function AcceptInvitation() {
   const invitationToken = searchParams.get('token');
 
   const { login } = useAuth();
-
-  // const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const { error, sendRequest, clearError } = useHttpClient();
 
   const [formState, inputHandler] = useForm(
     {
@@ -37,45 +36,23 @@ function AcceptInvitation() {
     false,
   );
 
-  const onCloseAlertHandler = () => {
-    setError(null);
-  };
-
   const acceptInvitationSubmitHandler = async (e) => {
     e.preventDefault();
 
-    try {
-      // setIsLoading(true);
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_HOST}/api/users/signup`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            invitationToken,
-            password: formState.inputs.password.value,
-          }),
-        },
-      );
+    const resData = await sendRequest({
+      url: `${process.env.REACT_APP_BACKEND_HOST}/api/users/signup`,
+      method: 'POST',
+      body: JSON.stringify({
+        invitationToken,
+        password: formState.inputs.password.value,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-      const resData = await response.json();
-
-      if (!response.ok) {
-        throw new Error(resData.message);
-      }
-
-      // setIsLoading(false);
-      login(resData);
-    } catch (err) {
-      // setIsLoading(false);
-      setError(
-        err ?? {
-          message:
-            "Une erreur s'est produite, contactez l'administrateur du site",
-        },
-      );
+    if (resData?.data) {
+      login(resData.data);
     }
   };
 
@@ -86,7 +63,7 @@ function AcceptInvitation() {
         show={!!error}
         type="error"
         closable
-        onClose={onCloseAlertHandler}
+        onClose={clearError}
       />
 
       <div className="fr-container fr-py-4w px-12 lg:px-72">
