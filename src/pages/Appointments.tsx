@@ -17,19 +17,15 @@ function Appointments() {
 
   useEffect(() => {
     const fetchUserAppointments = async () => {
-      try {
-        const responseData = await sendRequest({
-          url: `${process.env.REACT_APP_BACKEND_HOST}/api/appointments`,
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${user.token}`,
-          },
-        });
-        setAppointments(responseData?.data ?? []);
-      } catch (err) {
-        console.error(err);
-      }
+      const responseData = await sendRequest({
+        url: `${process.env.REACT_APP_BACKEND_HOST}/api/appointments`,
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      setAppointments(responseData?.data ?? []);
     };
 
     fetchUserAppointments();
