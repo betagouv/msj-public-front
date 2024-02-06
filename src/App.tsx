@@ -31,9 +31,9 @@ function App() {
         </Route>
 
         <Route path="/mon-compte" element={<ProtectedLayout />}>
-          <Route path="mes-rendez-vous" element={<Appointments />} />
+          <Route path="mes-convocations" element={<Appointments />} />
           <Route
-            path="mes-rendez-vous/:appointmentId"
+            path="mes-convocations/:appointmentId"
             element={<Appointment />}
           />
           <Route path="agent" element={<Agents />} />

@@ -59,26 +59,27 @@ function Appointments() {
       />
 
       <div className="fr-container fr-py-6w px-12 lg:px-32">
-        <h1 className="text-3xl">Vos rendez-vous</h1>
+        <h1 className="text-3xl">Vos convocations</h1>
         {loading && <p>Chargement...</p>}
 
         {!loading && (
           <>
-            {futureAppointments.length === 0 && <p>Vous n&apos;avez pas de rendez-vous à venir.</p>}
+            {futureAppointments.length === 0
+              && <p>Vous n&apos;avez pas de convocations à venir.</p>}
 
             {futureAppointments.length > 0 && (
               <>
                 <AppointmentDetails appointment={futureAppointments[0]} />
-                <AppointmentsList items={futureAppointments.slice(1)} title="Rendez-vous suivants" />
+                <AppointmentsList items={futureAppointments.slice(1)} title="Convocations suivants" />
               </>
             )}
 
             {pastAppointments.length > 0 && (
-              <AppointmentsList items={pastAppointments} title="Rendez-vous passés" />
+              <AppointmentsList items={pastAppointments} title="Convocations passés" />
             )}
 
             {canceledAppointments.length > 0 && (
-              <AppointmentsList items={canceledAppointments} title="Rendez-vous annulés" />
+              <AppointmentsList items={canceledAppointments} title="Convocations annulés" />
             )}
           </>
         )}

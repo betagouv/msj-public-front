@@ -68,7 +68,7 @@ function AppointmentDetails({
           </div>
           <div className="sm:col-span-2">
             <h3 className="text-xs mb-0 font-medium text-msj-blue uppercase mb-1">
-              Type de rendez-vous
+              Type de convocations
             </h3>
             <p className="text-md font-bold mb-0">{appointmentTypeName}</p>
           </div>

@@ -33,7 +33,7 @@ export function AuthProvider({ children }: { children: JSX.Element }) {
     userData.tokenExpDate = tokenExpDate.toISOString();
 
     setUser({ ...userData });
-    navigate('/mon-compte/mes-rendez-vous');
+    navigate('/mon-compte/mes-convocations');
   };
 
   const logout = () => {
