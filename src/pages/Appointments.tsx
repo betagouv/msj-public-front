@@ -70,16 +70,16 @@ function Appointments() {
             {futureAppointments.length > 0 && (
               <>
                 <AppointmentDetails appointment={futureAppointments[0]} />
-                <AppointmentsList items={futureAppointments.slice(1)} title="Convocations suivants" />
+                <AppointmentsList items={futureAppointments.slice(1)} title="Autres convocations à venir" />
               </>
             )}
 
             {pastAppointments.length > 0 && (
-              <AppointmentsList items={pastAppointments} title="Convocations passés" />
+              <AppointmentsList items={pastAppointments} title="Convocations passées" />
             )}
 
             {canceledAppointments.length > 0 && (
-              <AppointmentsList items={canceledAppointments} title="Convocations annulés" />
+              <AppointmentsList items={canceledAppointments} title="Convocations annulées" />
             )}
           </>
         )}

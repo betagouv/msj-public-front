@@ -17,7 +17,7 @@ function AppointmentsList({
       <AppointementCard key={appointment.id} item={appointment} />
     ));
   } else {
-    appointments = 'Pas de convocations';
+    appointments = "Vous n'avez pas d'autre convocation à venir.";
   }
 
   return (
