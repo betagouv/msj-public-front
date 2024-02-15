@@ -48,10 +48,10 @@ export default function Header({
             <>
               <Link
                 onClick={() => setOpenNav(false)}
-                as={<RouterLink to="/mon-compte/mes-rendez-vous" />}
+                as={<RouterLink to="/mon-compte/mes-convocations" />}
                 className="fr-nav__link"
               >
-                Mes rendez-vous
+                Mes convocations
               </Link>
               <Link
                 onClick={() => setOpenNav(false)}

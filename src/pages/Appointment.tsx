@@ -9,7 +9,7 @@ function Appointment({ appointment }: { appointment?: AppointmentData }) {
     <div className="fr-container fr-py-6w px-12 lg:px-32">
       <AppointmentDetails appointment={appointment} />
       <div className="flex justify-center">
-        <Link to="/mon-compte/mes-rendez-vous">Retour à la liste</Link>
+        <Link to="/mon-compte/mes-convocations">Retour à la liste</Link>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 
 import { useAuth } from 'shared/hooks/auth-hook';
 import useHttpClient from 'shared/hooks/http-hook';
@@ -10,54 +10,43 @@ import Alert from 'shared/components/Alerts/Alert';
 function Appointments() {
   const [appointments, setAppointments] = useState([]);
 
-  const futureAppointments = [];
-  const pastAppointments = [];
-
   const { user } = useAuth();
-
   const {
     loading, error, sendRequest, clearError,
   } = useHttpClient();
 
   useEffect(() => {
     const fetchUserAppointments = async () => {
-      try {
-        const resData = await sendRequest({
-          url: `${process.env.REACT_APP_BACKEND_HOST}/api/appointments`,
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${user.token}`,
-          },
-        });
-        setAppointments(resData?.data ?? []);
-      } catch (err) {
-        // TODO: how do we handle errors here ? (They are already handled in the http hook !)
-        // eslint-disable-next-line no-console
-        console.log(err);
-      }
+      const responseData = await sendRequest({
+        url: `${process.env.REACT_APP_BACKEND_HOST}/api/appointments`,
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      setAppointments(responseData?.data ?? []);
     };
+
     fetchUserAppointments();
-  }, [sendRequest]);
+  }, [sendRequest, user.token]);
 
-  if (appointments.length > 0) {
-    appointments.sort((a, b) => {
-      const aTime = new Date(a.datetime);
-      const bTime = new Date(b.datetime);
+  const { futureAppointments, pastAppointments, canceledAppointments } = useMemo(() => {
+    const now = Date.now();
+    return appointments.reduce((acc, appointment) => {
+      const appointmentDate = new Date(appointment.datetime).getTime();
 
-      return aTime.getTime() - bTime.getTime();
-    });
-
-    appointments.forEach((apt) => {
-      const aptDate = new Date(apt.datetime);
-
-      if (aptDate.getTime() < Date.now()) {
-        pastAppointments.push(apt);
+      if (appointment.state === 'Annulé') {
+        acc.canceledAppointments.push(appointment);
+      } else if (appointmentDate < now) {
+        acc.pastAppointments.push(appointment);
       } else {
-        futureAppointments.push(apt);
+        acc.futureAppointments.push(appointment);
       }
-    });
-  }
+
+      return acc;
+    }, { futureAppointments: [], pastAppointments: [], canceledAppointments: [] });
+  }, [appointments]);
 
   return (
     <>
@@ -70,29 +59,27 @@ function Appointments() {
       />
 
       <div className="fr-container fr-py-6w px-12 lg:px-32">
-        <h1 className="text-3xl">Vos rendez-vous</h1>
+        <h1 className="text-3xl">Vos convocations</h1>
         {loading && <p>Chargement...</p>}
 
         {!loading && (
           <>
-            {futureAppointments.length === 0 && (
-              <p>Vous n&apos;avez pas de rendez-vous à venir</p>
-            )}
+            {futureAppointments.length === 0
+              && <p>Vous n&apos;avez pas de convocations à venir.</p>}
 
-            {futureAppointments.length >= 1 && (
+            {futureAppointments.length > 0 && (
               <>
                 <AppointmentDetails appointment={futureAppointments[0]} />
-                <AppointmentsList
-                  items={futureAppointments.slice(1)}
-                  title="Rendez-vous suivants"
-                />
+                <AppointmentsList items={futureAppointments.slice(1)} title="Convocations suivants" />
               </>
             )}
-            {pastAppointments.length >= 0 && (
-              <AppointmentsList
-                items={pastAppointments}
-                title="Rendez-vous passés"
-              />
+
+            {pastAppointments.length > 0 && (
+              <AppointmentsList items={pastAppointments} title="Convocations passés" />
+            )}
+
+            {canceledAppointments.length > 0 && (
+              <AppointmentsList items={canceledAppointments} title="Convocations annulés" />
             )}
           </>
         )}

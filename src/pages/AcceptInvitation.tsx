@@ -111,7 +111,7 @@ function AcceptInvitation() {
             <div className="fr-tile">
               <div className="fr-tile__body">
                 <h5 className="fr-tile__title">
-                  Je peux suivre mes rendez-vous
+                  Je peux suivre mes convocations
                 </h5>
               </div>
               <div className="fr-tile__img">
