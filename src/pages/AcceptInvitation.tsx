@@ -157,9 +157,8 @@ function AcceptInvitation() {
             Justice. Le respect de vos droits et de votre vie privée est une
             priorité. Pour plus d&apos;informations sur l&apos;utilisation de
             vos données personnelles, vous pouvez vous rendre sur
-            <a target="_blank" href="/donnees_personnelles">
-              la page dédiée
-            </a>
+            {' '}
+            <a target="_blank" href="/donnees_personnelles">la page dédiée</a>
           </div>
         </section>
       </div>
