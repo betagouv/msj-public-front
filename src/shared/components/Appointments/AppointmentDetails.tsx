@@ -113,8 +113,7 @@ function AppointmentDetails({
           )}
         </div>
         <p className="mt-8 mb-2 font-bold text-center">
-          N&apos;oubliez pas de vous munir des justificatifs mentionnés dans
-          votre convocation.
+          {infoMessage}
         </p>
       </div>
     </div>
