@@ -51,7 +51,7 @@ function AppointmentDetails({
 
   let infoMessage = '';
 
-  if (daysToApt >= 0) {
+  if (daysToApt >= 0 && status !== 'Annulé') {
     infoMessage = "N'oubliez pas de vous munir des justificatifs mentionnés dans votre convocation.";
   } else if (daysToApt < 0 && status === 'Manqué') {
     infoMessage = 'Vous avez manqué votre convocation. Cela fait partie de vos obligations judiciaires. Contactez dès que possible votre service de suivi.';
