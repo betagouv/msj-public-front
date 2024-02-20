@@ -8,7 +8,7 @@ const directory = `/${process.env.STATIC_DIR || 'dist'}`;
 
 // Rate limiter (100 requests per 15 minutes)
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
+  windowMs: 3 * 60 * 1000,
   max: 100,
   standardHeaders: true,
   legacyHeaders: false,
