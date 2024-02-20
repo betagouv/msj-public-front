@@ -11,6 +11,9 @@ interface Agent {
   firstname: string;
   lastname: string;
   email: string;
+  phone: string;
+  share_email_to_convict: boolean;
+  share_phone_to_convict: boolean;
 }
 function agentDataToAgent(agentData: any): Agent {
   return {
@@ -18,6 +21,9 @@ function agentDataToAgent(agentData: any): Agent {
     firstname: agentData.first_name,
     lastname: agentData.last_name,
     email: agentData.email,
+    phone: agentData.phone,
+    share_email_to_convict: agentData.share_email_to_convict,
+    share_phone_to_convict: agentData.share_phone_to_convict,
   };
 }
 function Agents() {
@@ -83,17 +89,32 @@ function Agents() {
                 </h3>
                 <p className="text-md font-bold mb-0">{`${agent.firstname} ${agent.lastname}`}</p>
               </div>
-              <div className="sm:col-span-1">
-                <h3 className="text-xs mb-0 font-medium text-msj-blue uppercase mb-1">
-                  Email
-                </h3>
-                <a
-                  className="text-md font-bold mb-0"
-                  href={`mailto:${agent.email}`}
-                >
-                  {agent.email}
-                </a>
-              </div>
+              {agent.email && agent.share_email_to_convict && (
+                <div className="sm:col-span-1">
+                  <h3 className="text-xs mb-0 font-medium text-msj-blue uppercase mb-1">
+                    Email
+                  </h3>
+                  <a
+                    className="text-md font-bold mb-0"
+                    href={`mailto:${agent.email}`}
+                  >
+                    {agent.email}
+                  </a>
+                </div>
+              )}
+              {agent.phone && agent.share_phone_to_convict && (
+                <div className="sm:col-span-1">
+                  <h3 className="text-xs mb-0 font-medium text-msj-blue uppercase mb-1">
+                    Email
+                  </h3>
+                  <a
+                    className="text-md font-bold mb-0"
+                    href={`tel:${agent.phone}`}
+                  >
+                    {agent.phone}
+                  </a>
+                </div>
+              )}
             </>
           )}
           {!loading && !agent && (
