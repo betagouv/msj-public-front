@@ -131,10 +131,10 @@ function Login() {
             <div className="fr-tile">
               <div className="fr-tile__body">
                 <h5 className="fr-tile__title">
-                  Je peux suivre mes rendez-vous
+                  Je peux suivre mes convocations
                 </h5>
               </div>
-              <div className="fr-tile__img">
+              <div className="fr-tile__img fr-mt-6w">
                 <span
                   className="fr-fi-calendar-line icon-xl"
                   aria-hidden="true"
@@ -149,7 +149,7 @@ function Login() {
                   Je peux contacter mes interlocuteurs
                 </h5>
               </div>
-              <div className="fr-tile__img">
+              <div className="fr-tile__img fr-mt-6w">
                 <span className="fr-fi-mail-line icon-xl" aria-hidden="true" />
               </div>
             </div>
@@ -176,6 +176,7 @@ function Login() {
             Justice. Le respect de vos droits et de votre vie privée est une
             priorité. Pour plus d&apos;informations sur l&apos;utilisation de
             vos données personnelles, vous pouvez vous rendre sur
+            {' '}
             <a target="_blank" href="/donnees_personnelles">
               la page dédiée
             </a>

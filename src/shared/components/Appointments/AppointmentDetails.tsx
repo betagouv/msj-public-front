@@ -49,6 +49,14 @@ function AppointmentDetails({
     dayToAptMessage = `Il y a ${Math.abs(daysToApt)} jours`;
   }
 
+  let infoMessage = '';
+
+  if (daysToApt >= 0 && status !== 'Annulé') {
+    infoMessage = "N'oubliez pas de vous munir des justificatifs mentionnés dans votre convocation.";
+  } else if (daysToApt < 0 && status === 'Manqué') {
+    infoMessage = 'Vous avez manqué votre convocation. Cela fait partie de vos obligations judiciaires. Contactez dès que possible votre service de suivi.';
+  }
+
   return (
     <div className="bg-white shadow relative mb-8">
       <div className="flex justify-center">
@@ -68,7 +76,7 @@ function AppointmentDetails({
           </div>
           <div className="sm:col-span-2">
             <h3 className="text-xs mb-0 font-medium text-msj-blue uppercase mb-1">
-              Type de rendez-vous
+              Type de convocations
             </h3>
             <p className="text-md font-bold mb-0">{appointmentTypeName}</p>
           </div>
@@ -105,8 +113,7 @@ function AppointmentDetails({
           )}
         </div>
         <p className="mt-8 mb-2 font-bold text-center">
-          N&apos;oubliez pas de vous munir des justificatifs mentionnés dans
-          votre convocation.
+          {infoMessage}
         </p>
       </div>
     </div>

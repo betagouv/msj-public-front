@@ -8,7 +8,7 @@ function HomePage() {
   const { user } = useAuth();
 
   if (user && new Date(user.tokenExpDate) > new Date()) {
-    return <Navigate to="/mon-compte/mes-rendez-vous" />;
+    return <Navigate to="/mon-compte/mes-convocations" />;
   }
 
   return (

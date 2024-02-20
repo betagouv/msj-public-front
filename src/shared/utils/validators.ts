@@ -38,7 +38,7 @@ export const VALIDATOR_ONE_DIGIT: ValidatorFunc = () => ({
 
 export const VALIDATOR_ONE_SPECIAL_CHAR: ValidatorFunc = () => ({
   type: ValidatorType.OneSpecialChar,
-  errorHint: 'Ajoutez au moins un caractère spécial',
+  errorHint: 'Ajoutez au moins un caractère spécial parmi les suivants : @#$%^&*()!_-+={}[]|`~<>,.?/;:',
 });
 
 export const VALIDATOR_MIN: ValidatorFunc = (val) => ({ type: ValidatorType.Min, val, errorHint: `La valeur doit être supérieur à ${val}` });
@@ -92,7 +92,8 @@ export const validate = (value, validators) => {
     }
 
     if (validator.type === ValidatorType.OneSpecialChar) {
-      const re = /(?=.*?[#?!@$%^&*-])/;
+      // eslint-disable-next-line
+      const re = /(?=.*?[@#$%^&*()!_\\\-+={}[\]|`~<>,.?\/;:])/;
       const ruleIsValid = re.test(value);
       isValid = isValid && ruleIsValid;
       if (!ruleIsValid) errorHints.push(validator.errorHint);
