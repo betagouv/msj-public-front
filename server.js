@@ -12,6 +12,10 @@ const limiter = rateLimit({
   max: 100,
   standardHeaders: true,
   legacyHeaders: false,
+  validate: {
+		xForwardedForHeader: false,
+		default: true,
+	},
 });
 
 app.use(limiter);
