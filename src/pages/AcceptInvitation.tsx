@@ -114,7 +114,7 @@ function AcceptInvitation() {
                   Je peux suivre mes convocations
                 </h5>
               </div>
-              <div className="fr-tile__img">
+              <div className="fr-tile__img fr-mt-6w">
                 <span
                   className="fr-fi-calendar-line icon-xl"
                   aria-hidden="true"
@@ -129,7 +129,7 @@ function AcceptInvitation() {
                   Je peux contacter mes interlocuteurs
                 </h5>
               </div>
-              <div className="fr-tile__img">
+              <div className="fr-tile__img fr-mt-6w">
                 <span className="fr-fi-mail-line icon-xl" aria-hidden="true" />
               </div>
             </div>

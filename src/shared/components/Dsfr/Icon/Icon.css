@@ -9,3 +9,7 @@
 [class^="ri-"].icon-right {
   margin-left: .5rem;
 }
+
+.icon-xl::before {
+  --icon-size: 4rem !important;
+}
