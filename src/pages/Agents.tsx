@@ -105,7 +105,7 @@ function Agents() {
               {agent.phone && agent.share_phone_to_convict && (
                 <div className="sm:col-span-1">
                   <h3 className="text-xs mb-0 font-medium text-msj-blue uppercase mb-1">
-                    Email
+                    Numéro de téléphone
                   </h3>
                   <a
                     className="text-md font-bold mb-0"
