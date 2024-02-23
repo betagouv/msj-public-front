@@ -81,7 +81,6 @@ function AcceptInvitation() {
               VALIDATOR_ONE_UPPERCASE(),
               VALIDATOR_ONE_DIGIT(),
               VALIDATOR_ONE_SPECIAL_CHAR(),
-              VALIDATOR_IDENTICAL(formState.inputs.passwordConfirmation.value),
             ]}
           />
 

@@ -68,6 +68,7 @@ function TextInput(props: TextInputProps) {
   }, [value, isValid]);
 
   useEffect(() => {
+    if (!password && !value) return;
     dispatch({
       type: 'CHANGE',
       val: value,
