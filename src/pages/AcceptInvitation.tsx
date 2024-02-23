@@ -81,6 +81,7 @@ function AcceptInvitation() {
               VALIDATOR_ONE_UPPERCASE(),
               VALIDATOR_ONE_DIGIT(),
               VALIDATOR_ONE_SPECIAL_CHAR(),
+              VALIDATOR_IDENTICAL(formState.inputs.passwordConfirmation.value),
             ]}
           />
 
@@ -90,6 +91,7 @@ function AcceptInvitation() {
             id="passwordConfirmation"
             required
             onInput={inputHandler}
+            password={formState.inputs.password.value}
             validators={[VALIDATOR_IDENTICAL(formState.inputs.password.value)]}
           />
 

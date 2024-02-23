@@ -32,6 +32,7 @@ interface TextInputProps {
   textarea?: boolean;
   maxlength?: number;
   validators: Validator[];
+  password?: string;
 }
 
 /**
@@ -55,6 +56,7 @@ function TextInput(props: TextInputProps) {
     validators = [],
     onInput,
     maxlength,
+    password,
   } = props;
 
   const { value, isValid } = textInputState;
@@ -64,6 +66,15 @@ function TextInput(props: TextInputProps) {
   useEffect(() => {
     onInput(id, value, isValid);
   }, [value, isValid]);
+
+  useEffect(() => {
+    dispatch({
+      type: 'CHANGE',
+      val: value,
+      isValid: false,
+      validators,
+    });
+  }, [password]);
 
   const onChangeHandler = (e) => {
     dispatch({
