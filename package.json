@@ -105,6 +105,7 @@
   },
   "overrides": {
     "fork-ts-checker-webpack-plugin": "^6.5.3",
+    "postcss": "^8.4.35",
     "remark-parse": {
       "trim": "0.0.3"
     },
