@@ -14,7 +14,7 @@ const usePageTracking = () => {
 
   useEffect(() => {
     if (user) {
-      pushInstruction('setUserId', user.msjId);
+      pushInstruction('setUserId', user.userId);
     }
 
     trackPageView();

@@ -17,7 +17,7 @@ export function newPrivateHeader() {
         firstName: 'bob',
         lastName: 'mortimer',
         phone: '0666778899',
-        msjId: '12',
+        userId: '12',
       },
       isLogin: true,
       login: () => new Promise<void>(() => {}),
