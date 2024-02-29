@@ -8,7 +8,7 @@ interface User {
   firstName: string;
   lastName: string;
   phone: string;
-  msjId: string;
+  userId: string;
 }
 interface AuthData {
   login: (data: User) => Promise<void>;
@@ -31,7 +31,7 @@ export function AuthProvider({ children }: { children: JSX.Element }) {
     const userData = data;
     const tokenExpDate = data.tokenExpDate || new Date(new Date().getTime() + 1000 * 60 * 60);
     userData.tokenExpDate = tokenExpDate.toISOString();
-
+    console.log(userData);
     setUser({ ...userData });
     navigate('/mon-compte/mes-convocations');
   };

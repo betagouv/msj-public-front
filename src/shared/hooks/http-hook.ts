@@ -2,6 +2,7 @@ import {
   useState, useCallback, useRef, useEffect,
 } from 'react';
 import axios, { AxiosRequestConfig, HttpStatusCode, Method } from 'axios';
+import { useAuth } from './auth-hook';
 
 interface HttpRequestParam {
   url: string;
@@ -32,7 +33,7 @@ const defaultRequest: Partial<HttpRequestParam> = {
 const useHttpClient = () => {
   const [error, setError] = useState < HttpError | null>(null);
   const [loading, setIsLoading] = useState(false);
-
+  const { logout } = useAuth();
   const httpRequests = useRef([]);
 
   const sendRequest = useCallback(async (request: HttpRequestParam): Promise<HttpResponse> => {
@@ -59,7 +60,9 @@ const useHttpClient = () => {
       return { data };
     } catch (err) {
       setIsLoading(false);
-
+      if (err.response?.status === HttpStatusCode.Unauthorized) {
+        logout();
+      }
       const errData = {
         name: err.name,
         message: err.response?.data?.message || null,
