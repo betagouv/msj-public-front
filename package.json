@@ -85,7 +85,7 @@
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.20",
     "@types/react": "^18.2.61",
-    "@types/react-dom": "^18.2.19",
+    "@types/react-dom": "^18.2.21",
     "autoprefixer": "^10.4.12",
     "babel-plugin-named-exports-order": "^0.0.2",
     "eslint": "^8.57.0",
