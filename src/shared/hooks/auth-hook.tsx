@@ -8,7 +8,7 @@ interface User {
   firstName: string;
   lastName: string;
   phone: string;
-  msjId: string;
+  userId: string;
 }
 interface AuthData {
   login: (data: User) => Promise<void>;
