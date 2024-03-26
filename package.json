@@ -73,7 +73,7 @@
     "@storybook/addon-essentials": "^7.6.16",
     "@storybook/addon-interactions": "^7.6.16",
     "@storybook/addon-links": "^8.0.0",
-    "@storybook/builder-webpack5": "^8.0.0",
+    "@storybook/builder-webpack5": "^8.0.4",
     "@storybook/manager-webpack5": "^6.5.16",
     "@storybook/node-logger": "^7.6.16",
     "@storybook/preset-create-react-app": "^7.6.16",
