@@ -13,7 +13,7 @@
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.3.0",
     "axios": "^1.6.8",
-    "classnames": "^2.3.1",
+    "classnames": "^2.5.1",
     "express": "^4.19.2",
     "express-rate-limit": "^7.2.0",
     "font-awesome": "^4.7.0",
