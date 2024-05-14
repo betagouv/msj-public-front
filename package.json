@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@dataesr/react-dsfr": "^3.10.0",
-    "@gouvfr/dsfr": "^1.11.2",
+    "@gouvfr/dsfr": "1.9.1",
     "@jonkoops/matomo-tracker-react": "^0.7.0",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.3.0",
