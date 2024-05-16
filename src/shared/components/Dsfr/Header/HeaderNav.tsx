@@ -35,7 +35,7 @@ function HeaderNav({
         <button
           onClick={() => onOpenNav(false)}
           title="fermer"
-          className="fr-link--close fr-link"
+          className="fr-btn--close fr-btn"
           type="button"
           aria-label="fermer la navigation"
         >

@@ -158,19 +158,18 @@ function Login() {
 
         <section className="fr-accordion mt-8">
           <h3 className="fr-accordion__title">
-            <span
+            <button
+              type="button"
               className="fr-accordion__btn"
               aria-expanded="false"
               aria-controls="accordion-106"
-              data-fr-js-collapse-span="true"
             >
               Mes données personnelles sont protégées
-            </span>
+            </button>
           </h3>
           <div
             className="fr-collapse"
             id="accordion-106"
-            data-fr-js-collapse="true"
           >
             La présente interface est à l&apos;initiative du Ministère de la
             Justice. Le respect de vos droits et de votre vie privée est une
