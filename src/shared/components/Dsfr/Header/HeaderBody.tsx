@@ -19,7 +19,7 @@ function HeaderBody({ className = '' }: { className?: classNames.Argument }) {
               <div className="fr-header__logo">
                 <Logo splitCharacter={10}>Ministère de la justice</Logo>
               </div>
-              <div className="fr-header__operator">
+              <div className="fr-header__logo">
                 <MSJLogo />
               </div>
               <div className="fr-header__navbar">
