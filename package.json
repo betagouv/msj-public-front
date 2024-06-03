@@ -12,7 +12,7 @@
     "@jonkoops/matomo-tracker-react": "^0.7.0",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^15.0.7",
-    "axios": "^1.6.8",
+    "axios": "^1.7.2",
     "classnames": "^2.5.1",
     "express": "^4.19.2",
     "express-rate-limit": "^7.2.0",
