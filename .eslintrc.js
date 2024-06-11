@@ -6,7 +6,11 @@ module.exports = {
   },
   extends: ['plugin:react/recommended', 'airbnb', "plugin:import/typescript",],
   globals: {"JSX":"readonly"},
-  overrides: [],
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+    }
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
