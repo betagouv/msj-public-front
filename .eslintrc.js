@@ -4,9 +4,14 @@ module.exports = {
     es2021: true,
     'jest/globals': true,
   },
-  extends: ['plugin:react/recommended', 'airbnb', 'plugin:storybook/recommended', "plugin:import/typescript",],
-  globals: {"JSX":"readonly"},
-  overrides: [],
+  extends: ['plugin:react/recommended', 'airbnb', "plugin:import/typescript",],
+  globals: { "JSX": "readonly" },
+  ignorePatterns: ['node_modules/', 'dist/', '.gitignore'],
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+    }
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
