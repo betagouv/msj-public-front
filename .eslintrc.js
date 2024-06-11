@@ -4,7 +4,7 @@ module.exports = {
     es2021: true,
     'jest/globals': true,
   },
-  extends: ['plugin:react/recommended', 'airbnb', 'plugin:storybook/recommended', "plugin:import/typescript",],
+  extends: ['plugin:react/recommended', 'airbnb', "plugin:import/typescript",],
   globals: {"JSX":"readonly"},
   overrides: [],
   parser: '@typescript-eslint/parser',
