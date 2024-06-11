@@ -5,7 +5,8 @@ module.exports = {
     'jest/globals': true,
   },
   extends: ['plugin:react/recommended', 'airbnb', "plugin:import/typescript",],
-  globals: {"JSX":"readonly"},
+  globals: { "JSX": "readonly" },
+  ignorePatterns: ['node_modules/', 'dist/', '.gitignore'],
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
