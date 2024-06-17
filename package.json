@@ -11,7 +11,7 @@
     "@gouvfr/dsfr": "1.9.1",
     "@jonkoops/matomo-tracker-react": "^0.7.0",
     "@testing-library/jest-dom": "^6.4.2",
-    "@testing-library/react": "^15.0.7",
+    "@testing-library/react": "^16.0.0",
     "axios": "^1.7.2",
     "classnames": "^2.5.1",
     "express": "^4.19.2",
