@@ -7,6 +7,7 @@ interface LinkProps {
   children: string | JSX.Element;
   href?: string;
   disabled?: boolean;
+  isExternal?: boolean;
   verticalIconPosition?: 'top' | 'middle' | 'sub';
   as?: JSX.Element;
   title?: string;
@@ -52,6 +53,7 @@ function Link(props: LinkProps) {
     verticalIconPosition = 'middle',
     iconSize = 'sm',
     size = 'md',
+    isExternal = false,
     onClick,
   } = props;
 
@@ -61,8 +63,10 @@ function Link(props: LinkProps) {
     [`fr-link--${size}`]: size,
   });
   const onClickLink = (e) => {
-    e.preventDefault();
-    onClick?.(e);
+    if (!isExternal) {
+      e.preventDefault();
+    }
+    onClick(e);
   };
 
   const asLink = as
