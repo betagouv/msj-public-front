@@ -10,7 +10,7 @@
     "@dataesr/react-dsfr": "^3.10.0",
     "@gouvfr/dsfr": "1.9.1",
     "@jonkoops/matomo-tracker-react": "^0.7.0",
-    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.0",
     "axios": "^1.7.2",
     "classnames": "^2.5.1",
