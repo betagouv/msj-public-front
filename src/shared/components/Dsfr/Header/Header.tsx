@@ -69,6 +69,15 @@ export default function Header({
               >
                 Mon compte
               </Link>
+              <Link
+                href="https://tally.so/r/3xZNPr"
+                target="_blank"
+                isExternal
+                onClick={() => setOpenNav(false)}
+                className="fr-nav__link"
+              >
+                Donner mon avis
+              </Link>
             </>
           )}
         </HeaderNav>
