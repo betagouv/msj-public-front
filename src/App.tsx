@@ -1,6 +1,15 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+  useNavigationType,
+  createRoutesFromChildren,
+  matchRoutes,
+} from 'react-router-dom';
+import * as Sentry from '@sentry/react';
 
 import HomePage from 'pages/HomePage';
 import Login from 'pages/Login';
@@ -14,12 +23,29 @@ import ForgotPassword from 'pages/ForgotPassword';
 
 import usePageTracking from 'shared/hooks/tracking-hook';
 
+Sentry.init({
+  dsn: process.env.REACT_APP_SENTRY_URL,
+  integrations: [
+    Sentry.reactRouterV6BrowserTracingIntegration({
+      useEffect: React.useEffect,
+      useLocation,
+      useNavigationType,
+      createRoutesFromChildren,
+      matchRoutes,
+    }),
+  ],
+  tracesSampleRate: 1.0,
+  environment: process.env.REACT_APP_SENTRY_ENV,
+});
+
+const SentryRoutes = Sentry.withSentryReactRouterV6Routing(Routes);
+
 function App() {
   usePageTracking();
 
   return (
     <div className="static-wrapper">
-      <Routes>
+      <SentryRoutes>
         <Route path="/" element={<HomePage />}>
           <Route path="/" element={<Navigate to="connexion" replace />} />
           <Route path="connexion" element={<Login />} />
@@ -47,7 +73,7 @@ function App() {
             )}
           />
         </Route>
-      </Routes>
+      </SentryRoutes>
     </div>
   );
 }

@@ -10,6 +10,8 @@
     "@dataesr/react-dsfr": "^3.10.0",
     "@gouvfr/dsfr": "1.9.1",
     "@jonkoops/matomo-tracker-react": "^0.7.0",
+    "@sentry/cli": "^2.33.1",
+    "@sentry/react": "^8.24.0",
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.0",
     "axios": "^1.7.2",
@@ -32,11 +34,12 @@
     "api": "json-server --watch db.json --port 5001",
     "dev": "react-scripts start",
     "run:app": "start-server-and-test api http://localhost:5001 dev",
-    "build": "react-scripts build",
+    "build": "react-scripts build && npm run sentry:sourcemaps",
     "lint": "eslint . --ext .tsx,.ts --ignore-path .gitignore",
     "lint:fix": "eslint . --ext .tsx,.ts --ignore-path .gitignore --fix",
     "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org betagouv --project msj-public-front ./build && sentry-cli --url https://sentry.incubateur.net sourcemaps upload --org betagouv --project msj-public-front ./build"
   },
   "eslintConfig": {
     "extends": [
