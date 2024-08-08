@@ -34,7 +34,7 @@
     "api": "json-server --watch db.json --port 5001",
     "dev": "react-scripts start",
     "run:app": "start-server-and-test api http://localhost:5001 dev",
-    "build": "react-scripts build && npm run sentry:sourcemaps",
+    "build": "react-scripts build",
     "lint": "eslint . --ext .tsx,.ts --ignore-path .gitignore",
     "lint:fix": "eslint . --ext .tsx,.ts --ignore-path .gitignore --fix",
     "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
