@@ -42,7 +42,7 @@ type MatomoWindow = Window & {_mtm: any[]};
 
 function App() {
   useEffect(() => {
-    if (!process.env.REACT_APP_MATOMO_BASE_URL) { return }
+    if (!process.env.REACT_APP_MATOMO_BASE_URL) { return; }
     const matomoWindow = window as unknown as MatomoWindow;
     // eslint-disable-next-line no-underscore-dangle, no-multi-assign, no-trailing-spaces
     const _mtm = matomoWindow._mtm = matomoWindow._mtm || [];
