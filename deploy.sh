@@ -26,6 +26,9 @@ then
   echo "Push to Scalingo prod"
   git push scalingo-prod main
   echo ""
+  echo "upload sourcemap to sentry"
+  scalingo --region osc-secnum-fr1 --app msj-ppsmj-front-prod run npm run sentry:sourcemaps
+  echo ""
   echo "Production deployed"
   echo "Push to Scalingo demo"
   git push scalingo-demo main
