@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Routes,
   Route,
@@ -21,8 +21,6 @@ import Appointment from 'pages/Appointment';
 import ProtectedLayout from 'shared/layouts/ProtectedLayout';
 import ForgotPassword from 'pages/ForgotPassword';
 
-import usePageTracking from 'shared/hooks/tracking-hook';
-
 Sentry.init({
   dsn: process.env.REACT_APP_SENTRY_URL,
   integrations: [
@@ -40,8 +38,19 @@ Sentry.init({
 
 const SentryRoutes = Sentry.withSentryReactRouterV6Routing(Routes);
 
+type MatomoWindow = Window & {_mtm: any[]};
+
 function App() {
-  usePageTracking();
+  useEffect(() => {
+    if (!process.env.REACT_APP_MATOMO_BASE_URL) { return; }
+    const matomoWindow = window as unknown as MatomoWindow;
+    // eslint-disable-next-line no-underscore-dangle, no-multi-assign, no-trailing-spaces
+    const _mtm = matomoWindow._mtm = matomoWindow._mtm || [];
+    _mtm.push({ 'mtm.startTime': (new Date().getTime()), event: 'mtm.Start' });
+    const d = document; const g = d.createElement('script');
+    const s = d.getElementsByTagName('script')[0];
+    g.async = true; g.src = process.env.REACT_APP_MATOMO_BASE_URL; s.parentNode.insertBefore(g, s);
+  }, []);
 
   return (
     <div className="static-wrapper">

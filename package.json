@@ -9,7 +9,6 @@
   "dependencies": {
     "@dataesr/react-dsfr": "^3.10.0",
     "@gouvfr/dsfr": "1.9.1",
-    "@jonkoops/matomo-tracker-react": "^0.7.0",
     "@sentry/cli": "^2.33.1",
     "@sentry/react": "^8.24.0",
     "@testing-library/jest-dom": "^6.4.8",
