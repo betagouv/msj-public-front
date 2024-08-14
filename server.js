@@ -24,7 +24,7 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      connectSrc: ["'self'", process.env.REACT_APP_BACKEND_HOST, process.env.SENTRY_URL],
+      connectSrc: ["'self'", process.env.REACT_APP_BACKEND_HOST, process.env.SENTRY_BASE_URL],
       scriptSrc: ["'self'", process.env.REACT_APP_MATOMO_BASE_URL],
       styleSrc: ["'self'", "'unsafe-inline'"],
       imgSrc: ["'self'", 'data:'],
