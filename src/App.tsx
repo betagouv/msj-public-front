@@ -45,10 +45,13 @@ type MatomoWindow = Window & {_mtm: any[]};
 function App() {
   useEffect(() => {
     const matomoUrl = getMatomoUrl();
+
     if (!matomoUrl) { return; }
     const matomoWindow = window as unknown as MatomoWindow;
     // eslint-disable-next-line no-underscore-dangle, no-multi-assign, no-trailing-spaces
     const _mtm = matomoWindow._mtm = matomoWindow._mtm || [];
+    if (_mtm.length > 0) { return; }
+
     _mtm.push({ 'mtm.startTime': (new Date().getTime()), event: 'mtm.Start' });
     const d = document; const g = d.createElement('script');
     const s = d.getElementsByTagName('script')[0];
