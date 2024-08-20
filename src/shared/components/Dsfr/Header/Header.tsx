@@ -22,7 +22,7 @@ export default function Header({
   const { width } = useViewport();
   const location = useLocation();
   const [path, setPath] = useState(() => (location && location.pathname) || '');
-  const { isLogin } = useAuth();
+  const { isLogin, user } = useAuth();
 
   const contextProps = useMemo(
     () => ({
@@ -77,6 +77,15 @@ export default function Header({
                 className="fr-nav__link"
               >
                 Donner mon avis
+              </Link>
+              <Link
+                href={`mailto:contact@mon-suivi-justice.beta.gouv.fr?subject=Demande%20d'aide%20interface%20probationnaire-${user.userId}`}
+                target="_blank"
+                isExternal
+                onClick={() => setOpenNav(false)}
+                className="fr-nav__link"
+              >
+                Support
               </Link>
             </>
           )}
