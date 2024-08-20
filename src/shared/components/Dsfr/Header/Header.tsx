@@ -85,7 +85,7 @@ export default function Header({
                 onClick={() => setOpenNav(false)}
                 className="fr-nav__link"
               >
-                Support
+                Contacter le support
               </Link>
             </>
           )}
