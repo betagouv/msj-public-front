@@ -5,6 +5,7 @@ const helmet = require('helmet');
 
 const app = express();
 const directory = `/${process.env.STATIC_DIR || 'dist'}`;
+const isPreviewMode = process.env.PREVIEW_MODE === 'true';
 
 // Rate limiter (100 requests per 15 minutes)
 const limiter = rateLimit({
@@ -24,9 +25,14 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
+      baseUri: isPreviewMode
+        ? ["'self'", process.env.REACT_APP_MATOMO_BASE_URL]
+        : ["'self'"],
       connectSrc: ["'self'", process.env.REACT_APP_BACKEND_HOST, process.env.SENTRY_BASE_URL],
-      scriptSrc: ["'self'", process.env.REACT_APP_MATOMO_BASE_URL],
-      styleSrc: ["'self'", "'unsafe-inline'"],
+      scriptSrc: ["'self'", process.env.REACT_APP_MATOMO_BASE_URL, "'sha256-Q9vPNvpI3BYCNwzFpA56s9IESqfHGcA8LabbrsO988U='", "'sha256-nzv8I5Mf0AZBUKeL70LtQfYBjK/DghfP72B8j+UI49I='", "'sha256-tk5KYYCkogkjcHW2dm7irfhO/DzK5WVZiSku2GpGxJ0='", ...(isPreviewMode ? ["'unsafe-eval'"] : [])],
+      styleSrc: isPreviewMode
+        ? ["'self'", "'unsafe-inline'", process.env.REACT_APP_MATOMO_BASE_URL]
+        : ["'self'", "'unsafe-inline'"],
       imgSrc: ["'self'", 'data:'],
       fontSrc: ["'self'"],
     },
