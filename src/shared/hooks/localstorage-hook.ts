@@ -9,7 +9,7 @@ const useLocalStorage = (keyName, defaultValue) => {
       }
       window.localStorage.setItem(keyName, JSON.stringify(defaultValue));
       return defaultValue;
-    } catch (err) {
+    } catch {
       return defaultValue;
     }
   });
