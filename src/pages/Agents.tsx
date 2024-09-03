@@ -49,7 +49,7 @@ function Agents() {
         if (resData.data) {
           setAgent(agentDataToAgent(resData.data));
         }
-      } catch (err) {
+      } catch {
         // TODO: how do we handle errors here ? (They are already handled in the http hook !)
         // eslint-disable-next-line no-console
         setAgent(null);
