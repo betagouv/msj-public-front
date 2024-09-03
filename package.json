@@ -10,7 +10,7 @@
     "@dataesr/react-dsfr": "^3.10.0",
     "@gouvfr/dsfr": "1.9.1",
     "@sentry/cli": "^2.33.1",
-    "@sentry/react": "^8.26.0",
+    "@sentry/react": "^8.27.0",
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.0",
     "axios": "^1.7.5",
