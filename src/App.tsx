@@ -20,7 +20,7 @@ import Account from 'pages/Account';
 import Appointment from 'pages/Appointment';
 import ProtectedLayout from 'shared/layouts/ProtectedLayout';
 import ForgotPassword from 'pages/ForgotPassword';
-
+import { useAuth } from 'shared/hooks/auth-hook';
 import { getMatomoUrl, getSentryUrl } from 'shared/utils/env';
 
 Sentry.init({
@@ -43,6 +43,8 @@ const SentryRoutes = Sentry.withSentryReactRouterV6Routing(Routes);
 type MatomoWindow = Window & {_mtm: any[]};
 
 function App() {
+  const { user } = useAuth();
+
   useEffect(() => {
     const matomoUrl = getMatomoUrl();
 
@@ -52,6 +54,9 @@ function App() {
     const _mtm = matomoWindow._mtm = matomoWindow._mtm || [];
     if (_mtm.length > 0) { return; }
 
+    if (user.phone) {
+      _mtm.push(['setUserId', user.phone]);
+    }
     _mtm.push({ 'mtm.startTime': (new Date().getTime()), event: 'mtm.Start' });
     const d = document; const g = d.createElement('script');
     const s = d.getElementsByTagName('script')[0];
