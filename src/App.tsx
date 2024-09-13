@@ -54,8 +54,8 @@ function App() {
     const _mtm = matomoWindow._mtm = matomoWindow._mtm || [];
     if (_mtm.length > 0) { return; }
 
-    if (user.phone) {
-      _mtm.push(['setUserId', user.phone]);
+    if (user.userId) {
+      _mtm.push(['setUserId', user.userId]);
     }
     _mtm.push({ 'mtm.startTime': (new Date().getTime()), event: 'mtm.Start' });
     const d = document; const g = d.createElement('script');
