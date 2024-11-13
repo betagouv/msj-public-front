@@ -176,7 +176,7 @@ function Login() {
             priorité. Pour plus d&apos;informations sur l&apos;utilisation de
             vos données personnelles, vous pouvez vous rendre sur
             {' '}
-            <a target="_blank" href="https://www.justice.fr/donnees-personnelles-et-cookies">
+            <a target="_blank" href="https://www.justice.fr/donnees-personnelles-et-cookies" rel="noreferrer">
               la page dédiée
             </a>
           </div>
