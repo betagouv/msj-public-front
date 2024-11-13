@@ -159,7 +159,7 @@ function AcceptInvitation() {
             priorité. Pour plus d&apos;informations sur l&apos;utilisation de
             vos données personnelles, vous pouvez vous rendre sur
             {' '}
-            <a target="_blank" href="/donnees_personnelles">la page dédiée</a>
+            <a target="_blank" href="https://www.justice.fr/donnees-personnelles-et-cookies">la page dédiée</a>
           </div>
         </section>
       </div>
