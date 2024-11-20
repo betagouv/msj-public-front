@@ -82,10 +82,16 @@ export default function Header({
                 href={`mailto:contact@mon-suivi-justice.beta.gouv.fr?subject=Demande%20d'aide%20interface%20probationnaire-${user.userId}`}
                 target="_blank"
                 isExternal
-                onClick={() => setOpenNav(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (window.confirm("Êtes-vous sûr de vouloir contacter le support Mon Suivi Justice ? Si vous souhaitez plutôt contacter votre CPIP, rendez-vous sur l'onglet \"Mes interlocuteurs\"")) {
+                    window.location.href = `mailto:contact@mon-suivi-justice.beta.gouv.fr?subject=Demande%20d'aide%20interface%20probationnaire-${user.userId}`;
+                  }
+                  setOpenNav(false);
+                }}
                 className="fr-nav__link"
               >
-                Contacter le support
+                Contacter le support MSJ
               </Link>
             </>
           )}
