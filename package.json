@@ -9,7 +9,7 @@
   "dependencies": {
     "@dataesr/react-dsfr": "^3.10.0",
     "@gouvfr/dsfr": "1.9.1",
-    "@sentry/cli": "^2.38.2",
+    "@sentry/cli": "^2.39.0",
     "@sentry/react": "^8.38.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
