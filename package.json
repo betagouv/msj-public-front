@@ -12,7 +12,7 @@
     "@sentry/cli": "^2.40.0",
     "@sentry/react": "^8.48.0",
     "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.1.0",
+    "@testing-library/react": "^16.2.0",
     "axios": "^1.7.9",
     "classnames": "^2.5.1",
     "express": "^4.21.2",
