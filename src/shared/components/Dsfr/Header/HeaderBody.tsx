@@ -42,6 +42,19 @@ function HeaderBody({ className = '' }: { className?: classNames.Argument }) {
           {!isMobile && <Tool />}
         </div>
       </div>
+      <div className="fr-notice fr-notice--info">
+        <div className="fr-container">
+          <div className="fr-notice__body">
+            <p>
+              <span className="fr-notice__title">
+                Attention, cette plateforme sera clôturée le 31 mars 2025. Il ne
+                sera plus possible d&apos;y accéder par la suite. Merci de
+                contacter votre CPIP si elle vous est utile.
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
